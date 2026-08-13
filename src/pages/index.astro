@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import ThreatIntel from "../components/ThreatIntel.astro";
+import Industries from "../components/Industries.astro";
+import ResourcesTeaser from "../components/ResourcesTeaser.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="RedShield Defense | Industrial-Grade Application & Cloud Security"
+  description="RedShield Defense secures mission-critical applications, cloud infrastructure, and digital operations through offensive testing, secure code review, and 24/7 managed SecOps."
+  path="/"
+>
+  <Header />
+  <main>
+    <Hero />
+    <Services />
+    <ThreatIntel />
+    <Industries />
+    <ResourcesTeaser />
+    <CtaBand />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,127 @@
+---
+---
+
+<section class="relative flex min-h-[92vh] items-center overflow-hidden border-b border-rsd-border bg-rsd-bg pt-24">
+  <div class="grid-overlay absolute inset-0"></div>
+  <canvas id="hero-canvas" class="absolute inset-0 h-full w-full opacity-70"></canvas>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-rsd-bg/40 to-rsd-bg"></div>
+  <div class="absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-rsd-cyan/10 blur-[140px]"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 py-24">
+    <div class="max-w-3xl">
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-rsd-border bg-rsd-surface/60 px-4 py-1.5">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-rsd-cyan opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-rsd-cyan"></span>
+        </span>
+        <span class="eyebrow">Live Threat Monitoring Active</span>
+      </div>
+
+      <h1 class="font-display text-5xl font-bold tracking-tight text-rsd-heading sm:text-6xl lg:text-7xl">
+        We defend the infrastructure the world <span class="text-rsd-cyan text-glow">cannot afford to lose</span>.
+      </h1>
+
+      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-rsd-body-bright sm:text-xl">
+        RedShield Defense secures mission-critical applications, cloud environments, and digital operations for organizations that cannot tolerate downtime, breach, or compromise. Industrial-grade security, engineered like the systems we protect.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+        <a href="/request-assessment" class="btn-primary justify-center">
+          Request an Assessment
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/services" class="btn-ghost justify-center">Explore Services</a>
+      </div>
+
+      <div class="mt-16 grid grid-cols-2 gap-8 border-t border-rsd-border pt-10 sm:grid-cols-4">
+        <div>
+          <p class="font-display text-3xl font-bold text-rsd-heading">400+</p>
+          <p class="mt-1 text-sm text-rsd-body">Critical assets secured</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl font-bold text-rsd-heading">12K+</p>
+          <p class="mt-1 text-sm text-rsd-body">Vulnerabilities remediated</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl font-bold text-rsd-heading">24/7</p>
+          <p class="mt-1 text-sm text-rsd-body">Threat operations coverage</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl font-bold text-rsd-heading">99.98%</p>
+          <p class="mt-1 text-sm text-rsd-body">Client infrastructure uptime</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement | null;
+  const ctx = canvas?.getContext("2d");
+  if (canvas && ctx) {
+    let width = 0;
+    let height = 0;
+    let nodes: { x: number; y: number; vx: number; vy: number }[] = [];
+    let animationFrame: number;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const resize = () => {
+      width = canvas.width = canvas.offsetWidth * devicePixelRatio;
+      height = canvas.height = canvas.offsetHeight * devicePixelRatio;
+      const count = Math.min(70, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 18000));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.25 * devicePixelRatio,
+        vy: (Math.random() - 0.5) * 0.25 * devicePixelRatio,
+      }));
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      const linkDistance = 160 * devicePixelRatio;
+
+      for (const node of nodes) {
+        node.x += node.vx;
+        node.y += node.vy;
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+      }
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < linkDistance) {
+            ctx.strokeStyle = `rgba(255, 0, 0, ${0.15 * (1 - dist / linkDistance)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (const node of nodes) {
+        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 1.6 * devicePixelRatio, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (!prefersReducedMotion) {
+        animationFrame = requestAnimationFrame(draw);
+      }
+    };
+
+    resize();
+    draw();
+    window.addEventListener("resize", () => {
+      cancelAnimationFrame(animationFrame);
+      resize();
+      draw();
+    });
+  }
+</script>

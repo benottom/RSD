@@ -1,0 +1,47 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import PageHero from "../../../components/PageHero.astro";
+import ResourceCard from "../../../components/ResourceCard.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { resourceKinds } from "../../../data/resources";
+
+export function getStaticPaths() {
+  return resourceKinds.map((group) => ({
+    params: { kind: group.key },
+    props: { group },
+  }));
+}
+
+const { group } = Astro.props;
+---
+
+<Layout
+  title={`${group.label} | RedShield Defense Resources`}
+  description={`Browse all ${group.label.toLowerCase()} from RedShield Defense.`}
+  path={group.path}
+>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Intelligence"
+      title={group.label}
+      desc={`All ${group.label.toLowerCase()} published by RedShield Defense's security engineers.`}
+      breadcrumb={[{ name: "Resources", href: "/resources" }, { name: group.label, href: group.path }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {group.items.map((item) => (
+            <ResourceCard item={item} href={`${group.path}/${item.slug}`} ctaLabel={group.ctaLabel} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CtaBand />
+  </main>
+  <Footer />
+</Layout>

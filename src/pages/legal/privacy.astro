@@ -1,0 +1,67 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LegalDoc from "../../components/LegalDoc.astro";
+
+const sections = [
+  {
+    heading: "1. Information We Collect",
+    paragraphs: [
+      "We collect information you provide directly to us, such as when you request an assessment, contact our team, or subscribe to our resources — including your name, work email, company, and message content.",
+    ],
+    list: [
+      "Contact information submitted through our forms",
+      "Technical information about your organization relevant to scoping an engagement",
+      "Usage data collected through standard web analytics",
+    ],
+  },
+  {
+    heading: "2. How We Use Information",
+    paragraphs: [
+      "We use the information we collect to respond to inquiries, scope and deliver security engagements, and improve our services. We do not sell personal information to third parties.",
+    ],
+  },
+  {
+    heading: "3. Data Security",
+    paragraphs: [
+      "Client engagement data, including assessment findings, is encrypted in transit and at rest and access-controlled on a need-to-know basis by the engineering team assigned to your engagement.",
+    ],
+  },
+  {
+    heading: "4. Data Retention",
+    paragraphs: [
+      "We retain engagement data for as long as necessary to deliver the service and meet contractual and regulatory obligations, after which it is securely deleted or anonymized.",
+    ],
+  },
+  {
+    heading: "5. Your Rights",
+    paragraphs: [
+      "Depending on your jurisdiction, you may have the right to access, correct, or delete your personal information. Contact privacy@redshielddefense.com to exercise these rights.",
+    ],
+  },
+  {
+    heading: "6. Contact",
+    paragraphs: [
+      "Questions about this policy can be directed to privacy@redshielddefense.com.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Privacy Policy | RedShield Defense"
+  description="RedShield Defense's privacy policy covering data collection, use, and retention practices."
+  path="/legal/privacy"
+>
+  <Header />
+  <main>
+    <LegalDoc
+      title="Privacy Policy"
+      updated="January 1, 2026"
+      intro="This policy describes how RedShield Defense collects, uses, and protects information in the course of our engagements and website operations."
+      sections={sections}
+    />
+  </main>
+  <Footer />
+</Layout>

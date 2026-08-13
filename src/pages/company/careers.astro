@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
+import CtaBand from "../../components/CtaBand.astro";
+
+const perks = [
+  { title: "Remote-First", desc: "Work from anywhere, with quarterly in-person team gatherings." },
+  { title: "Certification Support", desc: "Full funding for OSCP, OSCE, CISSP, and other industry certifications." },
+  { title: "Research Time", desc: "Dedicated time each month for independent security research and tooling." },
+  { title: "Competitive Equity", desc: "Meaningful equity for every full-time engineer, not just early hires." },
+];
+
+const openRoles = [
+  { title: "Senior Penetration Tester", team: "Offensive Security", location: "Remote (US/EU)" },
+  { title: "Cloud Security Engineer", team: "Defensive Operations", location: "Remote (US)" },
+  { title: "SOC Analyst, Threat Operations Center", team: "Managed SecOps", location: "Remote (US/EU)" },
+  { title: "Secure Code Review Engineer", team: "Offensive Security", location: "Remote (US)" },
+];
+---
+
+<Layout
+  title="Careers | RedShield Defense"
+  description="Join RedShield Defense's team of offensive and defensive security engineers securing mission-critical infrastructure."
+  path="/company/careers"
+>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Careers"
+      title="Work on the problems that matter most."
+      desc="We hire engineers who want to spend their careers on infrastructure that can't afford to fail — and give them the autonomy, tooling, and research time to do their best work."
+      breadcrumb={[{ name: "Company", href: "/company" }, { name: "Careers", href: "/company/careers" }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="eyebrow mb-4">Why RedShield</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Built for engineers who take craft seriously.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {perks.map((perk) => (
+            <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <h3 class="font-display text-base font-semibold text-rsd-heading">{perk.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{perk.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-5xl px-6">
+        <p class="eyebrow mb-4">Open Roles</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Current openings.</h2>
+        <div class="mt-10 divide-y divide-rsd-border border-y border-rsd-border">
+          {openRoles.map((role) => (
+            <div class="flex flex-col justify-between gap-2 py-6 sm:flex-row sm:items-center">
+              <div>
+                <h3 class="font-display text-lg font-semibold text-rsd-heading">{role.title}</h3>
+                <p class="mt-1 text-sm text-rsd-body">{role.team} · {role.location}</p>
+              </div>
+              <a href="mailto:careers@redshielddefense.com" class="btn-ghost text-sm shrink-0">Apply via Email</a>
+            </div>
+          ))}
+        </div>
+        <p class="mt-8 text-sm text-rsd-body">
+          Don't see the right fit? Send your resume to <a href="mailto:careers@redshielddefense.com" class="text-rsd-cyan hover:underline">careers@redshielddefense.com</a> — we're always looking for exceptional security engineers.
+        </p>
+      </div>
+    </section>
+
+    <CtaBand />
+  </main>
+  <Footer />
+</Layout>

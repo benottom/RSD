@@ -1,0 +1,31 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  desc: string;
+  breadcrumb?: { name: string; href: string }[];
+}
+
+const { eyebrow, title, desc, breadcrumb = [] } = Astro.props;
+---
+
+<section class="relative overflow-hidden border-b border-rsd-border bg-rsd-bg pt-40 pb-20">
+  <div class="grid-overlay absolute inset-0 opacity-60"></div>
+  <div class="absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-rsd-cyan/10 blur-[130px]"></div>
+  <div class="relative mx-auto max-w-4xl px-6">
+    {breadcrumb.length > 0 && (
+      <nav class="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs text-rsd-body">
+        <a href="/" class="hover:text-rsd-cyan">Home</a>
+        {breadcrumb.map((crumb) => (
+          <>
+            <span class="text-rsd-border-bright">/</span>
+            <a href={crumb.href} class="hover:text-rsd-cyan">{crumb.name}</a>
+          </>
+        ))}
+      </nav>
+    )}
+    <p class="eyebrow mb-4">{eyebrow}</p>
+    <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">{title}</h1>
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-rsd-body">{desc}</p>
+  </div>
+</section>

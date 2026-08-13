@@ -1,0 +1,144 @@
+---
+import { services, serviceMenuGroups } from "../data/services";
+
+const serviceLinks = serviceMenuGroups.map((heading) => ({
+  heading,
+  items: services
+    .filter((s) => s.menuGroup === heading)
+    .map((s) => ({ name: s.name, href: `/services/${s.slug}`, desc: s.shortDesc })),
+}));
+
+const resourceLinks = [
+  { name: "Threat Intelligence Reports", href: "/resources/reports", desc: "Quarterly analysis of the vulnerabilities shaping the threat landscape." },
+  { name: "Technical Blog", href: "/resources/blog", desc: "Research notes and field findings from our security engineers." },
+  { name: "Case Studies", href: "/resources/case-studies", desc: "How mission-critical organizations harden their infrastructure with us." },
+  { name: "Whitepapers", href: "/resources/whitepapers", desc: "In-depth briefings for security and compliance leadership." },
+];
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 transition-all duration-300" id="header-inner">
+    <a href="/" class="flex items-center gap-2.5 shrink-0">
+      <img src="/images/redshielddefense-logo.png" alt="RedShield Defense" width="36" height="44" class="h-9 w-auto" loading="eager" decoding="async" />
+      <span class="font-display text-lg font-bold tracking-tight text-rsd-heading">RedShield<span class="text-rsd-cyan">Defense</span></span>
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex">
+      <div class="nav-item group relative">
+        <a href="/services" class="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-rsd-body-bright transition-colors hover:text-rsd-cyan">
+          Services
+          <svg class="h-3.5 w-3.5 opacity-60" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <div class="mega-menu absolute left-1/2 top-full w-[640px] -translate-x-1/2 pt-4">
+          <div class="grid grid-cols-2 gap-8 rounded-lg border border-rsd-border bg-white p-8 shadow-2xl shadow-black/10">
+            {serviceLinks.map((group) => (
+              <div>
+                <p class="eyebrow mb-4">{group.heading}</p>
+                <ul class="space-y-4">
+                  {group.items.map((item) => (
+                    <li>
+                      <a href={item.href} class="group/link block">
+                        <span class="block text-sm font-semibold text-rsd-heading group-hover/link:text-rsd-cyan">{item.name}</span>
+                        <span class="mt-1 block text-xs leading-relaxed text-rsd-body">{item.desc}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <a href="/industries" class="px-4 py-2 text-sm font-medium text-rsd-body-bright transition-colors hover:text-rsd-cyan">Industries</a>
+
+      <div class="nav-item group relative">
+        <a href="/resources" class="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-rsd-body-bright transition-colors hover:text-rsd-cyan">
+          Resources
+          <svg class="h-3.5 w-3.5 opacity-60" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <div class="mega-menu absolute left-1/2 top-full w-[420px] -translate-x-1/2 pt-4">
+          <div class="rounded-lg border border-rsd-border bg-white p-8 shadow-2xl shadow-black/10">
+            <ul class="space-y-4">
+              {resourceLinks.map((item) => (
+                <li>
+                  <a href={item.href} class="group/link block">
+                    <span class="block text-sm font-semibold text-rsd-heading group-hover/link:text-rsd-cyan">{item.name}</span>
+                    <span class="mt-1 block text-xs leading-relaxed text-rsd-body">{item.desc}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <a href="/company" class="px-4 py-2 text-sm font-medium text-rsd-body-bright transition-colors hover:text-rsd-cyan">Company</a>
+    </nav>
+
+    <div class="hidden items-center gap-4 lg:flex">
+      <a href="/company/careers" class="text-sm font-medium text-rsd-body-bright transition-colors hover:text-rsd-cyan">Careers</a>
+      <a href="/request-assessment" class="btn-primary text-sm">Request an Assessment</a>
+    </div>
+
+    <button id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" class="flex h-10 w-10 items-center justify-center lg:hidden">
+      <svg id="icon-burger" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M2 5.5H20M2 11H20M2 16.5H20" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <svg id="icon-close" width="22" height="22" viewBox="0 0 22 22" fill="none" class="hidden"><path d="M4 4L18 18M18 4L4 18" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 flex flex-col bg-rsd-bg-deep px-6 pb-10 pt-28 lg:hidden">
+  <div class="grid-overlay pointer-events-none absolute inset-0 opacity-40"></div>
+  <nav class="relative flex flex-1 flex-col justify-center gap-2">
+    <a href="/services" class="mobile-menu-item font-display text-3xl font-semibold text-white" style="transition-delay:60ms">Services</a>
+    <a href="/industries" class="mobile-menu-item font-display text-3xl font-semibold text-white" style="transition-delay:120ms">Industries</a>
+    <a href="/resources" class="mobile-menu-item font-display text-3xl font-semibold text-white" style="transition-delay:180ms">Resources</a>
+    <a href="/company" class="mobile-menu-item font-display text-3xl font-semibold text-white" style="transition-delay:240ms">Company</a>
+    <a href="/company/careers" class="mobile-menu-item font-display text-3xl font-semibold text-white" style="transition-delay:300ms">Careers</a>
+  </nav>
+  <a href="/request-assessment" class="mobile-menu-item btn-primary relative w-full justify-center" style="transition-delay:360ms">Request an Assessment</a>
+</div>
+
+<script>
+  const header = document.getElementById("site-header");
+  const headerInner = document.getElementById("header-inner");
+
+  const onScroll = () => {
+    if (!header || !headerInner) return;
+    if (window.scrollY > 24) {
+      header.classList.add("glass-nav", "border-rsd-border");
+      headerInner.classList.add("py-3.5");
+      headerInner.classList.remove("py-5");
+    } else {
+      header.classList.remove("glass-nav", "border-rsd-border");
+      headerInner.classList.remove("py-3.5");
+      headerInner.classList.add("py-5");
+    }
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const iconBurger = document.getElementById("icon-burger");
+  const iconClose = document.getElementById("icon-close");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    iconBurger?.classList.toggle("hidden", isOpen);
+    iconClose?.classList.toggle("hidden", !isOpen);
+    document.body.classList.toggle("overflow-hidden", isOpen);
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("is-open");
+      toggle?.setAttribute("aria-expanded", "false");
+      iconBurger?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    });
+  });
+</script>

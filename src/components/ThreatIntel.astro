@@ -1,0 +1,97 @@
+---
+const stats = [
+  { value: "17 yrs", label: "Combined offensive security expertise" },
+  { value: "60+", label: "Certified security engineers (OSCP, OSCE, CISSP)" },
+  { value: "3,200+", label: "Assessments delivered without a missed SLA" },
+  { value: "< 4 min", label: "Mean detection time in managed SecOps" },
+];
+
+const severityBars = [
+  { label: "Critical", pct: 18, color: "bg-rsd-cyan" },
+  { label: "High", pct: 34, color: "bg-rsd-amber" },
+  { label: "Medium", pct: 31, color: "bg-white" },
+  { label: "Low", pct: 17, color: "bg-rsd-body" },
+];
+---
+
+<section class="relative overflow-hidden border-b border-rsd-border bg-rsd-surface-alt py-24">
+  <div class="grid-overlay absolute inset-0 opacity-30"></div>
+  <div class="relative mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="eyebrow mb-4">Why RedShield</p>
+        <h2 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">
+          Built like a threat operations center. Because it is one.
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-rsd-body">
+          Every engagement is backed by the same intelligence pipeline that powers our managed detection service — so the vulnerabilities we find are prioritized the way real attackers would exploit them.
+        </p>
+
+        <dl class="mt-12 grid grid-cols-2 gap-x-8 gap-y-10">
+          {stats.map((stat) => (
+            <div class="border-l-2 border-rsd-cyan/40 pl-5">
+              <dt class="font-display text-3xl font-bold text-rsd-heading">{stat.value}</dt>
+              <dd class="mt-2 text-sm leading-relaxed text-rsd-body">{stat.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div class="rounded-xl border border-rsd-border bg-rsd-bg-deep p-6 shadow-2xl shadow-black/50 sm:p-8">
+        <div class="flex items-center justify-between border-b border-rsd-border pb-4">
+          <div class="flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-rsd-red/70"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-rsd-amber/70"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-rsd-cyan/70"></span>
+            <span class="ml-2 font-mono text-xs uppercase tracking-widest text-rsd-body">threat-ops / live-feed</span>
+          </div>
+          <span class="flex items-center gap-1.5 font-mono text-xs text-rsd-cyan">
+            <span class="h-1.5 w-1.5 animate-pulse-slow rounded-full bg-rsd-cyan"></span>
+            monitoring
+          </span>
+        </div>
+
+        <div class="mt-6 grid grid-cols-3 gap-4">
+          <div class="rounded-lg border border-rsd-border bg-rsd-surface p-4">
+            <p class="font-mono text-xs text-rsd-body">Open Findings</p>
+            <p class="mt-2 font-display text-2xl font-bold text-rsd-heading">142</p>
+          </div>
+          <div class="rounded-lg border border-rsd-border bg-rsd-surface p-4">
+            <p class="font-mono text-xs text-rsd-body">Assets Watched</p>
+            <p class="mt-2 font-display text-2xl font-bold text-rsd-heading">3,481</p>
+          </div>
+          <div class="rounded-lg border border-rsd-red/30 bg-rsd-red/10 p-4">
+            <p class="font-mono text-xs text-rsd-body">Active Alerts</p>
+            <p class="mt-2 font-display text-2xl font-bold text-rsd-red">6</p>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <p class="mb-3 font-mono text-xs uppercase tracking-widest text-rsd-body">Findings by Severity</p>
+          <div class="space-y-3">
+            {severityBars.map((bar) => (
+              <div class="flex items-center gap-3">
+                <span class="w-16 shrink-0 font-mono text-xs text-rsd-body">{bar.label}</span>
+                <div class="h-2 flex-1 overflow-hidden rounded-full bg-rsd-surface">
+                  <div class={`h-full rounded-full ${bar.color}`} style={`width: ${bar.pct}%`}></div>
+                </div>
+                <span class="w-9 shrink-0 text-right font-mono text-xs text-white">{bar.pct}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <svg class="mt-6 h-24 w-full" viewBox="0 0 400 100" preserveAspectRatio="none" fill="none">
+          <polyline points="0,70 40,55 80,60 120,35 160,45 200,20 240,38 280,25 320,42 360,15 400,30" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+          <polyline points="0,70 40,55 80,60 120,35 160,45 200,20 240,38 280,25 320,42 360,15 400,30 400,100 0,100" fill="url(#chart-gradient)" stroke="none" opacity="0.6" />
+          <defs>
+            <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FF0000" stop-opacity="0.4" />
+              <stop offset="100%" stop-color="#FF0000" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>

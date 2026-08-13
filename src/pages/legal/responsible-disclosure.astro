@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LegalDoc from "../../components/LegalDoc.astro";
+
+const sections = [
+  {
+    heading: "Our Commitment",
+    paragraphs: [
+      "As a security firm, we hold our own systems to the same standard we test our clients against. We welcome reports from independent researchers who identify vulnerabilities in RedShield Defense's own infrastructure.",
+    ],
+  },
+  {
+    heading: "Scope",
+    paragraphs: [
+      "This policy covers redshielddefense.com and RedShield Defense-operated infrastructure. It does not cover the systems of our clients, which are governed by their own disclosure policies.",
+    ],
+  },
+  {
+    heading: "Reporting Guidelines",
+    paragraphs: [
+      "Please report suspected vulnerabilities to security@redshielddefense.com with sufficient detail to reproduce the issue. Do not access, modify, or exfiltrate data beyond what is necessary to demonstrate the vulnerability.",
+    ],
+    list: [
+      "Provide a clear description and steps to reproduce",
+      "Avoid automated scanning that could degrade service availability",
+      "Give us reasonable time to remediate before public disclosure",
+    ],
+  },
+  {
+    heading: "Our Response",
+    paragraphs: [
+      "We acknowledge reports within two business days and aim to provide a remediation timeline within ten business days of confirming a valid finding.",
+    ],
+  },
+  {
+    heading: "Safe Harbor",
+    paragraphs: [
+      "We will not pursue legal action against researchers who make a good-faith effort to comply with this policy while identifying and reporting a vulnerability.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Responsible Disclosure Policy | RedShield Defense"
+  description="How to report a security vulnerability in RedShield Defense's own systems."
+  path="/legal/responsible-disclosure"
+>
+  <Header />
+  <main>
+    <LegalDoc
+      title="Responsible Disclosure Policy"
+      updated="January 1, 2026"
+      intro="We hold our own infrastructure to the same rigor we test our clients against, and welcome good-faith security research."
+      sections={sections}
+    />
+  </main>
+  <Footer />
+</Layout>

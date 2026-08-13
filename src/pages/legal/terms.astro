@@ -1,0 +1,68 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LegalDoc from "../../components/LegalDoc.astro";
+
+const sections = [
+  {
+    heading: "1. Acceptance of Terms",
+    paragraphs: [
+      "By accessing this website or engaging RedShield Defense for services, you agree to be bound by these Terms of Service and any separately executed statement of work governing a specific engagement.",
+    ],
+  },
+  {
+    heading: "2. Scope of Services",
+    paragraphs: [
+      "Security assessment and advisory services are governed by a signed statement of work and rules of engagement, which take precedence over this general website content in the event of any conflict.",
+    ],
+  },
+  {
+    heading: "3. Authorized Testing",
+    paragraphs: [
+      "All offensive security testing is performed only against systems and within scope explicitly authorized in writing by the client. RedShield Defense will not test systems outside an agreed scope.",
+    ],
+  },
+  {
+    heading: "4. Confidentiality",
+    paragraphs: [
+      "Findings, credentials, and any data accessed during an engagement are treated as confidential and handled under the terms of a mutual non-disclosure agreement.",
+    ],
+  },
+  {
+    heading: "5. Limitation of Liability",
+    paragraphs: [
+      "Security assessments identify vulnerabilities present at the time of testing and do not guarantee the absence of all risk. Liability terms are defined in the applicable statement of work.",
+    ],
+  },
+  {
+    heading: "6. Governing Law",
+    paragraphs: [
+      "These terms are governed by the laws of the State of Texas, without regard to conflict-of-law principles, unless otherwise specified in an executed agreement.",
+    ],
+  },
+  {
+    heading: "7. Contact",
+    paragraphs: [
+      "Questions about these terms can be directed to legal@redshielddefense.com.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Terms of Service | RedShield Defense"
+  description="Terms of service governing use of the RedShield Defense website and engagement of our security services."
+  path="/legal/terms"
+>
+  <Header />
+  <main>
+    <LegalDoc
+      title="Terms of Service"
+      updated="January 1, 2026"
+      intro="These terms govern your use of the RedShield Defense website. Specific engagements are additionally governed by a signed statement of work."
+      sections={sections}
+    />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,28 @@
+---
+import { industries } from "../data/industries";
+---
+
+<section class="border-b border-rsd-border bg-rsd-bg py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+      <div class="max-w-xl">
+        <p class="eyebrow mb-4">Industries</p>
+        <h2 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">Sector-specific expertise, not generic playbooks.</h2>
+      </div>
+      <a href="/industries" class="btn-ghost shrink-0">View All Industries</a>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 divide-y divide-rsd-border border-y border-rsd-border sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3">
+      {industries.map((industry) => (
+        <a href={`/industries/${industry.slug}`} class="group flex flex-col justify-between gap-6 p-8 transition-colors hover:bg-rsd-surface/60">
+          <h3 class="font-display text-lg font-semibold text-rsd-heading group-hover:text-rsd-cyan">{industry.name}</h3>
+          <p class="text-sm leading-relaxed text-rsd-body">{industry.shortDesc}</p>
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-rsd-cyan opacity-0 transition-opacity group-hover:opacity-100">
+            Learn About This Sector
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

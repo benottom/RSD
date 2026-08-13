@@ -1,0 +1,17 @@
+export const icons: Record<string, string> = {
+  target: `<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/>`,
+  cloud: `<path d="M7 18a4.5 4.5 0 0 1-.5-8.97A5.5 5.5 0 0 1 17.2 9.05 4 4 0 0 1 16.5 17H7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>`,
+  code: `<path d="M9 8L4.5 12L9 16M15 8L19.5 12L15 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  radar: `<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 12L18 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/>`,
+  "shield-check": `<path d="M12 3L19 6V11.5C19 16 16 19.5 12 21C8 19.5 5 16 5 11.5V6L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12L11.2 14.2L15.5 9.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  crosshair: `<circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M12 2V6M12 18V22M2 12H6M18 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`,
+  bank: `<path d="M4 10L12 4L20 10M5 10V19M9 10V19M15 10V19M19 10V19M3 19H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  pulse: `<path d="M3 12H7L9.5 5L14 19L16.5 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  layers: `<path d="M12 3L21 8L12 13L3 8L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 13L12 18L21 13M3 16L12 21L21 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  factory: `<path d="M3 21V11L9 15V11L15 15V6L21 11V21H3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>`,
+  landmark: `<path d="M4 10L12 4L20 10M4 21H20M5 10V21M9.5 10V21M14.5 10V21M19 10V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  cart: `<path d="M3 4H5L7 15H18L20 7H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.4" fill="currentColor"/><circle cx="17" cy="19" r="1.4" fill="currentColor"/>`,
+  document: `<path d="M7 3H14L18 7V21H7V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 3V7H18" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>`,
+  briefcase: `<path d="M4 8H20V19H4V8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 8V6C9 5 9.8 4 11 4H13C14.2 4 15 5 15 6V8" stroke="currentColor" stroke-width="1.5"/>`,
+  file: `<path d="M7 3H14L18 7V21H7V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>`,
+};

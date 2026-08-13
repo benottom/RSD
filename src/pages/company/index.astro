@@ -1,0 +1,79 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
+import CtaBand from "../../components/CtaBand.astro";
+
+const values = [
+  { title: "Operate Like the Adversary", desc: "We test and defend using the same tradecraft real attackers use — not a checklist derived from a compliance framework." },
+  { title: "Precision Over Noise", desc: "Every finding is validated and prioritized by real exploitability, so your team spends time fixing risk, not triaging false positives." },
+  { title: "Engineer, Don't Just Report", desc: "We hand off remediation guidance your engineers can implement directly, and stay engaged through retesting." },
+  { title: "Earn Trust Through Rigor", desc: "Mission-critical organizations don't need reassurance — they need evidence. We build our reputation one validated finding at a time." },
+];
+
+const stats = [
+  { value: "2016", label: "Founded" },
+  { value: "60+", label: "Security engineers on staff" },
+  { value: "400+", label: "Organizations secured" },
+  { value: "17 yrs", label: "Combined offensive security expertise" },
+];
+---
+
+<Layout
+  title="About RedShield Defense | Industrial-Grade Security"
+  description="RedShield Defense is a security firm built by offensive security engineers, delivering industrial-grade protection for mission-critical infrastructure."
+  path="/company"
+>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Company"
+      title="Built by engineers who've operated on both sides of the assessment."
+      desc="RedShield Defense was founded on a simple premise: security testing should be conducted with the same rigor, patience, and tradecraft as a real intrusion — because that's the only way to find what actually matters."
+      breadcrumb={[{ name: "Company", href: "/company" }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-4xl px-6">
+        <p class="text-lg leading-relaxed text-rsd-body-bright">
+          We started RedShield Defense after years spent on offensive security teams, watching organizations invest heavily in security tooling while the fundamentals — authorization logic, cloud configuration, incident response readiness — went untested until it was too late.
+        </p>
+        <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">
+          Today, our engineers support organizations across financial services, healthcare, critical infrastructure, and technology — running the offensive assessments, defensive engineering, and managed operations that keep mission-critical systems standing under real pressure.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="eyebrow mb-4">What We Believe</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Principles that shape every engagement.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {values.map((value) => (
+            <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <h3 class="font-display text-lg font-semibold text-rsd-heading">{value.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{value.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-16">
+      <div class="mx-auto max-w-5xl px-6">
+        <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {stats.map((stat) => (
+            <div class="text-center">
+              <p class="font-display text-3xl font-bold text-rsd-heading">{stat.value}</p>
+              <p class="mt-2 text-sm text-rsd-body">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CtaBand />
+  </main>
+  <Footer />
+</Layout>

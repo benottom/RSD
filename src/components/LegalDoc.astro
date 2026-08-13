@@ -1,0 +1,44 @@
+---
+interface Section {
+  heading: string;
+  paragraphs: string[];
+  list?: string[];
+}
+
+interface Props {
+  title: string;
+  updated: string;
+  intro: string;
+  sections: Section[];
+}
+
+const { title, updated, intro, sections } = Astro.props;
+---
+
+<section class="relative overflow-hidden border-b border-rsd-border bg-rsd-bg pt-40 pb-20">
+  <div class="grid-overlay absolute inset-0 opacity-60"></div>
+  <div class="relative mx-auto max-w-3xl px-6">
+    <p class="eyebrow mb-4">Legal</p>
+    <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">{title}</h1>
+    <p class="mt-4 font-mono text-xs text-rsd-body">Last updated: {updated}</p>
+    <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{intro}</p>
+  </div>
+</section>
+
+<section class="bg-rsd-bg py-16">
+  <div class="mx-auto max-w-3xl px-6">
+    {sections.map((section) => (
+      <div class="mb-10">
+        <h2 class="font-display text-xl font-bold text-rsd-heading">{section.heading}</h2>
+        {section.paragraphs.map((paragraph: string) => (
+          <p class="mt-4 text-base leading-relaxed text-rsd-body">{paragraph}</p>
+        ))}
+        {section.list && (
+          <ul class="mt-4 list-inside list-disc space-y-2 text-base leading-relaxed text-rsd-body">
+            {section.list.map((li: string) => <li>{li}</li>)}
+          </ul>
+        )}
+      </div>
+    ))}
+  </div>
+</section>

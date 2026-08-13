@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
+import ResourceCard from "../../components/ResourceCard.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { resourceKinds } from "../../data/resources";
+---
+
+<Layout
+  title="Resources | RedShield Defense"
+  description="Threat intelligence reports, whitepapers, case studies, and technical research from RedShield Defense's security engineers."
+  path="/resources"
+>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Intelligence"
+      title="Field research from the front lines of defense."
+      desc="Reports, whitepapers, case studies, and technical notes from the engineers who run our assessments and threat operations."
+      breadcrumb={[{ name: "Resources", href: "/resources" }]}
+    />
+
+    {resourceKinds.map((group) => (
+      <section class="border-b border-rsd-border bg-rsd-bg py-20">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">{group.label}</h2>
+            <a href={group.path} class="btn-ghost shrink-0">View All {group.label}</a>
+          </div>
+          <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {group.items.slice(0, 3).map((item) => (
+              <ResourceCard item={item} href={`${group.path}/${item.slug}`} ctaLabel={group.ctaLabel} />
+            ))}
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <CtaBand />
+  </main>
+  <Footer />
+</Layout>

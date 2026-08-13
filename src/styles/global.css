@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Lexend", "Helvetica", "Arial", sans-serif;
+  --font-body: "Lexend", "Helvetica", "Arial", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Backgrounds */
+  --color-rsd-bg: #ffffff;
+  --color-rsd-bg-deep: #000000;
+  --color-rsd-surface: #f5f5f5;
+  --color-rsd-surface-alt: #fafafa;
+  --color-rsd-border: #e5e5e5;
+  --color-rsd-border-bright: #000000;
+
+  /* Accents */
+  --color-rsd-cyan: #ff0000;
+  --color-rsd-cyan-bright: #e10600;
+  --color-rsd-amber: #f59e0b;
+  --color-rsd-red: #b91c1c;
+
+  /* Typography */
+  --color-rsd-heading: #000000;
+  --color-rsd-body: #6b7280;
+  --color-rsd-body-bright: #171717;
+
+  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animate-scan: scan 6s linear infinite;
+  --animate-drift: drift 40s linear infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 120px 120px; }
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-rsd-bg);
+  color: var(--color-rsd-body);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-rsd-heading);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+::selection {
+  background-color: var(--color-rsd-cyan);
+  color: #ffffff;
+}
+
+/* Reusable primitives ------------------------------------------------- */
+
+.grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(115, 115, 115, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(115, 115, 115, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.node-field {
+  background-image: radial-gradient(rgba(255, 0, 0, 0.45) 1px, transparent 1.5px);
+  background-size: 42px 42px;
+}
+
+.glass-nav {
+  background-color: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.glow-border {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.glow-border:hover {
+  border-color: var(--color-rsd-cyan);
+  box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.35), 0 20px 40px -20px rgba(255, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+.text-glow {
+  text-shadow: none;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-rsd-cyan);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.9rem 1.75rem;
+  border-radius: 0.25rem;
+  letter-spacing: 0.01em;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-rsd-cyan-bright);
+  box-shadow: 0 12px 28px -10px rgba(255, 0, 0, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--color-rsd-body-bright);
+  font-weight: 600;
+  padding: 0.9rem 1.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--color-rsd-border-bright);
+  letter-spacing: 0.01em;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-rsd-cyan);
+  color: var(--color-rsd-cyan);
+  transform: translateY(-2px);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-rsd-cyan);
+}
+
+/* Mobile menu ----------------------------------------------------------- */
+
+.mobile-menu {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.mobile-menu-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.mobile-menu.is-open .mobile-menu-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mega menu --------------------------------------------------------------- */
+
+.mega-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.nav-item:hover .mega-menu,
+.mega-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

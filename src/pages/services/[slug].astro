@@ -1,0 +1,92 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { services } from "../../data/services";
+import { icons } from "../../data/icons";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+---
+
+<Layout
+  title={`${service.name} | RedShield Defense`}
+  description={service.shortDesc}
+  path={`/services/${service.slug}`}
+>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow={service.tag}
+      title={service.name}
+      desc={service.heroDesc}
+      breadcrumb={[{ name: "Services", href: "/services" }, { name: service.name, href: `/services/${service.slug}` }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-4xl px-6">
+        <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
+        </div>
+        {service.overview.map((paragraph: string) => (
+          <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
+        ))}
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="eyebrow mb-4">Capabilities</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">What's included in this engagement.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {service.capabilities.map((cap: { title: string; desc: string }) => (
+            <div class="glow-border rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <h3 class="font-display text-lg font-semibold text-rsd-heading">{cap.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{cap.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-5xl px-6">
+        <p class="eyebrow mb-4">Process</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">How the engagement runs.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
+          {service.process.map((step: { step: string; title: string; desc: string }) => (
+            <div class="border-l-2 border-rsd-cyan/40 pl-6">
+              <span class="font-mono text-sm text-rsd-cyan">{step.step}</span>
+              <h3 class="mt-2 font-display text-lg font-semibold text-rsd-heading">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-rsd-body">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-16">
+      <div class="mx-auto max-w-5xl px-6">
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {service.outcomes.map((stat: { value: string; label: string }) => (
+            <div class="text-center">
+              <p class="font-display text-3xl font-bold text-rsd-heading">{stat.value}</p>
+              <p class="mt-2 text-sm text-rsd-body">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CtaBand />
+  </main>
+  <Footer />
+</Layout>

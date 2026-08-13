@@ -1,0 +1,72 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import PageHero from "../../../components/PageHero.astro";
+import ResourceCard from "../../../components/ResourceCard.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { resourceKinds } from "../../../data/resources";
+
+export function getStaticPaths() {
+  return resourceKinds.flatMap((group) =>
+    group.items.map((item) => ({
+      params: { kind: group.key, slug: item.slug },
+      props: { group, item },
+    }))
+  );
+}
+
+const { group, item } = Astro.props;
+const otherItems = group.items.filter((i: typeof item) => i.slug !== item.slug).slice(0, 3);
+---
+
+<Layout
+  title={`${item.title} | RedShield Defense`}
+  description={item.excerpt}
+  path={`${group.path}/${item.slug}`}
+>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow={item.kind}
+      title={item.title}
+      desc={item.excerpt}
+      breadcrumb={[{ name: "Resources", href: "/resources" }, { name: group.label, href: group.path }, { name: item.title, href: `${group.path}/${item.slug}` }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-16">
+      <div class="mx-auto max-w-3xl px-6">
+        <div class="mb-10 flex items-center gap-4 border-b border-rsd-border pb-6 font-mono text-xs text-rsd-body">
+          <span>{new Date(item.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+          <span class="text-rsd-border-bright">/</span>
+          <span>{item.readTime}</span>
+        </div>
+        {item.sections.map((section: { heading: string; paragraphs: string[] }) => (
+          <div class="mb-10">
+            <h2 class="font-display text-2xl font-bold text-rsd-heading">{section.heading}</h2>
+            {section.paragraphs.map((paragraph: string) => (
+              <p class="mt-4 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {otherItems.length > 0 && (
+      <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+        <div class="mx-auto max-w-7xl px-6">
+          <p class="eyebrow mb-4">Keep Reading</p>
+          <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">More from {group.label}.</h2>
+          <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {otherItems.map((other: typeof item) => (
+              <ResourceCard item={other} href={`${group.path}/${other.slug}`} ctaLabel={group.ctaLabel} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <CtaBand />
+  </main>
+  <Footer />
+</Layout>
