@@ -63,7 +63,9 @@ const reassurances = [
         </div>
 
         <div class="lg:col-span-3">
-          <form id="assessment-form" class="rounded-xl border border-rsd-border bg-rsd-surface p-8">
+          <form id="assessment-form" action="https://formspree.io/f/xzepvdda" method="POST" class="rounded-xl border border-rsd-border bg-rsd-surface p-8">
+            <input type="hidden" name="_subject" value="New assessment request — RedShield Defense" />
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label for="name" class="mb-2 block text-sm font-medium text-rsd-body-bright">Full Name</label>
@@ -111,7 +113,7 @@ const reassurances = [
               Submit Request
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <p id="assessment-status" class="mt-4 hidden text-sm text-rsd-cyan" role="status"></p>
+            <p id="assessment-status" class="mt-4 hidden text-sm" role="status"></p>
           </form>
         </div>
       </div>
@@ -123,11 +125,37 @@ const reassurances = [
 <script>
   const form = document.getElementById("assessment-form") as HTMLFormElement | null;
   const status = document.getElementById("assessment-status");
-  form?.addEventListener("submit", (event) => {
+  const submitButton = form?.querySelector("button[type=submit]") as HTMLButtonElement | null;
+
+  form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (status) {
-      status.textContent = "Thanks — this form is a design preview and isn't yet connected to a mailbox. Please email assessments@redshielddefense.com directly.";
-      status.classList.remove("hidden");
+    if (!status || !submitButton) return;
+
+    submitButton.disabled = true;
+    submitButton.classList.add("opacity-60");
+    status.classList.remove("hidden", "text-rsd-cyan", "text-red-600");
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        status.textContent = "Thanks — your request has been sent. A senior engineer will review it within one business day.";
+        status.classList.add("text-rsd-cyan");
+        form.reset();
+      } else {
+        status.textContent = "Something went wrong sending your request. Please email assessments@redshielddefense.com directly.";
+        status.classList.add("text-red-600");
+      }
+    } catch {
+      status.textContent = "Something went wrong sending your request. Please email assessments@redshielddefense.com directly.";
+      status.classList.add("text-red-600");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.classList.remove("opacity-60");
     }
   });
 </script>

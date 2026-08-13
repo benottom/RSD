@@ -26,25 +26,19 @@ import PageHero from "../../components/PageHero.astro";
           <dl class="mt-8 space-y-8">
             <div>
               <dt class="eyebrow">General Inquiries</dt>
-              <dd class="mt-2 text-rsd-body-bright"><a href="mailto:hello@redshielddefense.com" class="hover:text-rsd-cyan">hello@redshielddefense.com</a></dd>
-            </div>
-            <div>
-              <dt class="eyebrow">New Assessments</dt>
-              <dd class="mt-2 text-rsd-body-bright"><a href="mailto:assessments@redshielddefense.com" class="hover:text-rsd-cyan">assessments@redshielddefense.com</a></dd>
+              <dd class="mt-2 text-rsd-body-bright"><a href="mailto:info@redshielddefense.com" class="hover:text-rsd-cyan">info@redshielddefense.com</a></dd>
             </div>
             <div>
               <dt class="eyebrow">Security Disclosure</dt>
               <dd class="mt-2 text-rsd-body-bright"><a href="/legal/responsible-disclosure" class="hover:text-rsd-cyan">View our disclosure policy</a></dd>
             </div>
-            <div>
-              <dt class="eyebrow">Headquarters</dt>
-              <dd class="mt-2 text-rsd-body-bright">Austin, Texas · Remote-first team across US &amp; EU</dd>
-            </div>
           </dl>
         </div>
 
         <div class="lg:col-span-3">
-          <form id="contact-form" class="rounded-xl border border-rsd-border bg-rsd-surface p-8">
+          <form id="contact-form" action="https://formspree.io/f/xzepvdda" method="POST" class="rounded-xl border border-rsd-border bg-rsd-surface p-8">
+            <input type="hidden" name="_subject" value="New contact form submission — RedShield Defense" />
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label for="name" class="mb-2 block text-sm font-medium text-rsd-body-bright">Full Name</label>
@@ -64,7 +58,7 @@ import PageHero from "../../components/PageHero.astro";
               <textarea required id="message" name="message" rows="5" class="w-full rounded-md border border-rsd-border bg-rsd-bg px-4 py-3 text-rsd-heading placeholder:text-rsd-body/60 focus:border-rsd-cyan focus:outline-none" placeholder="Tell us about what you're looking to secure."></textarea>
             </div>
             <button type="submit" class="btn-primary mt-8 w-full justify-center sm:w-auto">Send Message</button>
-            <p id="contact-status" class="mt-4 hidden text-sm text-rsd-cyan" role="status"></p>
+            <p id="contact-status" class="mt-4 hidden text-sm" role="status"></p>
           </form>
         </div>
       </div>
@@ -76,11 +70,37 @@ import PageHero from "../../components/PageHero.astro";
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const status = document.getElementById("contact-status");
-  form?.addEventListener("submit", (event) => {
+  const submitButton = form?.querySelector("button[type=submit]") as HTMLButtonElement | null;
+
+  form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (status) {
-      status.textContent = "Thanks — this form is a design preview and isn't yet connected to a mailbox. Please email hello@redshielddefense.com directly.";
-      status.classList.remove("hidden");
+    if (!status || !submitButton) return;
+
+    submitButton.disabled = true;
+    submitButton.classList.add("opacity-60");
+    status.classList.remove("hidden", "text-rsd-cyan", "text-red-600");
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        status.textContent = "Thanks — your message has been sent. We'll be in touch within one business day.";
+        status.classList.add("text-rsd-cyan");
+        form.reset();
+      } else {
+        status.textContent = "Something went wrong sending your message. Please email info@redshielddefense.com directly.";
+        status.classList.add("text-red-600");
+      }
+    } catch {
+      status.textContent = "Something went wrong sending your message. Please email info@redshielddefense.com directly.";
+      status.classList.add("text-red-600");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.classList.remove("opacity-60");
     }
   });
 </script>

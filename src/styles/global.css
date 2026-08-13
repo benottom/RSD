@@ -143,6 +143,26 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
+.btn-ghost-invert {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.9rem 1.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.01em;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-ghost-invert:hover {
+  border-color: var(--color-rsd-cyan);
+  color: var(--color-rsd-cyan);
+  transform: translateY(-2px);
+}
+
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
