@@ -44,29 +44,31 @@
   100% { background-position: 120px 120px; }
 }
 
-html {
-  scroll-behavior: smooth;
-  color-scheme: light;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
 
-body {
-  background-color: var(--color-rsd-bg);
-  color: var(--color-rsd-body);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    background-color: var(--color-rsd-bg);
+    color: var(--color-rsd-body);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  color: var(--color-rsd-heading);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-rsd-heading);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
 
-::selection {
-  background-color: var(--color-rsd-cyan);
-  color: #ffffff;
+  ::selection {
+    background-color: var(--color-rsd-cyan);
+    color: #ffffff;
+  }
 }
 
 /* Reusable primitives ------------------------------------------------- */
