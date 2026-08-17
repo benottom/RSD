@@ -5,15 +5,19 @@ interface Props {
   title: string;
   description: string;
   path?: string;
+  locale?: "en" | "fi";
+  translations?: { en: string; fi: string };
 }
 
-const { title, description, path = "/" } = Astro.props;
-const canonicalURL = new URL(path, Astro.site);
-const ogImage = new URL("/og-image.jpg", Astro.site);
+const { title, description, path = "/", locale = "en", translations } = Astro.props;
+const canonicalURL = translations ? new URL(translations[locale], Astro.site) : new URL(path, Astro.site);
+const ogImage = new URL("/images/redshielddefense-logo.png", Astro.site);
+const ogLocale = locale === "fi" ? "fi_FI" : "en_IE";
+const ogLocaleAlternate = locale === "fi" ? "en_IE" : "fi_FI";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,6 +29,14 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
     <meta name="description" content={description} />
     <meta name="theme-color" content="#ffffff" />
 
+    {translations && (
+      <>
+        <link rel="alternate" hreflang="en-EU" href={new URL(translations.en, Astro.site)} />
+        <link rel="alternate" hreflang="fi-FI" href={new URL(translations.fi, Astro.site)} />
+        <link rel="alternate" hreflang="x-default" href={new URL(translations.en, Astro.site)} />
+      </>
+    )}
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
@@ -32,6 +44,8 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="RedShield Defense" />
+    <meta property="og:locale" content={ogLocale} />
+    {translations && <meta property="og:locale:alternate" content={ogLocaleAlternate} />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -48,12 +62,23 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
 
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "RedShield Defense",
+      "@type": "ProfessionalService",
+      "@id": "https://redshielddefense.com/#organization",
+      name: "RedShieldDefense",
       url: "https://redshielddefense.com",
       logo: "https://redshielddefense.com/images/redshielddefense-logo.png",
+      image: "https://redshielddefense.com/images/redshielddefense-logo.png",
       description:
-        "RedShield Defense secures mission-critical digital infrastructure through offensive security assessments, cloud security engineering, and continuous SecOps monitoring.",
+        "RedShieldDefense provides VAPT (Vulnerability Assessment and Penetration Testing) and offensive security services helping EU businesses meet NIS2 and CRA compliance requirements.",
+      areaServed: "European Union",
+      knowsAbout: ["VAPT", "Penetration Testing", "NIS2 Compliance", "CRA Compliance", "Cybersecurity"],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: "info@redshielddefense.com",
+        areaServed: "EU",
+        availableLanguage: ["English", "Finnish"],
+      },
       parentOrganization: {
         "@type": "Organization",
         name: "Cyber Security Finland Oy",

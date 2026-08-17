@@ -1,0 +1,170 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiCtaBand from "../../../components/FiCtaBand.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import { icons } from "../../../data/icons";
+
+const trustCards = [
+  {
+    title: "NIS2-valmius",
+    desc: "Arviointimme kytkeytyvät suoraan NIS2-direktiivin riskienhallinta- ja ilmoitusvelvoitteisiin, jolloin compliance-tiiminne saa dokumentoidun näytön, johon auditoijat voivat luottaa. Autamme keskeisiä ja tärkeitä toimijoita korjaamaan puutteet ennen valvojia — tai hyökkääjiä.",
+  },
+  {
+    title: "CRA-yhdenmukaisuus",
+    desc: "Testaamme digitaalisia elementtejä sisältävät tuotteet kyberresilienssisäädöksen (Cyber Resilience Act, CRA) haavoittuvuuksien käsittely- ja secure-by-design-vaatimuksia vasten koko kehityksen elinkaaren ajan. Löydöksemme muuntuvat suoraan CRA-vaatimustenmukaisuusarvioinnin edellyttämäksi tekniseksi dokumentaatioksi.",
+  },
+  {
+    title: "Sertifioitu menetelmä",
+    desc: "Jokaisen toimeksiannon toteuttavat OSCP-, OSCE- ja CISSP-sertifioidut asiantuntijat yhtenäistä, toistettavaa testausmenetelmää noudattaen. Löydökset vahvistetaan manuaalisesti toimivilla proof-of-concept-hyväksikäytöillä, ei pelkästään automaattisilla skannereilla."
+  },
+];
+
+const overview = [
+  "RedShield Defensen tunkeutumistestaus menee vaatimustenmukaisuuden rastittamista pidemmälle. Asiantuntijamme lähestyvät jokaista toimeksiantoa kuten hyökkääjä: kartoittamalla hyökkäyspintanne, ketjuttamalla matalan vakavuuden löydökset kriittisiksi riskeiksi ja varmistamalla hyödynnettävyyden sen sijaan, että raportoisimme teoreettisia riskejä.",
+  "Jokainen arviointi rajataan niihin järjestelmiin, joilla on eniten merkitystä: asiakasrajapinnan sovelluksiin, sisäisiin rajapintoihin, pilvi-infrastruktuuriin ja niitä yhdistäviin verkkosegmentteihin. Raportoimme löydökset tavalla, jonka pohjalta kehitystiiminne voi toimia — priorisoituna todellisen hyödynnettävyyden ja liiketoimintavaikutuksen mukaan.",
+];
+
+const capabilities = [
+  { title: "Verkkosovellustestaus", desc: "OWASP-standardin mukaista manuaalista testausta tunnistautumisesta, istunnonhallinnasta, liiketoimintalogiikasta ja injektiohaavoittuvuuksista." },
+  { title: "API- ja mikropalvelutestaus", desc: "REST-, GraphQL- ja gRPC-rajapinnat arvioidaan puutteellisen oliotason valtuutuksen, rajoitusten kiertämisen ja skeemojen väärinkäytön varalta." },
+  { title: "Mobiilisovellustestaus", desc: "iOS- ja Android-sovellukset käänteismallinnetaan turvattoman tallennuksen, heikon siirtoyhteyden salauksen ja asiakaspään logiikkavirheiden löytämiseksi." },
+  { title: "Verkko- ja infrastruktuuritestaus", desc: "Ulkoiset ja sisäiset verkkoarvioinnit kattavat segmentoinnin, sivuttaisliikkeen ja oikeuksien eskaloinnin reitit." },
+  { title: "Pilviympäristön konfiguraatiotestaus", desc: "IAM-, tallennus- ja työkuormakonfiguraatiot tarkastetaan hyödynnettävyysreittien, ei pelkän vertailuarvopoikkeaman perusteella." },
+  { title: "Uudelleentestaus ja vahvistus", desc: "Jokainen kriittinen ja korkean riskin löydös testataan uudelleen veloituksetta, kunnes korjaus on vahvistettu." },
+];
+
+const process = [
+  { step: "01", title: "Rajaus ja tiedustelu", desc: "Määrittelemme kohdejärjestelmät, pelisäännöt ja kokoamme tiedustelutietoa ulkoisesta jalanjäljestänne." },
+  { step: "02", title: "Aktiivinen testaus", desc: "Manuaalisia hyödyntämisyrityksiä tunnistettuja hyökkäysreittejä vastaan, täydennettynä kohdennetulla automatisoidulla työkaluilla." },
+  { step: "03", title: "Hyödyntäminen ja ketjutus", desc: "Yksittäiset löydökset ketjutetaan osoittamaan todellinen liiketoimintavaikutus, ei irrallisia CVE-tunnisteita." },
+  { step: "04", title: "Raportointi ja läpikäynti", desc: "Priorisoitu löydösraportti sekä livenä pidettävä tekninen läpikäynti kehitys- ja tietoturvatiiminne kanssa." },
+];
+
+const outcomes = [
+  { value: "3 200+", label: "Toimitettua arviointia ilman ylitettyä SLA:ta" },
+  { value: "0 €", label: "Kriittisten löydösten uudelleentestauksen hinta" },
+  { value: "48 h", label: "Keskimääräinen aika ensimmäiseen kriittiseen löydökseen" },
+];
+---
+
+<Layout
+  title="VAPT- ja tunkeutumistestaus NIS2-vaatimuksiin | RedShield"
+  description="Sertifioitu VAPT-palvelu NIS2- ja CRA-vaatimuksiin: web-, API-, pilvi- ja verkkotestaukset EU-yrityksille. Pyydä tarjous jo tänään."
+  path="/fi/services/tunkeutumistestaus"
+  locale="fi"
+  translations={{ en: "/services/penetration-testing", fi: "/fi/services/tunkeutumistestaus" }}
+>
+  <FiHeader switchTo={{ label: "In English", href: "/services/penetration-testing" }} />
+  <main>
+    <section class="relative overflow-hidden border-b border-rsd-border bg-rsd-bg pt-40 pb-20">
+      <div class="grid-overlay absolute inset-0 opacity-60"></div>
+      <div class="absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-rsd-cyan/10 blur-[130px]"></div>
+      <div class="relative mx-auto max-w-4xl px-6">
+        <nav class="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs text-rsd-body">
+          <a href="/fi/" class="hover:text-rsd-cyan">Etusivu</a>
+          <span class="text-rsd-border-bright">/</span>
+          <a href="/fi/services/tunkeutumistestaus" class="hover:text-rsd-cyan">VAPT ja tunkeutumistestaus</a>
+        </nav>
+        <p class="eyebrow mb-4">Offensiivinen tietoturva</p>
+        <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">VAPT-palvelut NIS2- ja CRA-vaatimusten mukaisuuteen EU:ssa</h1>
+        <h2 class="mt-4 font-display text-xl font-semibold text-rsd-body-bright sm:text-2xl">
+          Sertifioitu tunkeutumistestaus, joka todistaa — ei vain väitä — säädöstenmukaisuuden
+        </h2>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-rsd-body">
+          NIS2-direktiivi ja EU:n kyberresilienssisäädös (Cyber Resilience Act, CRA) ovat nostaneet
+          kyberturvallisuuden vaatimustasoa koko Euroopan unionissa: keskeisten ja tärkeiden toimijoiden
+          sekä digitaalisia elementtejä sisältävien tuotteiden valmistajien on kyettävä osoittamaan jatkuva,
+          näyttöön perustuva riskienhallinta. RedShieldDefensen VAPT-palvelut (Vulnerability Assessment and
+          Penetration Testing eli haavoittuvuusarviointi ja tunkeutumistestaus) on rakennettu juuri näiden
+          velvoitteiden täyttämiseen. Sertifioidut asiantuntijamme yhdistävät automaattisen
+          haavoittuvuusskannauksen manuaaliseen, hyökkääjän näkökulmasta tehtävään tunkeutumistestaukseen
+          verkkosovelluksissasi, rajapinnoissasi, pilvi-infrastruktuurissasi ja verkon reunalla — ja tuottavat
+          auditointikelpoisen raportoinnin, joka vastaa suoraan NIS2:n riskienhallintatoimenpiteitä ja CRA:n
+          haavoittuvuuksien käsittelyvaatimuksia. Jokaiseen toimeksiantoon sisältyy priorisoitu
+          korjaussuunnitelma, kriittisten löydösten maksuton uudelleentestaus sekä tekninen läpikäynti, jonka
+          pohjalta compliance-tiiminne ja kehittäjänne voivat toimia välittömästi. Sen sijaan, että VAPT olisi
+          kertaluonteinen tarkistuslista, autamme EU-alueen organisaatioita rakentamaan jatkuvan
+          testaussyklin, joka tyydyttää valvovat viranomaiset, lisää asiakkaiden luottamusta ja aidosti
+          vähentää tietomurron riskiä — muuttaen vaatimustenmukaisuuden todelliseksi kilpailueduksi.
+        </p>
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+          <a href="/request-assessment" class="btn-primary">Pyydä vaatimustenmukaisuusarviointi</a>
+          <a href="#menetelma" class="btn-ghost">Katso menetelmämme</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <h3 class="text-center font-display text-2xl font-bold text-rsd-heading sm:text-3xl">EU-yritysten luottama kumppani vaatimustenmukaisuudessa</h3>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {trustCards.map((card) => (
+            <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <h4 class="font-display text-lg font-semibold text-rsd-heading">{card.title}</h4>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="menetelma" class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-4xl px-6">
+        <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons.target} />
+        </div>
+        {overview.map((paragraph) => (
+          <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
+        ))}
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="eyebrow mb-4">Sisältö</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Mitä toimeksianto sisältää.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((cap) => (
+            <div class="glow-border rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <h3 class="font-display text-lg font-semibold text-rsd-heading">{cap.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{cap.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-5xl px-6">
+        <p class="eyebrow mb-4">Prosessi</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Miten toimeksianto etenee.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
+          {process.map((step) => (
+            <div class="border-l-2 border-rsd-cyan/40 pl-6">
+              <span class="font-mono text-sm text-rsd-cyan">{step.step}</span>
+              <h3 class="mt-2 font-display text-lg font-semibold text-rsd-heading">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-rsd-body">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-16">
+      <div class="mx-auto max-w-5xl px-6">
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {outcomes.map((stat) => (
+            <div class="text-center">
+              <p class="font-display text-3xl font-bold text-rsd-heading">{stat.value}</p>
+              <p class="mt-2 text-sm text-rsd-body">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <FiCtaBand />
+  </main>
+  <FiFooter />
+</Layout>

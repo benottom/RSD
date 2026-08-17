@@ -1,0 +1,87 @@
+---
+const columns = [
+  {
+    heading: "Palvelut",
+    links: [
+      { name: "VAPT ja tunkeutumistestaus", href: "/fi/services/tunkeutumistestaus" },
+      { name: "Kaikki palvelut (englanniksi)", href: "/services" },
+    ],
+  },
+  {
+    heading: "Yritys",
+    links: [
+      { name: "Ota yhteyttä", href: "/company/contact" },
+      { name: "Ura", href: "/company/careers" },
+      { name: "Luottamus ja sertifioinnit", href: "/company/trust" },
+    ],
+  },
+];
+---
+
+<footer class="bg-rsd-bg-deep pt-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-2 gap-10 border-b border-rsd-border pb-16 sm:grid-cols-4">
+      <div class="col-span-2 sm:col-span-2">
+        <a href="/fi/" class="flex items-center">
+          <img src="/images/redshielddefense-logo.png" alt="RedShield Defense" width="84" height="102" class="h-[84px] w-auto" loading="lazy" decoding="async" />
+        </a>
+        <p class="mt-5 max-w-xs text-sm leading-relaxed text-rsd-body">
+          Teollisen tason offensiivista tietoturvaa — red teaming, tunkeutumistestaus ja pilviympäristöjen kovennus organisaatioille, joilla ei ole varaa epäonnistua.
+        </p>
+        <div class="mt-6 flex items-center gap-3">
+          <a href="https://linkedin.com" aria-label="LinkedIn" class="flex h-9 w-9 items-center justify-center rounded-md border border-rsd-border text-rsd-body transition-colors hover:border-rsd-cyan hover:text-rsd-cyan">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.24 8.24h4.52V23H.24V8.24zM8.35 8.24h4.33v2.01h.06c.6-1.14 2.07-2.34 4.27-2.34 4.57 0 5.41 3 5.41 6.9V23h-4.52v-6.76c0-1.61-.03-3.68-2.24-3.68-2.25 0-2.59 1.76-2.59 3.57V23H8.35V8.24z"/></svg>
+          </a>
+          <a href="https://x.com" aria-label="X" class="flex h-9 w-9 items-center justify-center rounded-md border border-rsd-border text-rsd-body transition-colors hover:border-rsd-cyan hover:text-rsd-cyan">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.5h3.7l-8 9.2 9.5 12.3h-7.4l-5.8-7.6-6.6 7.6H.6l8.6-9.8L0 1.5h7.6l5.3 6.9 6-6.9zm-1.3 19h2L6.5 3.4h-2l13.1 17.1z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      {columns.map((col) => (
+        <div>
+          <p class="font-display text-sm font-semibold text-white">{col.heading}</p>
+          <ul class="mt-5 space-y-3">
+            {col.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-rsd-body transition-colors hover:text-rsd-cyan">{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
+      <p class="text-xs text-rsd-body">© {new Date().getFullYear()} RedShield Defense. Kaikki oikeudet pidätetään.</p>
+      <div class="flex items-center gap-6">
+        <a href="/legal/privacy" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Tietosuojaseloste</a>
+        <a href="/legal/terms" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Käyttöehdot</a>
+        <a href="/legal/responsible-disclosure" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Vastuullinen tietoturvailmoitus</a>
+      </div>
+    </div>
+
+    <div class="border-t border-rsd-border py-10">
+      <div class="mx-auto flex max-w-xl flex-col items-center gap-4 text-center">
+        <img
+          src="/images/redshielddefense-logo.png"
+          alt="RedShield Defense — osa Cybersecurity.fi:tä"
+          width="96"
+          height="117"
+          class="h-16 w-auto"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="text-xs leading-relaxed text-rsd-body">
+          RedShield Defense on{" "}
+          <a
+            href="https://cybersecurity.fi"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-semibold text-white transition-colors hover:text-rsd-cyan"
+          >Cyber Security Finland Oy:n</a> tarjoama red teaming- ja hyökkäyssimulaatiopalvelu.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

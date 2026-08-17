@@ -11,11 +11,13 @@ import Footer from "../components/Footer.astro";
 ---
 
 <Layout
-  title="RedShield Defense | Industrial-Grade Application & Cloud Security"
-  description="RedShield Defense secures mission-critical applications, cloud infrastructure, and digital operations through offensive testing, secure code review, and 24/7 managed SecOps."
+  title="VAPT Services for EU NIS2 & CRA Compliance | RedShield"
+  description="EU-based penetration testing & VAPT to help you meet NIS2 and CRA requirements. Certified experts, audit-ready reports — request your assessment."
   path="/"
+  locale="en"
+  translations={{ en: "/", fi: "/fi/" }}
 >
-  <Header />
+  <Header switchTo={{ label: "Suomeksi", href: "/fi/" }} />
   <main>
     <Hero />
     <Services />

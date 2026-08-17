@@ -15,23 +15,104 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
+
+const isVapt = service.slug === "penetration-testing";
+
+const seoTitle = isVapt
+  ? "VAPT & Penetration Testing for NIS2 Compliance | RedShield"
+  : `${service.name} | RedShield Defense`;
+const seoDescription = isVapt
+  ? "Certified VAPT services aligned to NIS2 & CRA. Web, API, cloud & network penetration testing for EU enterprises. Request a scoped quote today."
+  : service.shortDesc;
+
+const trustCards = [
+  {
+    title: "NIS2 Readiness",
+    desc: "Our assessments map directly to NIS2's risk-management and incident-reporting obligations, giving your compliance team documented evidence auditors can rely on. We help essential and important entities close gaps before regulators — or attackers — find them.",
+  },
+  {
+    title: "CRA Alignment",
+    desc: "We test products with digital elements against the Cyber Resilience Act's vulnerability-handling and secure-by-design requirements throughout the development lifecycle. Our findings translate directly into the technical documentation your CRA conformity assessment requires.",
+  },
+  {
+    title: "Certified Methodology",
+    desc: "Every engagement is delivered by OSCP-, OSCE-, and CISSP-certified engineers following a consistent, repeatable testing methodology. Findings are manually validated with proof-of-concept exploits, not flagged by automated scanners alone.",
+  },
+];
 ---
 
 <Layout
-  title={`${service.name} | RedShield Defense`}
-  description={service.shortDesc}
+  title={seoTitle}
+  description={seoDescription}
   path={`/services/${service.slug}`}
+  locale="en"
+  translations={isVapt ? { en: "/services/penetration-testing", fi: "/fi/services/tunkeutumistestaus" } : undefined}
 >
-  <Header />
+  <Header switchTo={isVapt ? { label: "Suomeksi", href: "/fi/services/tunkeutumistestaus" } : undefined} />
   <main>
-    <PageHero
-      eyebrow={service.tag}
-      title={service.name}
-      desc={service.heroDesc}
-      breadcrumb={[{ name: "Services", href: "/services" }, { name: service.name, href: `/services/${service.slug}` }]}
-    />
+    {isVapt ? (
+      <>
+        <section class="relative overflow-hidden border-b border-rsd-border bg-rsd-bg pt-40 pb-20">
+          <div class="grid-overlay absolute inset-0 opacity-60"></div>
+          <div class="absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-rsd-cyan/10 blur-[130px]"></div>
+          <div class="relative mx-auto max-w-4xl px-6">
+            <nav class="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs text-rsd-body">
+              <a href="/" class="hover:text-rsd-cyan">Home</a>
+              <span class="text-rsd-border-bright">/</span>
+              <a href="/services" class="hover:text-rsd-cyan">Services</a>
+              <span class="text-rsd-border-bright">/</span>
+              <a href={`/services/${service.slug}`} class="hover:text-rsd-cyan">{service.name}</a>
+            </nav>
+            <p class="eyebrow mb-4">{service.tag}</p>
+            <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">VAPT Services for EU NIS2 & CRA Compliance</h1>
+            <h2 class="mt-4 font-display text-xl font-semibold text-rsd-body-bright sm:text-2xl">
+              Certified Penetration Testing That Proves — Not Just Claims — Regulatory Readiness
+            </h2>
+            <p class="mt-6 max-w-2xl text-lg leading-relaxed text-rsd-body">
+              The NIS2 Directive and the Cyber Resilience Act (CRA) have raised the bar for cybersecurity accountability
+              across the European Union, requiring essential and important entities — and the manufacturers of products
+              with digital elements — to demonstrate continuous, evidence-based risk management. RedShieldDefense's
+              Vulnerability Assessment and Penetration Testing (VAPT) services are built specifically to satisfy these
+              obligations. Our certified engineers combine automated vulnerability scanning with manual, adversary-driven
+              penetration testing across your web applications, APIs, cloud infrastructure, and network perimeter,
+              producing audit-ready documentation that maps directly to NIS2 risk-management measures and CRA
+              vulnerability-handling requirements. Every engagement includes a prioritized remediation roadmap, free
+              retesting of critical findings, and a technical debrief your compliance officers and engineering teams
+              can act on immediately. Rather than treating VAPT as a one-time checkbox, we help EU organizations build
+              a continuous testing cadence that satisfies regulators, reassures customers, and genuinely reduces breach
+              risk — turning compliance into a demonstrable security advantage.
+            </p>
+            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="/request-assessment" class="btn-primary">Request a Compliance Assessment</a>
+              <a href="#methodology" class="btn-ghost">View Our Methodology</a>
+            </div>
+          </div>
+        </section>
 
-    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+        <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+          <div class="mx-auto max-w-7xl px-6">
+            <h3 class="text-center font-display text-2xl font-bold text-rsd-heading sm:text-3xl">Trusted by EU Enterprises for Regulatory Compliance</h3>
+            <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {trustCards.map((card) => (
+                <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
+                  <h4 class="font-display text-lg font-semibold text-rsd-heading">{card.title}</h4>
+                  <p class="mt-3 text-sm leading-relaxed text-rsd-body">{card.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    ) : (
+      <PageHero
+        eyebrow={service.tag}
+        title={service.name}
+        desc={service.heroDesc}
+        breadcrumb={[{ name: "Services", href: "/services" }, { name: service.name, href: `/services/${service.slug}` }]}
+      />
+    )}
+
+    <section id="methodology" class="border-b border-rsd-border bg-rsd-bg py-20">
       <div class="mx-auto max-w-4xl px-6">
         <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
