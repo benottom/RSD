@@ -1,0 +1,70 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import LegalDoc from "../../../components/LegalDoc.astro";
+
+const sections = [
+  {
+    heading: "1. Keräämämme tiedot",
+    paragraphs: [
+      "Keräämme tietoja, jotka annatte meille suoraan, esimerkiksi pyytäessänne arviointia, ottaessanne yhteyttä tiimiimme tai tilatessanne julkaisujamme — mukaan lukien nimenne, työsähköpostinne, yrityksenne ja viestinne sisällön.",
+    ],
+    list: [
+      "Lomakkeidemme kautta lähetetyt yhteystiedot",
+      "Organisaatiotanne koskevat tekniset tiedot, jotka ovat relevantteja toimeksiannon rajaamiselle",
+      "Käyttödata, joka kerätään tavanomaisen verkkoanalytiikan kautta",
+    ],
+  },
+  {
+    heading: "2. Miten käytämme tietoja",
+    paragraphs: [
+      "Käytämme keräämiämme tietoja tiedusteluihin vastaamiseen, tietoturvatoimeksiantojen rajaamiseen ja toimittamiseen sekä palveluidemme kehittämiseen. Emme myy henkilötietoja kolmansille osapuolille.",
+    ],
+  },
+  {
+    heading: "3. Tietoturva",
+    paragraphs: [
+      "Asiakastoimeksiantojen tiedot, mukaan lukien arviointilöydökset, salataan siirrossa ja levossa, ja pääsyä niihin rajoitetaan tarpeen mukaan toimeksiantoonne nimetylle asiantuntijatiimille.",
+    ],
+  },
+  {
+    heading: "4. Tietojen säilytys",
+    paragraphs: [
+      "Säilytämme toimeksiantotietoja niin kauan kuin on tarpeen palvelun toimittamiseksi ja sopimus- sekä säädösvelvoitteiden täyttämiseksi, minkä jälkeen ne poistetaan turvallisesti tai anonymisoidaan.",
+    ],
+  },
+  {
+    heading: "5. Oikeutenne",
+    paragraphs: [
+      "Lainkäyttöalueestanne riippuen teillä voi olla oikeus tarkastaa, korjata tai poistaa henkilötietonne. Ottakaa yhteyttä osoitteeseen privacy@redshielddefense.com käyttääksenne näitä oikeuksia.",
+    ],
+  },
+  {
+    heading: "6. Yhteystiedot",
+    paragraphs: [
+      "Tätä käytäntöä koskevat kysymykset voi osoittaa sähköpostiosoitteeseen privacy@redshielddefense.com.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Tietosuojaseloste | RedShield Defense"
+  description="RedShield Defensen tietosuojaseloste, joka kattaa tietojen keräämisen, käytön ja säilytyskäytännöt."
+  path="/fi/legal/tietosuojaseloste"
+  locale="fi"
+  translations={{ en: "/legal/privacy", fi: "/fi/legal/tietosuojaseloste" }}
+>
+  <FiHeader enHref="/legal/privacy" />
+  <main>
+    <LegalDoc
+      title="Tietosuojaseloste"
+      eyebrow="Oikeudelliset tiedot"
+      updated="1. tammikuuta 2026"
+      intro="Tämä käytäntö kuvaa, miten RedShield Defense kerää, käyttää ja suojaa tietoja toimeksiantojemme ja verkkosivustomme toiminnan yhteydessä."
+      sections={sections}
+    />
+  </main>
+  <FiFooter />
+</Layout>

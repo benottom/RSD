@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import PageHero from "../../components/PageHero.astro";
 import CtaBand from "../../components/CtaBand.astro";
 import { services } from "../../data/services";
+import { getServiceFiByEnSlug } from "../../data/services.fi";
 import { icons } from "../../data/icons";
 
 export function getStaticPaths() {
@@ -17,6 +18,8 @@ export function getStaticPaths() {
 const { service } = Astro.props;
 
 const isVapt = service.slug === "penetration-testing";
+const fiEquivalent = getServiceFiByEnSlug(service.slug);
+const fiPath = fiEquivalent ? `/fi/services/${fiEquivalent.slug}` : "/fi/services";
 
 const seoTitle = isVapt
   ? "VAPT & Penetration Testing for NIS2 Compliance | RedShield"
@@ -46,9 +49,9 @@ const trustCards = [
   description={seoDescription}
   path={`/services/${service.slug}`}
   locale="en"
-  translations={isVapt ? { en: "/services/penetration-testing", fi: "/fi/services/tunkeutumistestaus" } : undefined}
+  translations={{ en: `/services/${service.slug}`, fi: fiPath }}
 >
-  <Header fiHref={isVapt ? "/fi/services/tunkeutumistestaus" : "/fi/"} />
+  <Header fiHref={fiPath} />
   <main>
     {isVapt ? (
       <>

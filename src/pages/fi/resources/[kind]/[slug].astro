@@ -1,15 +1,14 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import Header from "../../../components/Header.astro";
-import Footer from "../../../components/Footer.astro";
-import PageHero from "../../../components/PageHero.astro";
-import ResourceCard from "../../../components/ResourceCard.astro";
-import CtaBand from "../../../components/CtaBand.astro";
-import { resourceKinds } from "../../../data/resources";
-import { resourceKindsFi } from "../../../data/resources.fi";
+import Layout from "../../../../layouts/Layout.astro";
+import FiHeader from "../../../../components/FiHeader.astro";
+import FiFooter from "../../../../components/FiFooter.astro";
+import PageHero from "../../../../components/PageHero.astro";
+import ResourceCard from "../../../../components/ResourceCard.astro";
+import FiCtaBand from "../../../../components/FiCtaBand.astro";
+import { resourceKindsFi } from "../../../../data/resources.fi";
 
 export function getStaticPaths() {
-  return resourceKinds.flatMap((group) =>
+  return resourceKindsFi.flatMap((group) =>
     group.items.map((item) => ({
       params: { kind: group.key, slug: item.slug },
       props: { group, item },
@@ -19,31 +18,28 @@ export function getStaticPaths() {
 
 const { group, item } = Astro.props;
 const otherItems = group.items.filter((i: typeof item) => i.slug !== item.slug).slice(0, 3);
-const fiGroup = resourceKindsFi.find((g) => g.key === group.key);
-const fiItem = fiGroup?.items.find((i) => i.enSlug === item.slug);
-const fiPath = fiItem ? `${fiGroup.path}/${fiItem.slug}` : `/fi/resources/${group.key}`;
 ---
 
 <Layout
   title={`${item.title} | RedShield Defense`}
   description={item.excerpt}
   path={`${group.path}/${item.slug}`}
-  locale="en"
-  translations={{ en: `${group.path}/${item.slug}`, fi: fiPath }}
+  locale="fi"
+  translations={{ en: `${group.enPath}/${item.enSlug}`, fi: `${group.path}/${item.slug}` }}
 >
-  <Header fiHref={fiPath} />
+  <FiHeader enHref={`${group.enPath}/${item.enSlug}`} />
   <main>
     <PageHero
       eyebrow={item.kind}
       title={item.title}
       desc={item.excerpt}
-      breadcrumb={[{ name: "Resources", href: "/resources" }, { name: group.label, href: group.path }, { name: item.title, href: `${group.path}/${item.slug}` }]}
+      breadcrumb={[{ name: "Resurssit", href: "/fi/resources" }, { name: group.label, href: group.path }, { name: item.title, href: `${group.path}/${item.slug}` }]}
     />
 
     <section class="border-b border-rsd-border bg-rsd-bg py-16">
       <div class="mx-auto max-w-3xl px-6">
         <div class="mb-10 flex items-center gap-4 border-b border-rsd-border pb-6 font-mono text-xs text-rsd-body">
-          <span>{new Date(item.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+          <span>{new Date(item.date).toLocaleDateString("fi-FI", { year: "numeric", month: "long", day: "numeric" })}</span>
           <span class="text-rsd-border-bright">/</span>
           <span>{item.readTime}</span>
         </div>
@@ -61,8 +57,8 @@ const fiPath = fiItem ? `${fiGroup.path}/${fiItem.slug}` : `/fi/resources/${grou
     {otherItems.length > 0 && (
       <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
         <div class="mx-auto max-w-7xl px-6">
-          <p class="eyebrow mb-4">Keep Reading</p>
-          <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">More from {group.label}.</h2>
+          <p class="eyebrow mb-4">Jatka lukemista</p>
+          <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Lisää aiheesta {group.label}.</h2>
           <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {otherItems.map((other: typeof item) => (
               <ResourceCard item={other} href={`${group.path}/${other.slug}`} ctaLabel={group.ctaLabel} />
@@ -72,7 +68,7 @@ const fiPath = fiItem ? `${fiGroup.path}/${fiItem.slug}` : `/fi/resources/${grou
       </section>
     )}
 
-    <CtaBand />
+    <FiCtaBand />
   </main>
-  <Footer />
+  <FiFooter />
 </Layout>

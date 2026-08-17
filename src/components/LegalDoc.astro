@@ -10,15 +10,16 @@ interface Props {
   updated: string;
   intro: string;
   sections: Section[];
+  eyebrow?: string;
 }
 
-const { title, updated, intro, sections } = Astro.props;
+const { title, updated, intro, sections, eyebrow = "Legal" } = Astro.props;
 ---
 
 <section class="relative overflow-hidden border-b border-rsd-border bg-rsd-bg pt-40 pb-20">
   <div class="grid-overlay absolute inset-0 opacity-60"></div>
   <div class="relative mx-auto max-w-3xl px-6">
-    <p class="eyebrow mb-4">Legal</p>
+    <p class="eyebrow mb-4">{eyebrow}</p>
     <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">{title}</h1>
     <p class="mt-4 font-mono text-xs text-rsd-body">Last updated: {updated}</p>
     <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{intro}</p>

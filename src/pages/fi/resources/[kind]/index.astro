@@ -1,0 +1,49 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import FiHeader from "../../../../components/FiHeader.astro";
+import FiFooter from "../../../../components/FiFooter.astro";
+import PageHero from "../../../../components/PageHero.astro";
+import ResourceCard from "../../../../components/ResourceCard.astro";
+import FiCtaBand from "../../../../components/FiCtaBand.astro";
+import { resourceKindsFi } from "../../../../data/resources.fi";
+
+export function getStaticPaths() {
+  return resourceKindsFi.map((group) => ({
+    params: { kind: group.key },
+    props: { group },
+  }));
+}
+
+const { group } = Astro.props;
+---
+
+<Layout
+  title={`${group.label} | RedShield Defense Resurssit`}
+  description={`Selaa kaikkia ${group.label.toLowerCase()} RedShield Defenseltä.`}
+  path={group.path}
+  locale="fi"
+  translations={{ en: group.enPath, fi: group.path }}
+>
+  <FiHeader enHref={group.enPath} />
+  <main>
+    <PageHero
+      eyebrow="Tiedustelu"
+      title={group.label}
+      desc={`Kaikki RedShield Defensen tietoturva-asiantuntijoiden julkaisemat ${group.label.toLowerCase()}.`}
+      breadcrumb={[{ name: "Resurssit", href: "/fi/resources" }, { name: group.label, href: group.path }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {group.items.map((item) => (
+            <ResourceCard item={item} href={`${group.path}/${item.slug}`} ctaLabel={group.ctaLabel} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <FiCtaBand />
+  </main>
+  <FiFooter />
+</Layout>

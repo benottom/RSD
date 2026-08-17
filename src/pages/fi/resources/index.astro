@@ -1,0 +1,46 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import PageHero from "../../../components/PageHero.astro";
+import ResourceCard from "../../../components/ResourceCard.astro";
+import FiCtaBand from "../../../components/FiCtaBand.astro";
+import { resourceKindsFi } from "../../../data/resources.fi";
+---
+
+<Layout
+  title="Resurssit | RedShield Defense"
+  description="Uhkatiedusteluraportteja, julkaisuja, asiakastapauksia ja teknistä tutkimusta RedShield Defensen tietoturva-asiantuntijoilta."
+  path="/fi/resources"
+  locale="fi"
+  translations={{ en: "/resources", fi: "/fi/resources" }}
+>
+  <FiHeader enHref="/resources" />
+  <main>
+    <PageHero
+      eyebrow="Tiedustelu"
+      title="Kenttätutkimusta puolustuksen etulinjasta."
+      desc="Raportteja, julkaisuja, asiakastapauksia ja teknisiä muistiinpanoja asiantuntijoilta, jotka toteuttavat arviointimme ja uhkaoperaatiomme."
+      breadcrumb={[{ name: "Resurssit", href: "/fi/resources" }]}
+    />
+
+    {resourceKindsFi.map((group) => (
+      <section class="border-b border-rsd-border bg-rsd-bg py-20">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">{group.label}</h2>
+            <a href={group.path} class="btn-ghost shrink-0">Katso kaikki: {group.label}</a>
+          </div>
+          <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {group.items.slice(0, 3).map((item) => (
+              <ResourceCard item={item} href={`${group.path}/${item.slug}`} ctaLabel={group.ctaLabel} />
+            ))}
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <FiCtaBand />
+  </main>
+  <FiFooter />
+</Layout>

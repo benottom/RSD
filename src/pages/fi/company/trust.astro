@@ -1,0 +1,85 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import FiCtaBand from "../../../components/FiCtaBand.astro";
+import PageHero from "../../../components/PageHero.astro";
+import { icons } from "../../../data/icons";
+
+const certifications = [
+  { name: "SOC 2 Type II", desc: "Riippumattomasti auditoidut kontrollit, jotka kattavat omien järjestelmiemme tietoturvan, käytettävyyden ja luottamuksellisuuden." },
+  { name: "ISO 27001", desc: "Sertifioitu tietoturvan hallintajärjestelmä, joka ohjaa asiakastietojen ja löydösten käsittelyä." },
+  { name: "GDPR- ja CCPA-yhdenmukainen", desc: "Tietojenkäsittelykäytännöt yhdenmukaistettu keskeisten tietosuojasäädösten kanssa toiminta-alueillamme." },
+];
+
+const practices = [
+  { icon: "shield-check", title: "Salattu löydösten toimitus", desc: "Kaikki arviointilöydökset ja asiakastiedot salataan siirrossa ja levossa, ja toimitetaan pääsynhallittujen portaalien kautta." },
+  { icon: "layers", title: "Vähimpien oikeuksien sisäinen pääsy", desc: "Asiakastoimeksiannon tiedot rajataan vain nimetylle asiantuntijatiimille tarpeen mukaan." },
+  { icon: "radar", title: "Jatkuva sisäinen valvonta", desc: "Omaa infrastruktuuriamme valvoo sama uhkaoperaatiokeskus, joka suojaa asiakkaitamme." },
+];
+---
+
+<Layout
+  title="Luottamus ja sertifioinnit | RedShield Defense"
+  description="RedShield Defensen omat tietoturvasertifioinnit, tietojenkäsittelykäytännöt ja vastuullisen tietoturvailmoituksen ohjelma."
+  path="/fi/company/trust"
+  locale="fi"
+  translations={{ en: "/company/trust", fi: "/fi/company/trust" }}
+>
+  <FiHeader enHref="/company/trust" />
+  <main>
+    <PageHero
+      eyebrow="Luottamus"
+      title="Noudatamme itse samaa tasoa, jota testaamme teiltä."
+      desc="Tietoturva on tuotteemme, mikä tarkoittaa, että oma tietoturvatasomme on samalla tarkkuustasolla kuin mikä tahansa asiakastoimeksianto."
+      breadcrumb={[{ name: "Yritys", href: "/fi/company" }, { name: "Luottamus ja sertifioinnit", href: "/fi/company/trust" }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="eyebrow mb-4">Sertifioinnit</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Riippumattomasti vahvistettu.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {certifications.map((cert) => (
+            <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <div class="flex h-11 w-11 items-center justify-center rounded-md border border-rsd-border bg-rsd-bg text-rsd-cyan">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" set:html={icons["shield-check"]} />
+              </div>
+              <h3 class="mt-5 font-display text-lg font-semibold text-rsd-heading">{cert.name}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{cert.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="eyebrow mb-4">Miten suojaamme tietonne</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Käytäntöjä, ei vain politiikkaa.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {practices.map((practice) => (
+            <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <div class="flex h-11 w-11 items-center justify-center rounded-md border border-rsd-border bg-rsd-bg text-rsd-cyan">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" set:html={icons[practice.icon]} />
+              </div>
+              <h3 class="mt-5 font-display text-lg font-semibold text-rsd-heading">{practice.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{practice.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-16">
+      <div class="mx-auto max-w-4xl px-6 text-center">
+        <h2 class="font-display text-2xl font-bold text-rsd-heading">Löysitkö haavoittuvuuden omista järjestelmistämme?</h2>
+        <p class="mt-4 text-rsd-body">Ylläpidämme omaa vastuullisen tietoturvailmoituksen ohjelmaa ja toivotamme ulkopuolisen katselmoinnin tervetulleeksi.</p>
+        <a href="/fi/legal/vastuullinen-tietoturvailmoitus" class="btn-ghost mt-6 inline-flex">Katso vastuullisen ilmoittamisen käytäntö</a>
+      </div>
+    </section>
+
+    <FiCtaBand />
+  </main>
+  <FiFooter />
+</Layout>

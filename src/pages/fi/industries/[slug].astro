@@ -1,41 +1,38 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import PageHero from "../../components/PageHero.astro";
-import CtaBand from "../../components/CtaBand.astro";
-import { industries } from "../../data/industries";
-import { services, getService } from "../../data/services";
-import { getIndustryFiByEnSlug } from "../../data/industries.fi";
-import { icons } from "../../data/icons";
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import FiCtaBand from "../../../components/FiCtaBand.astro";
+import PageHero from "../../../components/PageHero.astro";
+import { industriesFi } from "../../../data/industries.fi";
+import { servicesFi, getServiceFiByEnSlug } from "../../../data/services.fi";
+import { icons } from "../../../data/icons";
 
 export function getStaticPaths() {
-  return industries.map((industry) => ({
+  return industriesFi.map((industry) => ({
     params: { slug: industry.slug },
     props: { industry },
   }));
 }
 
 const { industry } = Astro.props;
-const relatedServices = industry.relatedServices.map((slug: string) => getService(slug)).filter(Boolean);
-const fiEquivalent = getIndustryFiByEnSlug(industry.slug);
-const fiPath = fiEquivalent ? `/fi/industries/${fiEquivalent.slug}` : "/fi/industries";
+const relatedServices = industry.relatedServices.map((enSlug: string) => getServiceFiByEnSlug(enSlug)).filter(Boolean);
 ---
 
 <Layout
-  title={`${industry.name} Security | RedShield Defense`}
+  title={`${industry.name} – tietoturva | RedShield Defense`}
   description={industry.shortDesc}
-  path={`/industries/${industry.slug}`}
-  locale="en"
-  translations={{ en: `/industries/${industry.slug}`, fi: fiPath }}
+  path={`/fi/industries/${industry.slug}`}
+  locale="fi"
+  translations={{ en: `/industries/${industry.enSlug}`, fi: `/fi/industries/${industry.slug}` }}
 >
-  <Header fiHref={fiPath} />
+  <FiHeader enHref={`/industries/${industry.enSlug}`} />
   <main>
     <PageHero
-      eyebrow="Industries"
-      title={`${industry.name} Security`}
+      eyebrow="Toimialat"
+      title={`${industry.name} – tietoturva`}
       desc={industry.heroDesc}
-      breadcrumb={[{ name: "Industries", href: "/industries" }, { name: industry.name, href: `/industries/${industry.slug}` }]}
+      breadcrumb={[{ name: "Toimialat", href: "/fi/industries" }, { name: industry.name, href: `/fi/industries/${industry.slug}` }]}
     />
 
     <section class="border-b border-rsd-border bg-rsd-bg py-20">
@@ -51,8 +48,8 @@ const fiPath = fiEquivalent ? `/fi/industries/${fiEquivalent.slug}` : "/fi/indus
 
     <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
       <div class="mx-auto max-w-7xl px-6">
-        <p class="eyebrow mb-4">Sector Challenges</p>
-        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">What makes {industry.name.toLowerCase()} different.</h2>
+        <p class="eyebrow mb-4">Toimialan haasteet</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Mikä tekee {industry.name.toLowerCase()}-alasta erilaisen.</h2>
         <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           {industry.challenges.map((challenge: { title: string; desc: string }) => (
             <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
@@ -66,17 +63,17 @@ const fiPath = fiEquivalent ? `/fi/industries/${fiEquivalent.slug}` : "/fi/indus
 
     <section class="border-b border-rsd-border bg-rsd-bg py-20">
       <div class="mx-auto max-w-7xl px-6">
-        <p class="eyebrow mb-4">Recommended Services</p>
-        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Where to start.</h2>
+        <p class="eyebrow mb-4">Suositellut palvelut</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Mistä aloittaa.</h2>
         <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {relatedServices.map((service: (typeof services)[number]) => (
-            <a href={`/services/${service.slug}`} class="glow-border group flex flex-col rounded-lg border border-rsd-border bg-rsd-surface p-7">
+          {relatedServices.map((service: (typeof servicesFi)[number]) => (
+            <a href={`/fi/services/${service.slug}`} class="glow-border group flex flex-col rounded-lg border border-rsd-border bg-rsd-surface p-7">
               <div class="flex h-11 w-11 items-center justify-center rounded-md border border-rsd-border bg-rsd-bg text-rsd-cyan">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
               </div>
               <h3 class="mt-5 font-display text-base font-semibold text-rsd-heading">{service.name}</h3>
               <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-rsd-cyan">
-                View Service Details
+                Katso palvelun tiedot
                 <svg class="transition-transform group-hover:translate-x-1" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </a>
@@ -85,7 +82,7 @@ const fiPath = fiEquivalent ? `/fi/industries/${fiEquivalent.slug}` : "/fi/indus
       </div>
     </section>
 
-    <CtaBand />
+    <FiCtaBand />
   </main>
-  <Footer />
+  <FiFooter />
 </Layout>

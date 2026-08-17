@@ -1,8 +1,6 @@
 ---
-import type { ResourceItem } from "../data/resources";
-
 interface Props {
-  item: ResourceItem;
+  item: { kind: string; title: string; excerpt: string; readTime: string };
   href: string;
   ctaLabel: string;
 }

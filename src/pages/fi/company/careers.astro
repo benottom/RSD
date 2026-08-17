@@ -1,0 +1,78 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import FiCtaBand from "../../../components/FiCtaBand.astro";
+import PageHero from "../../../components/PageHero.astro";
+
+const perks = [
+  { title: "Etätyö ensin", desc: "Työskentele mistä tahansa, neljännesvuosittaisten kasvokkaisten tiimitapaamisten kera." },
+  { title: "Sertifiointituki", desc: "Täysi rahoitus OSCP-, OSCE-, CISSP- ja muille alan sertifioinneille." },
+  { title: "Tutkimusaikaa", desc: "Omistettua aikaa joka kuukausi itsenäiseen tietoturvatutkimukseen ja työkalukehitykseen." },
+  { title: "Kilpailukykyinen osakkuus", desc: "Merkittävä osakkuus jokaiselle kokoaikaiselle asiantuntijalle, ei vain ensimmäisille palkatuille." },
+];
+
+const openRoles = [
+  { title: "Senior Penetration Tester", team: "Offensiivinen tietoturva", location: "Etätyö (US/EU)" },
+  { title: "Cloud Security Engineer", team: "Defensiiviset operaatiot", location: "Etätyö (US)" },
+  { title: "SOC-analyytikko, uhkaoperaatiokeskus", team: "Hallinnoitu SecOps", location: "Etätyö (US/EU)" },
+  { title: "Secure Code Review Engineer", team: "Offensiivinen tietoturva", location: "Etätyö (US)" },
+];
+---
+
+<Layout
+  title="Ura RedShield Defensessä | RedShield Defense"
+  description="Liity RedShield Defensen offensiivisten ja defensiivisten tietoturva-asiantuntijoiden tiimiin suojaamaan liiketoimintakriittistä infrastruktuuria."
+  path="/fi/company/careers"
+  locale="fi"
+  translations={{ en: "/company/careers", fi: "/fi/company/careers" }}
+>
+  <FiHeader enHref="/company/careers" />
+  <main>
+    <PageHero
+      eyebrow="Ura"
+      title="Työskentele merkityksellisimpien ongelmien parissa."
+      desc="Palkkaamme asiantuntijoita, jotka haluavat viettää uransa infrastruktuurin parissa, jolla ei ole varaa epäonnistua — ja annamme heille autonomian, työkalut ja tutkimusajan tehdä parasta työtään."
+      breadcrumb={[{ name: "Yritys", href: "/fi/company" }, { name: "Ura", href: "/fi/company/careers" }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="eyebrow mb-4">Miksi RedShield</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Rakennettu asiantuntijoille, jotka ottavat osaamisensa vakavasti.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {perks.map((perk) => (
+            <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <h3 class="font-display text-base font-semibold text-rsd-heading">{perk.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{perk.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-5xl px-6">
+        <p class="eyebrow mb-4">Avoimet tehtävät</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Nykyiset avoimet paikat.</h2>
+        <div class="mt-10 divide-y divide-rsd-border border-y border-rsd-border">
+          {openRoles.map((role) => (
+            <div class="flex flex-col justify-between gap-2 py-6 sm:flex-row sm:items-center">
+              <div>
+                <h3 class="font-display text-lg font-semibold text-rsd-heading">{role.title}</h3>
+                <p class="mt-1 text-sm text-rsd-body">{role.team} · {role.location}</p>
+              </div>
+              <a href="mailto:careers@redshielddefense.com" class="btn-ghost text-sm shrink-0">Hae sähköpostitse</a>
+            </div>
+          ))}
+        </div>
+        <p class="mt-8 text-sm text-rsd-body">
+          Etkö löytänyt sopivaa tehtävää? Lähetä ansioluettelosi osoitteeseen <a href="mailto:careers@redshielddefense.com" class="text-rsd-cyan hover:underline">careers@redshielddefense.com</a> — etsimme aina poikkeuksellisia tietoturva-asiantuntijoita.
+        </p>
+      </div>
+    </section>
+
+    <FiCtaBand />
+  </main>
+  <FiFooter />
+</Layout>

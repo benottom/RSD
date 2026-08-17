@@ -15,14 +15,17 @@ export function getStaticPaths() {
 }
 
 const { group } = Astro.props;
+const fiPath = `/fi/resources/${group.key}`;
 ---
 
 <Layout
   title={`${group.label} | RedShield Defense Resources`}
   description={`Browse all ${group.label.toLowerCase()} from RedShield Defense.`}
   path={group.path}
+  locale="en"
+  translations={{ en: group.path, fi: fiPath }}
 >
-  <Header />
+  <Header fiHref={fiPath} />
   <main>
     <PageHero
       eyebrow="Intelligence"

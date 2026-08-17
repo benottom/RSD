@@ -9,8 +9,10 @@ import PageHero from "../../components/PageHero.astro";
   title="Contact Us | RedShield Defense"
   description="Get in touch with RedShield Defense for security assessments, partnership inquiries, or general questions."
   path="/company/contact"
+  locale="en"
+  translations={{ en: "/company/contact", fi: "/fi/company/contact" }}
 >
-  <Header />
+  <Header fiHref="/fi/company/contact" />
   <main>
     <PageHero
       eyebrow="Company"

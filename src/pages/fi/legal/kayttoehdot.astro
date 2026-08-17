@@ -1,0 +1,71 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import LegalDoc from "../../../components/LegalDoc.astro";
+
+const sections = [
+  {
+    heading: "1. Ehtojen hyväksyminen",
+    paragraphs: [
+      "Käyttämällä tätä verkkosivustoa tai tilaamalla RedShield Defensen palveluita hyväksytte nämä käyttöehdot sekä mahdollisen erikseen allekirjoitetun toimeksiantosopimuksen, joka koskee tiettyä toimeksiantoa.",
+    ],
+  },
+  {
+    heading: "2. Palveluiden laajuus",
+    paragraphs: [
+      "Tietoturva-arviointi- ja neuvontapalveluita säätelee allekirjoitettu toimeksiantosopimus ja pelisäännöt, jotka ovat ensisijaisia tähän yleiseen verkkosivuston sisältöön nähden ristiriitatilanteissa.",
+    ],
+  },
+  {
+    heading: "3. Valtuutettu testaus",
+    paragraphs: [
+      "Kaikki offensiivinen tietoturvatestaus suoritetaan vain järjestelmiä vastaan ja laajuudessa, jonka asiakas on nimenomaisesti kirjallisesti valtuuttanut. RedShield Defense ei testaa järjestelmiä sovitun laajuuden ulkopuolella.",
+    ],
+  },
+  {
+    heading: "4. Luottamuksellisuus",
+    paragraphs: [
+      "Löydöksiä, tunnuksia ja mitä tahansa toimeksiannon aikana käsiteltyjä tietoja käsitellään luottamuksellisina molemminpuolisen salassapitosopimuksen ehtojen mukaisesti.",
+    ],
+  },
+  {
+    heading: "5. Vastuunrajoitus",
+    paragraphs: [
+      "Tietoturva-arvioinnit tunnistavat testaushetkellä olemassa olevat haavoittuvuudet, eivätkä takaa kaikkien riskien puuttumista. Vastuuehdot määritellään sovellettavassa toimeksiantosopimuksessa.",
+    ],
+  },
+  {
+    heading: "6. Sovellettava laki",
+    paragraphs: [
+      "Näitä ehtoja säätelee Texasin osavaltion laki ottamatta huomioon lainvalintaperiaatteita, ellei allekirjoitetussa sopimuksessa toisin määrätä.",
+    ],
+  },
+  {
+    heading: "7. Yhteystiedot",
+    paragraphs: [
+      "Näitä ehtoja koskevat kysymykset voi osoittaa sähköpostiosoitteeseen legal@redshielddefense.com.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Käyttöehdot | RedShield Defense"
+  description="RedShield Defensen verkkosivuston käyttöä ja palveluiden tilaamista koskevat käyttöehdot."
+  path="/fi/legal/kayttoehdot"
+  locale="fi"
+  translations={{ en: "/legal/terms", fi: "/fi/legal/kayttoehdot" }}
+>
+  <FiHeader enHref="/legal/terms" />
+  <main>
+    <LegalDoc
+      title="Käyttöehdot"
+      eyebrow="Oikeudelliset tiedot"
+      updated="1. tammikuuta 2026"
+      intro="Nämä ehdot säätelevät RedShield Defensen verkkosivuston käyttöänne. Yksittäisiä toimeksiantoja säätelee lisäksi allekirjoitettu toimeksiantosopimus."
+      sections={sections}
+    />
+  </main>
+  <FiFooter />
+</Layout>

@@ -1,0 +1,64 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import LegalDoc from "../../../components/LegalDoc.astro";
+
+const sections = [
+  {
+    heading: "Sitoumuksemme",
+    paragraphs: [
+      "Tietoturvayrityksenä pidämme omat järjestelmämme samalla tasolla, jota testaamme asiakkaidemme osalta. Toivotamme tervetulleiksi ilmoitukset riippumattomilta tutkijoilta, jotka löytävät haavoittuvuuksia RedShield Defensen omasta infrastruktuurista.",
+    ],
+  },
+  {
+    heading: "Laajuus",
+    paragraphs: [
+      "Tämä käytäntö kattaa redshielddefense.com-sivuston ja RedShield Defensen ylläpitämän infrastruktuurin. Se ei kata asiakkaidemme järjestelmiä, joita säätelevät heidän omat ilmoituskäytäntönsä.",
+    ],
+  },
+  {
+    heading: "Ilmoitusohjeet",
+    paragraphs: [
+      "Ilmoittakaa epäillyistä haavoittuvuuksista osoitteeseen security@redshielddefense.com riittävillä yksityiskohdilla ongelman toistamiseksi. Älkää käyttäkö, muokatko tai siirtäkö tietoja enempää kuin on tarpeen haavoittuvuuden osoittamiseksi.",
+    ],
+    list: [
+      "Anna selkeä kuvaus ja toistovaiheet",
+      "Vältä automaattista skannausta, joka voisi heikentää palvelun saatavuutta",
+      "Anna meille kohtuullinen aika korjata ongelma ennen julkista ilmoittamista",
+    ],
+  },
+  {
+    heading: "Vastauksemme",
+    paragraphs: [
+      "Vahvistamme ilmoitusten vastaanoton kahden arkipäivän kuluessa ja pyrimme antamaan korjausaikataulun kymmenen arkipäivän kuluessa vahvistetun löydöksen toteamisesta.",
+    ],
+  },
+  {
+    heading: "Suoja-lauseke",
+    paragraphs: [
+      "Emme ryhdy oikeustoimiin tutkijoita vastaan, jotka pyrkivät vilpittömässä mielessä noudattamaan tätä käytäntöä haavoittuvuutta tunnistaessaan ja ilmoittaessaan.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Vastuullinen tietoturvailmoitus | RedShield Defense"
+  description="Miten ilmoittaa tietoturvahaavoittuvuudesta RedShield Defensen omissa järjestelmissä."
+  path="/fi/legal/vastuullinen-tietoturvailmoitus"
+  locale="fi"
+  translations={{ en: "/legal/responsible-disclosure", fi: "/fi/legal/vastuullinen-tietoturvailmoitus" }}
+>
+  <FiHeader enHref="/legal/responsible-disclosure" />
+  <main>
+    <LegalDoc
+      title="Vastuullinen tietoturvailmoitus"
+      eyebrow="Oikeudelliset tiedot"
+      updated="1. tammikuuta 2026"
+      intro="Pidämme omaa infrastruktuuriamme samalla tarkkuustasolla, jota testaamme asiakkaidemme osalta, ja toivotamme tervetulleeksi vilpittömässä mielessä tehdyn tietoturvatutkimuksen."
+      sections={sections}
+    />
+  </main>
+  <FiFooter />
+</Layout>

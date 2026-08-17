@@ -1,0 +1,81 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import FiCtaBand from "../../../components/FiCtaBand.astro";
+import PageHero from "../../../components/PageHero.astro";
+
+const values = [
+  { title: "Toimimme kuten hyökkääjä", desc: "Testaamme ja puolustamme samoilla taktiikoilla, joita todelliset hyökkääjät käyttävät — emme vaatimustenmukaisuuskehyksestä johdetulla tarkistuslistalla." },
+  { title: "Tarkkuutta kohinan sijaan", desc: "Jokainen löydös vahvistetaan ja priorisoidaan todellisen hyödynnettävyyden mukaan, jotta tiiminne käyttää aikansa riskin korjaamiseen, ei virheellisten hälytysten seulontaan." },
+  { title: "Suunnittelemme, emme vain raportoi", desc: "Luovutamme korjausohjeistuksen, jonka insinöörinne voivat ottaa suoraan käyttöön, ja pysymme mukana uudelleentestaukseen asti." },
+  { title: "Ansaitsemme luottamuksen tarkkuudella", desc: "Liiketoimintakriittiset organisaatiot eivät tarvitse vakuutteluja — ne tarvitsevat näyttöä. Rakennamme maineemme yksi vahvistettu löydös kerrallaan." },
+];
+
+const stats = [
+  { value: "2016", label: "Perustettu" },
+  { value: "60+", label: "Tietoturva-asiantuntijaa henkilöstössä" },
+  { value: "400+", label: "Suojattua organisaatiota" },
+  { value: "17 vuotta", label: "Yhdistettyä offensiivisen tietoturvan kokemusta" },
+];
+---
+
+<Layout
+  title="Tietoa RedShield Defensestä | Teollisen tason tietoturva"
+  description="RedShield Defense on offensiivisten tietoturva-asiantuntijoiden perustama yritys, joka tarjoaa teollisen tason suojaa liiketoimintakriittiselle infrastruktuurille."
+  path="/fi/company"
+  locale="fi"
+  translations={{ en: "/company", fi: "/fi/company" }}
+>
+  <FiHeader enHref="/company" />
+  <main>
+    <PageHero
+      eyebrow="Yritys"
+      title="Insinöörien rakentama — molemmilta puolilta arviointipöytää."
+      desc="RedShield Defense perustettiin yksinkertaiselle periaatteelle: tietoturvatestaus on tehtävä samalla tarkkuudella, kärsivällisyydellä ja taktiikalla kuin todellinen tunkeutuminen — koska vain siten löydetään se, millä todella on merkitystä."
+      breadcrumb={[{ name: "Yritys", href: "/fi/company" }]}
+    />
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-4xl px-6">
+        <p class="text-lg leading-relaxed text-rsd-body-bright">
+          Perustimme RedShield Defensen vuosien jälkeen offensiivisen tietoturvan tiimeissä, joissa näimme organisaatioiden investoivan voimakkaasti tietoturvatyökaluihin samalla, kun perusasiat — valtuutuslogiikka, pilvikonfiguraatio, häiriötilannevalmius — jäivät testaamatta liian pitkään.
+        </p>
+        <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">
+          Nykyään asiantuntijamme tukevat organisaatioita rahoituspalveluissa, terveydenhuollossa, kriittisessä infrastruktuurissa ja teknologia-alalla — toteuttaen offensiivisia arviointeja, defensiivistä suunnittelua ja hallinnoituja operaatioita, jotka pitävät liiketoimintakriittiset järjestelmät pystyssä todellisen paineen alla.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="eyebrow mb-4">Mihin uskomme</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Periaatteet, jotka ohjaavat jokaista toimeksiantoa.</h2>
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {values.map((value) => (
+            <div class="rounded-lg border border-rsd-border bg-rsd-surface p-7">
+              <h3 class="font-display text-lg font-semibold text-rsd-heading">{value.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-rsd-body">{value.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-16">
+      <div class="mx-auto max-w-5xl px-6">
+        <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {stats.map((stat) => (
+            <div class="text-center">
+              <p class="font-display text-3xl font-bold text-rsd-heading">{stat.value}</p>
+              <p class="mt-2 text-sm text-rsd-body">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <FiCtaBand />
+  </main>
+  <FiFooter />
+</Layout>

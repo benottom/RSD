@@ -1,0 +1,163 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FiHeader from "../../components/FiHeader.astro";
+import FiFooter from "../../components/FiFooter.astro";
+import PageHero from "../../components/PageHero.astro";
+import { servicesFi } from "../../data/services.fi";
+import { industriesFi } from "../../data/industries.fi";
+
+const reassurances = [
+  { title: "1 arkipäivä", desc: "Keskimääräinen vastausaika uusiin arviointipyyntöihin." },
+  { title: "NDA ensin", desc: "Molemminpuolinen salassapitosopimus allekirjoitetaan ennen rajaustietojen jakamista." },
+  { title: "Ei sitoumusta", desc: "Rajauspuhelut ovat konsultoivia — päätätte itse, jos ja milloin edetä." },
+];
+---
+
+<Layout
+  title="Pyydä arviointi | RedShield Defense"
+  description="Pyydä räätälöity tietoturva-arviointi RedShield Defenseltä, rajattuna ympäristönne, toimialanne ja riskiprofiilinne mukaan."
+  path="/fi/request-assessment"
+  locale="fi"
+  translations={{ en: "/request-assessment", fi: "/fi/request-assessment" }}
+>
+  <FiHeader enHref="/request-assessment" />
+  <main>
+    <PageHero
+      eyebrow="Aloitus"
+      title="Pyydä uhka-arviointi"
+      desc="Kertokaa meille ympäristöstänne, niin palaamme asiaan rajatulla toimeksiantoehdotuksella — ei geneerisiä paketteja, ei sitoumusta."
+      breadcrumb={[{ name: "Pyydä arviointi", href: "/fi/request-assessment" }]}
+    />
+
+    <section class="bg-rsd-bg py-20">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 lg:grid-cols-5">
+        <div class="lg:col-span-2">
+          <h2 class="font-display text-2xl font-bold text-rsd-heading">Mitä tapahtuu seuraavaksi</h2>
+          <ol class="mt-8 space-y-8">
+            <li class="border-l-2 border-rsd-cyan/40 pl-6">
+              <span class="font-mono text-sm text-rsd-cyan">01</span>
+              <h3 class="mt-2 font-display text-lg font-semibold text-rsd-heading">Käymme pyyntönne läpi</h3>
+              <p class="mt-2 text-sm leading-relaxed text-rsd-body">Senior-asiantuntija käy ympäristönne tiedot läpi yhden arkipäivän kuluessa.</p>
+            </li>
+            <li class="border-l-2 border-rsd-cyan/40 pl-6">
+              <span class="font-mono text-sm text-rsd-cyan">02</span>
+              <h3 class="mt-2 font-display text-lg font-semibold text-rsd-heading">Rajauspuhelu</h3>
+              <p class="mt-2 text-sm leading-relaxed text-rsd-body">Lyhyt puhelu järjestelmienne, aikataulunne ja tavoitteidenne ymmärtämiseksi — NDA:n suojissa.</p>
+            </li>
+            <li class="border-l-2 border-rsd-cyan/40 pl-6">
+              <span class="font-mono text-sm text-rsd-cyan">03</span>
+              <h3 class="mt-2 font-display text-lg font-semibold text-rsd-heading">Ehdotus ja aikataulutus</h3>
+              <p class="mt-2 text-sm leading-relaxed text-rsd-body">Räätälöity ehdotus hinnoittelulla ja aikataululla, valmiina aikataulutettavaksi kun se sopii teille.</p>
+            </li>
+          </ol>
+
+          <div class="mt-12 space-y-6 border-t border-rsd-border pt-10">
+            {reassurances.map((item) => (
+              <div class="flex gap-4">
+                <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-rsd-cyan"></span>
+                <div>
+                  <p class="font-display font-semibold text-rsd-heading">{item.title}</p>
+                  <p class="text-sm text-rsd-body">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:col-span-3">
+          <form id="assessment-form" action="https://formspree.io/f/xzepvdda" method="POST" class="rounded-xl border border-rsd-border bg-rsd-surface p-8">
+            <input type="hidden" name="_subject" value="Uusi arviointipyyntö (FI) — RedShield Defense" />
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div>
+                <label for="name" class="mb-2 block text-sm font-medium text-rsd-body-bright">Koko nimi</label>
+                <input required id="name" name="name" type="text" class="w-full rounded-md border border-rsd-border bg-rsd-bg px-4 py-3 text-rsd-heading placeholder:text-rsd-body/60 focus:border-rsd-cyan focus:outline-none" placeholder="Matti Meikäläinen" />
+              </div>
+              <div>
+                <label for="email" class="mb-2 block text-sm font-medium text-rsd-body-bright">Työsähköposti</label>
+                <input required id="email" name="email" type="email" class="w-full rounded-md border border-rsd-border bg-rsd-bg px-4 py-3 text-rsd-heading placeholder:text-rsd-body/60 focus:border-rsd-cyan focus:outline-none" placeholder="matti@yritys.fi" />
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div>
+                <label for="company" class="mb-2 block text-sm font-medium text-rsd-body-bright">Yritys</label>
+                <input required id="company" name="company" type="text" class="w-full rounded-md border border-rsd-border bg-rsd-bg px-4 py-3 text-rsd-heading placeholder:text-rsd-body/60 focus:border-rsd-cyan focus:outline-none" placeholder="Esimerkki Oy" />
+              </div>
+              <div>
+                <label for="industry" class="mb-2 block text-sm font-medium text-rsd-body-bright">Toimiala</label>
+                <select id="industry" name="industry" class="w-full rounded-md border border-rsd-border bg-rsd-bg px-4 py-3 text-rsd-heading focus:border-rsd-cyan focus:outline-none">
+                  <option value="">Valitse toimiala</option>
+                  {industriesFi.map((industry) => <option value={industry.enSlug}>{industry.name}</option>)}
+                  <option value="other">Muu</option>
+                </select>
+              </div>
+            </div>
+
+            <fieldset class="mt-6">
+              <legend class="mb-3 block text-sm font-medium text-rsd-body-bright">Kiinnostuksen kohteena olevat palvelut</legend>
+              <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {servicesFi.map((service) => (
+                  <label class="flex items-center gap-2.5 rounded-md border border-rsd-border bg-rsd-bg px-4 py-3 text-sm text-rsd-body-bright has-[:checked]:border-rsd-cyan has-[:checked]:text-rsd-heading">
+                    <input type="checkbox" name="services" value={service.enSlug} class="accent-rsd-cyan" />
+                    {service.shortName}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <div class="mt-6">
+              <label for="message" class="mb-2 block text-sm font-medium text-rsd-body-bright">Kertokaa ympäristöstänne</label>
+              <textarea id="message" name="message" rows="5" class="w-full rounded-md border border-rsd-border bg-rsd-bg px-4 py-3 text-rsd-heading placeholder:text-rsd-body/60 focus:border-rsd-cyan focus:outline-none" placeholder="Mitkä järjestelmät ovat rajauksessa? Onko aikataulua tai vaatimustenmukaisuuden määräaikaa, joka meidän tulisi tietää?"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary mt-8 w-full justify-center">
+              Lähetä pyyntö
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p id="assessment-status" class="mt-4 hidden text-sm" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <FiFooter />
+</Layout>
+
+<script>
+  const form = document.getElementById("assessment-form") as HTMLFormElement | null;
+  const status = document.getElementById("assessment-status");
+  const submitButton = form?.querySelector("button[type=submit]") as HTMLButtonElement | null;
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!status || !submitButton) return;
+
+    submitButton.disabled = true;
+    submitButton.classList.add("opacity-60");
+    status.classList.remove("hidden", "text-rsd-cyan", "text-red-600");
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        status.textContent = "Kiitos — pyyntönne on lähetetty. Senior-asiantuntija käy sen läpi yhden arkipäivän kuluessa.";
+        status.classList.add("text-rsd-cyan");
+        form.reset();
+      } else {
+        status.textContent = "Pyynnön lähetys epäonnistui. Lähettäkää sähköpostia osoitteeseen info@redshielddefense.com.";
+        status.classList.add("text-red-600");
+      }
+    } catch {
+      status.textContent = "Pyynnön lähetys epäonnistui. Lähettäkää sähköpostia osoitteeseen info@redshielddefense.com.";
+      status.classList.add("text-red-600");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.classList.remove("opacity-60");
+    }
+  });
+</script>
