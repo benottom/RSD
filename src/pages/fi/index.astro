@@ -4,6 +4,8 @@ import FiHeader from "../../components/FiHeader.astro";
 import FiCtaBand from "../../components/FiCtaBand.astro";
 import FiFooter from "../../components/FiFooter.astro";
 import { icons } from "../../data/icons";
+import { servicesFi } from "../../data/services.fi";
+import { industriesFi } from "../../data/industries.fi";
 
 const trustCards = [
   {
@@ -20,14 +22,7 @@ const trustCards = [
   },
 ];
 
-const services = [
-  { tag: "Offensiivinen tietoturva", name: "VAPT ja tunkeutumistestaus", shortDesc: "Simuloimme todellisia hyökkääjiä verkkosovelluksianne, mobiilisovelluksianne, rajapintojanne ja verkkojanne vastaan paljastaaksemme hyödynnettävät heikkoudet ennen kuin he löytävät ne.", icon: "target", href: "/fi/services/tunkeutumistestaus" },
-  { tag: "Pilvi", name: "Pilviturvallisuuden suunnittelu", shortDesc: "Arkkitehtuurikatselmukset, tilannehallinta ja kovennus AWS-, Azure- ja GCP-ympäristöissä organisaatioille, jotka ajavat kriittisiä työkuormia suuressa mittakaavassa.", icon: "cloud", href: "/services/cloud-security" },
-  { tag: "Koodivarmistus", name: "Tietoturvallinen koodikatselmointi", shortDesc: "Manuaalisia, hyökkääjän näkökulmasta tehtäviä lähdekoodiauditointeja, jotka paljastavat logiikkavirheet ja injektioreitit, jotka automaattiset skannerit jättävät jatkuvasti huomaamatta.", icon: "code", href: "/services/secure-code-review" },
-  { tag: "Operaatiot", name: "Hallinnoitu SecOps ja valvonta", shortDesc: "Jatkuva havainnointi, uhkametsästys ja häiriötilanteiden hallinta 24/7-uhkaoperaatiokeskuksemme toimesta.", icon: "radar", href: "/services/secops" },
-  { tag: "Hallinto", name: "Vaatimustenmukaisuus- ja riskineuvonta", shortDesc: "SOC 2-, ISO 27001-, PCI-DSS- ja HIPAA-valmiusohjelmat, jotka kestävät oikeat auditoinnit — eivät vain tarkistuslistoja.", icon: "shield-check", href: "/services/compliance" },
-  { tag: "Hyökkäyssimulaatio", name: "Red team -operaatiot", shortDesc: "Täyden laajuuden, tavoitelähtöiset toimeksiannot, jotka on mallinnettu valtiollisten ja järjestäytyneiden uhkatoimijoiden taktiikoiden mukaan.", icon: "crosshair", href: "/services/red-team" },
-];
+const services = servicesFi.map((s) => ({ tag: s.tag, name: s.name, shortDesc: s.shortDesc, icon: s.icon, href: `/fi/services/${s.slug}` }));
 
 const stats = [
   { value: "17 vuotta", label: "Yhdistettyä offensiivisen tietoturvan kokemusta" },
@@ -43,14 +38,7 @@ const severityBars = [
   { label: "Matala", pct: 17, color: "bg-rsd-body" },
 ];
 
-const industries = [
-  { name: "Rahoituspalvelut", shortDesc: "Suojaamme maksujärjestelmiä ja ydinpankki-infrastruktuuria kohdistetuilta tunkeutumisilta.", href: "/industries/financial-services" },
-  { name: "Terveydenhuolto ja Life Sciences", shortDesc: "Suojaamme potilastietoja ja verkotettuja kliinisiä järjestelmiä HIPAA:n ja muiden vaatimusten mukaisesti.", href: "/industries/healthcare" },
-  { name: "SaaS ja teknologia", shortDesc: "Suojaamme sovellukset ja pilvialustat, joihin asiakkaanne luottavat tietojaan käsitellessään.", href: "/industries/saas-technology" },
-  { name: "Kriittinen infrastruktuuri", shortDesc: "Kovennamme teolliset ja operatiiviset järjestelmät, joilla ei ole varaa käyttökatkoihin.", href: "/industries/critical-infrastructure" },
-  { name: "Julkishallinto", shortDesc: "Täytämme viranomais- ja säädösvaatimukset hidastamatta ydintoimintojen toimitusta.", href: "/industries/government" },
-  { name: "Verkkokauppa ja vähittäiskauppa", shortDesc: "Suojaamme maksuvirrat ja asiakastiedot vilkasliikenteisissä verkkokaupoissa.", href: "/industries/ecommerce" },
-];
+const industries = industriesFi.map((i) => ({ name: i.name, shortDesc: i.shortDesc, href: `/fi/industries/${i.slug}` }));
 ---
 
 <Layout
@@ -87,7 +75,7 @@ const industries = [
           </p>
 
           <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a href="/request-assessment" class="btn-primary justify-center">
+            <a href="/fi/request-assessment" class="btn-primary justify-center">
               Pyydä arviointi
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
@@ -236,7 +224,7 @@ const industries = [
             <p class="eyebrow mb-4">Toimialat</p>
             <h2 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">Toimialakohtaista osaamista, ei yleispäteviä käsikirjoja.</h2>
           </div>
-          <a href="/industries" class="btn-ghost shrink-0">Katso kaikki toimialat</a>
+          <a href="/fi/industries" class="btn-ghost shrink-0">Katso kaikki toimialat</a>
         </div>
 
         <div class="mt-14 grid grid-cols-1 divide-y divide-rsd-border border-y border-rsd-border sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3">

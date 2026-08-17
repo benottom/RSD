@@ -1,43 +1,28 @@
 ---
+import { servicesFi } from "../data/services.fi";
+import { industriesFi } from "../data/industries.fi";
+import { resourceKindsFi } from "../data/resources.fi";
+
 const columns = [
   {
     heading: "Palvelut",
-    links: [
-      { name: "VAPT ja tunkeutumistestaus", href: "/fi/services/tunkeutumistestaus" },
-      { name: "Pilviturvallisuus", href: "/services/cloud-security" },
-      { name: "Koodikatselmointi", href: "/services/secure-code-review" },
-      { name: "Hallinnoitu SecOps", href: "/services/secops" },
-      { name: "Vaatimustenmukaisuus ja riski", href: "/services/compliance" },
-      { name: "Red team -operaatiot", href: "/services/red-team" },
-    ],
+    links: servicesFi.map((s) => ({ name: s.shortName, href: `/fi/services/${s.slug}` })),
   },
   {
     heading: "Toimialat",
-    links: [
-      { name: "Rahoituspalvelut", href: "/industries/financial-services" },
-      { name: "Terveydenhuolto ja Life Sciences", href: "/industries/healthcare" },
-      { name: "SaaS ja teknologia", href: "/industries/saas-technology" },
-      { name: "Kriittinen infrastruktuuri", href: "/industries/critical-infrastructure" },
-      { name: "Julkishallinto", href: "/industries/government" },
-      { name: "Verkkokauppa ja vähittäiskauppa", href: "/industries/ecommerce" },
-    ],
+    links: industriesFi.map((i) => ({ name: i.name, href: `/fi/industries/${i.slug}` })),
   },
   {
     heading: "Resurssit",
-    links: [
-      { name: "Uhkatiedusteluraportit", href: "/resources/reports" },
-      { name: "Tekninen blogi", href: "/resources/blog" },
-      { name: "Asiakastapaukset", href: "/resources/case-studies" },
-      { name: "Julkaisut", href: "/resources/whitepapers" },
-    ],
+    links: resourceKindsFi.map((group) => ({ name: group.label, href: group.path })),
   },
   {
     heading: "Yritys",
     links: [
-      { name: "Meistä", href: "/company" },
-      { name: "Ura", href: "/company/careers" },
-      { name: "Luottamus ja sertifioinnit", href: "/company/trust" },
-      { name: "Ota yhteyttä", href: "/company/contact" },
+      { name: "Meistä", href: "/fi/company" },
+      { name: "Ura", href: "/fi/company/careers" },
+      { name: "Luottamus ja sertifioinnit", href: "/fi/company/trust" },
+      { name: "Ota yhteyttä", href: "/fi/company/contact" },
     ],
   },
 ];
@@ -80,9 +65,9 @@ const columns = [
     <div class="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
       <p class="text-xs text-rsd-body">© {new Date().getFullYear()} RedShield Defense. Kaikki oikeudet pidätetään.</p>
       <div class="flex items-center gap-6">
-        <a href="/legal/privacy" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Tietosuojaseloste</a>
-        <a href="/legal/terms" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Käyttöehdot</a>
-        <a href="/legal/responsible-disclosure" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Vastuullinen tietoturvailmoitus</a>
+        <a href="/fi/legal/tietosuojaseloste" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Tietosuojaseloste</a>
+        <a href="/fi/legal/kayttoehdot" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Käyttöehdot</a>
+        <a href="/fi/legal/vastuullinen-tietoturvailmoitus" class="text-xs text-rsd-body transition-colors hover:text-rsd-cyan">Vastuullinen tietoturvailmoitus</a>
       </div>
     </div>
 
