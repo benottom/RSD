@@ -4,15 +4,40 @@ const columns = [
     heading: "Palvelut",
     links: [
       { name: "VAPT ja tunkeutumistestaus", href: "/fi/services/tunkeutumistestaus" },
-      { name: "Kaikki palvelut (englanniksi)", href: "/services" },
+      { name: "Pilviturvallisuus", href: "/services/cloud-security" },
+      { name: "Koodikatselmointi", href: "/services/secure-code-review" },
+      { name: "Hallinnoitu SecOps", href: "/services/secops" },
+      { name: "Vaatimustenmukaisuus ja riski", href: "/services/compliance" },
+      { name: "Red team -operaatiot", href: "/services/red-team" },
+    ],
+  },
+  {
+    heading: "Toimialat",
+    links: [
+      { name: "Rahoituspalvelut", href: "/industries/financial-services" },
+      { name: "Terveydenhuolto ja Life Sciences", href: "/industries/healthcare" },
+      { name: "SaaS ja teknologia", href: "/industries/saas-technology" },
+      { name: "Kriittinen infrastruktuuri", href: "/industries/critical-infrastructure" },
+      { name: "Julkishallinto", href: "/industries/government" },
+      { name: "Verkkokauppa ja vähittäiskauppa", href: "/industries/ecommerce" },
+    ],
+  },
+  {
+    heading: "Resurssit",
+    links: [
+      { name: "Uhkatiedusteluraportit", href: "/resources/reports" },
+      { name: "Tekninen blogi", href: "/resources/blog" },
+      { name: "Asiakastapaukset", href: "/resources/case-studies" },
+      { name: "Julkaisut", href: "/resources/whitepapers" },
     ],
   },
   {
     heading: "Yritys",
     links: [
-      { name: "Ota yhteyttä", href: "/company/contact" },
+      { name: "Meistä", href: "/company" },
       { name: "Ura", href: "/company/careers" },
       { name: "Luottamus ja sertifioinnit", href: "/company/trust" },
+      { name: "Ota yhteyttä", href: "/company/contact" },
     ],
   },
 ];
@@ -20,8 +45,8 @@ const columns = [
 
 <footer class="bg-rsd-bg-deep pt-20">
   <div class="mx-auto max-w-7xl px-6">
-    <div class="grid grid-cols-2 gap-10 border-b border-rsd-border pb-16 sm:grid-cols-4">
-      <div class="col-span-2 sm:col-span-2">
+    <div class="grid grid-cols-2 gap-10 border-b border-rsd-border pb-16 sm:grid-cols-3 lg:grid-cols-6">
+      <div class="col-span-2 sm:col-span-3 lg:col-span-2">
         <a href="/fi/" class="flex items-center">
           <img src="/images/redshielddefense-logo.png" alt="RedShield Defense" width="84" height="102" class="h-[84px] w-auto" loading="lazy" decoding="async" />
         </a>

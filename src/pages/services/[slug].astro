@@ -48,7 +48,7 @@ const trustCards = [
   locale="en"
   translations={isVapt ? { en: "/services/penetration-testing", fi: "/fi/services/tunkeutumistestaus" } : undefined}
 >
-  <Header switchTo={isVapt ? { label: "Suomeksi", href: "/fi/services/tunkeutumistestaus" } : undefined} />
+  <Header fiHref={isVapt ? "/fi/services/tunkeutumistestaus" : "/fi/"} />
   <main>
     {isVapt ? (
       <>

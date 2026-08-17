@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import FiHeader from "../../components/FiHeader.astro";
 import FiCtaBand from "../../components/FiCtaBand.astro";
 import FiFooter from "../../components/FiFooter.astro";
+import { icons } from "../../data/icons";
 
 const trustCards = [
   {
@@ -18,6 +19,38 @@ const trustCards = [
     desc: "Jokaisen toimeksiannon toteuttavat OSCP-, OSCE- ja CISSP-sertifioidut asiantuntijat yhtenäistä, toistettavaa testausmenetelmää noudattaen.",
   },
 ];
+
+const services = [
+  { tag: "Offensiivinen tietoturva", name: "VAPT ja tunkeutumistestaus", shortDesc: "Simuloimme todellisia hyökkääjiä verkkosovelluksianne, mobiilisovelluksianne, rajapintojanne ja verkkojanne vastaan paljastaaksemme hyödynnettävät heikkoudet ennen kuin he löytävät ne.", icon: "target", href: "/fi/services/tunkeutumistestaus" },
+  { tag: "Pilvi", name: "Pilviturvallisuuden suunnittelu", shortDesc: "Arkkitehtuurikatselmukset, tilannehallinta ja kovennus AWS-, Azure- ja GCP-ympäristöissä organisaatioille, jotka ajavat kriittisiä työkuormia suuressa mittakaavassa.", icon: "cloud", href: "/services/cloud-security" },
+  { tag: "Koodivarmistus", name: "Tietoturvallinen koodikatselmointi", shortDesc: "Manuaalisia, hyökkääjän näkökulmasta tehtäviä lähdekoodiauditointeja, jotka paljastavat logiikkavirheet ja injektioreitit, jotka automaattiset skannerit jättävät jatkuvasti huomaamatta.", icon: "code", href: "/services/secure-code-review" },
+  { tag: "Operaatiot", name: "Hallinnoitu SecOps ja valvonta", shortDesc: "Jatkuva havainnointi, uhkametsästys ja häiriötilanteiden hallinta 24/7-uhkaoperaatiokeskuksemme toimesta.", icon: "radar", href: "/services/secops" },
+  { tag: "Hallinto", name: "Vaatimustenmukaisuus- ja riskineuvonta", shortDesc: "SOC 2-, ISO 27001-, PCI-DSS- ja HIPAA-valmiusohjelmat, jotka kestävät oikeat auditoinnit — eivät vain tarkistuslistoja.", icon: "shield-check", href: "/services/compliance" },
+  { tag: "Hyökkäyssimulaatio", name: "Red team -operaatiot", shortDesc: "Täyden laajuuden, tavoitelähtöiset toimeksiannot, jotka on mallinnettu valtiollisten ja järjestäytyneiden uhkatoimijoiden taktiikoiden mukaan.", icon: "crosshair", href: "/services/red-team" },
+];
+
+const stats = [
+  { value: "17 vuotta", label: "Yhdistettyä offensiivisen tietoturvan kokemusta" },
+  { value: "60+", label: "Sertifioitua tietoturva-asiantuntijaa (OSCP, OSCE, CISSP)" },
+  { value: "3 200+", label: "Toimitettua arviointia ilman ohitettua SLA:ta" },
+  { value: "< 4 min", label: "Keskimääräinen havaitsemisaika hallinnoidussa SecOpsissa" },
+];
+
+const severityBars = [
+  { label: "Kriittinen", pct: 18, color: "bg-rsd-cyan" },
+  { label: "Korkea", pct: 34, color: "bg-rsd-amber" },
+  { label: "Keskitaso", pct: 31, color: "bg-white" },
+  { label: "Matala", pct: 17, color: "bg-rsd-body" },
+];
+
+const industries = [
+  { name: "Rahoituspalvelut", shortDesc: "Suojaamme maksujärjestelmiä ja ydinpankki-infrastruktuuria kohdistetuilta tunkeutumisilta.", href: "/industries/financial-services" },
+  { name: "Terveydenhuolto ja Life Sciences", shortDesc: "Suojaamme potilastietoja ja verkotettuja kliinisiä järjestelmiä HIPAA:n ja muiden vaatimusten mukaisesti.", href: "/industries/healthcare" },
+  { name: "SaaS ja teknologia", shortDesc: "Suojaamme sovellukset ja pilvialustat, joihin asiakkaanne luottavat tietojaan käsitellessään.", href: "/industries/saas-technology" },
+  { name: "Kriittinen infrastruktuuri", shortDesc: "Kovennamme teolliset ja operatiiviset järjestelmät, joilla ei ole varaa käyttökatkoihin.", href: "/industries/critical-infrastructure" },
+  { name: "Julkishallinto", shortDesc: "Täytämme viranomais- ja säädösvaatimukset hidastamatta ydintoimintojen toimitusta.", href: "/industries/government" },
+  { name: "Verkkokauppa ja vähittäiskauppa", shortDesc: "Suojaamme maksuvirrat ja asiakastiedot vilkasliikenteisissä verkkokaupoissa.", href: "/industries/ecommerce" },
+];
 ---
 
 <Layout
@@ -27,7 +60,7 @@ const trustCards = [
   locale="fi"
   translations={{ en: "/", fi: "/fi/" }}
 >
-  <FiHeader switchTo={{ label: "In English", href: "/" }} />
+  <FiHeader />
   <main>
     <section class="relative flex min-h-[92vh] items-center overflow-hidden border-b border-rsd-border bg-rsd-bg pt-40">
       <div class="grid-overlay absolute inset-0"></div>
@@ -79,6 +112,144 @@ const trustCards = [
               <p class="mt-1 text-sm text-rsd-body">Asiakkaidemme käytettävyysaste</p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="palvelut" class="relative border-b border-rsd-border bg-rsd-bg py-24">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="max-w-2xl">
+          <p class="eyebrow mb-4">Ratkaisut</p>
+          <h2 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">
+            Kokonaisvaltaista tietoturvaa infrastruktuurille, joka ei saa kaatua.
+          </h2>
+          <p class="mt-6 text-lg leading-relaxed text-rsd-body">
+            Offensiivisesta testauksesta jatkuvaan puolustukseen — RedShield Defense toimii tietoturvatoimintonne jatkeena organisaatioille, joille epäonnistuminen ei ole vaihtoehto.
+          </p>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <a href={service.href} class="glow-border group flex flex-col rounded-lg border border-rsd-border bg-rsd-surface p-8">
+              <div class="flex h-12 w-12 items-center justify-center rounded-md border border-rsd-border bg-rsd-bg text-rsd-cyan">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
+              </div>
+              <p class="eyebrow mt-6">{service.tag}</p>
+              <h3 class="mt-3 font-display text-xl font-semibold text-rsd-heading">{service.name}</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-rsd-body">{service.shortDesc}</p>
+              <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-rsd-cyan">
+                Katso palvelun tiedot
+                <svg class="transition-transform group-hover:translate-x-1" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative overflow-hidden border-b border-rsd-border bg-rsd-surface-alt py-24">
+      <div class="grid-overlay absolute inset-0 opacity-30"></div>
+      <div class="relative mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p class="eyebrow mb-4">Miksi RedShield</p>
+            <h2 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">
+              Rakennettu kuin uhkaoperaatiokeskus. Koska se on sitä.
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-rsd-body">
+              Jokainen toimeksianto perustuu samaan tiedusteludataputkeen, joka ohjaa hallinnoitua valvontapalveluamme — joten löytämämme haavoittuvuudet priorisoidaan samalla tavalla kuin todelliset hyökkääjät niitä hyödyntäisivät.
+            </p>
+
+            <dl class="mt-12 grid grid-cols-2 gap-x-8 gap-y-10">
+              {stats.map((stat) => (
+                <div class="border-l-2 border-rsd-cyan/40 pl-5">
+                  <dt class="font-display text-3xl font-bold text-rsd-heading">{stat.value}</dt>
+                  <dd class="mt-2 text-sm leading-relaxed text-rsd-body">{stat.label}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div class="rounded-xl border border-rsd-border bg-rsd-bg-deep p-6 shadow-2xl shadow-black/50 sm:p-8">
+            <div class="flex items-center justify-between border-b border-rsd-border pb-4">
+              <div class="flex items-center gap-2">
+                <span class="h-2.5 w-2.5 rounded-full bg-rsd-red/70"></span>
+                <span class="h-2.5 w-2.5 rounded-full bg-rsd-amber/70"></span>
+                <span class="h-2.5 w-2.5 rounded-full bg-rsd-cyan/70"></span>
+                <span class="ml-2 font-mono text-xs uppercase tracking-widest text-rsd-body">uhkaoperaatiot / suora-syöte</span>
+              </div>
+              <span class="flex items-center gap-1.5 font-mono text-xs text-rsd-cyan">
+                <span class="h-1.5 w-1.5 animate-pulse-slow rounded-full bg-rsd-cyan"></span>
+                valvotaan
+              </span>
+            </div>
+
+            <div class="mt-6 grid grid-cols-3 gap-4">
+              <div class="rounded-lg border border-rsd-border bg-rsd-surface p-4">
+                <p class="font-mono text-xs text-rsd-body">Avoimet löydökset</p>
+                <p class="mt-2 font-display text-2xl font-bold text-rsd-heading">142</p>
+              </div>
+              <div class="rounded-lg border border-rsd-border bg-rsd-surface p-4">
+                <p class="font-mono text-xs text-rsd-body">Valvotut kohteet</p>
+                <p class="mt-2 font-display text-2xl font-bold text-rsd-heading">3 481</p>
+              </div>
+              <div class="rounded-lg border border-rsd-red/30 bg-rsd-red/10 p-4">
+                <p class="font-mono text-xs text-rsd-body">Aktiiviset hälytykset</p>
+                <p class="mt-2 font-display text-2xl font-bold text-rsd-red">6</p>
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <p class="mb-3 font-mono text-xs uppercase tracking-widest text-rsd-body">Löydökset vakavuuden mukaan</p>
+              <div class="space-y-3">
+                {severityBars.map((bar) => (
+                  <div class="flex items-center gap-3">
+                    <span class="w-16 shrink-0 font-mono text-xs text-rsd-body">{bar.label}</span>
+                    <div class="h-2 flex-1 overflow-hidden rounded-full bg-rsd-surface">
+                      <div class={`h-full rounded-full ${bar.color}`} style={`width: ${bar.pct}%`}></div>
+                    </div>
+                    <span class="w-9 shrink-0 text-right font-mono text-xs text-white">{bar.pct}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <svg class="mt-6 h-24 w-full" viewBox="0 0 400 100" preserveAspectRatio="none" fill="none">
+              <polyline points="0,70 40,55 80,60 120,35 160,45 200,20 240,38 280,25 320,42 360,15 400,30" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+              <polyline points="0,70 40,55 80,60 120,35 160,45 200,20 240,38 280,25 320,42 360,15 400,30 400,100 0,100" fill="url(#chart-gradient-fi)" stroke="none" opacity="0.6" />
+              <defs>
+                <linearGradient id="chart-gradient-fi" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FF0000" stop-opacity="0.4" />
+                  <stop offset="100%" stop-color="#FF0000" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-rsd-border bg-rsd-bg py-24">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div class="max-w-xl">
+            <p class="eyebrow mb-4">Toimialat</p>
+            <h2 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">Toimialakohtaista osaamista, ei yleispäteviä käsikirjoja.</h2>
+          </div>
+          <a href="/industries" class="btn-ghost shrink-0">Katso kaikki toimialat</a>
+        </div>
+
+        <div class="mt-14 grid grid-cols-1 divide-y divide-rsd-border border-y border-rsd-border sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3">
+          {industries.map((industry) => (
+            <a href={industry.href} class="group flex flex-col justify-between gap-6 p-8 transition-colors hover:bg-rsd-surface/60">
+              <h3 class="font-display text-lg font-semibold text-rsd-heading group-hover:text-rsd-cyan">{industry.name}</h3>
+              <p class="text-sm leading-relaxed text-rsd-body">{industry.shortDesc}</p>
+              <span class="inline-flex items-center gap-2 text-sm font-semibold text-rsd-cyan opacity-0 transition-opacity group-hover:opacity-100">
+                Tutustu toimialaan
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
