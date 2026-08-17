@@ -1,5 +1,6 @@
 ---
 import FlagIcon from "./FlagIcon.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 interface Props {
   enHref?: string;
@@ -94,14 +95,7 @@ const resourceLinks = [
     </nav>
 
     <div class="hidden items-center gap-4 lg:flex">
-      <div class="flex items-center gap-1 rounded-full border border-rsd-border p-1" role="group" aria-label="Kieli">
-        <a href={enHref} hreflang="en" lang="en" class="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold text-rsd-body transition-colors hover:text-rsd-cyan">
-          <FlagIcon country="gb" />EN
-        </a>
-        <span class="flex items-center gap-1.5 rounded-full bg-rsd-surface px-2.5 py-1 text-xs font-semibold text-rsd-heading" aria-current="true">
-          <FlagIcon country="fi" />FI
-        </span>
-      </div>
+      <LanguageSwitcher current="fi" enHref={enHref} fiHref="/fi/" />
       <a href="/request-assessment" class="btn-primary text-sm">Pyydä arviointi</a>
     </div>
 
