@@ -43,6 +43,23 @@ const otherItems = group.items.filter((i: typeof item) => i.slug !== item.slug).
           <span class="text-rsd-border-bright">/</span>
           <span>{item.readTime}</span>
         </div>
+
+        {item.highlights && (
+          <div class="mb-10 rounded-xl border border-rsd-border bg-rsd-bg-deep p-6 shadow-2xl shadow-black/50 sm:p-8">
+            <span class="font-mono text-xs uppercase tracking-widest text-rsd-body">Keskeiset havainnot</span>
+            <ul class="mt-5 space-y-4">
+              {item.highlights.map((highlight: string) => (
+                <li class="flex items-start gap-3">
+                  <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <span class="text-sm font-medium leading-relaxed text-white">{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {item.sections.map((section: { heading: string; paragraphs: string[] }) => (
           <div class="mb-10">
             <h2 class="font-display text-2xl font-bold text-rsd-heading">{section.heading}</h2>

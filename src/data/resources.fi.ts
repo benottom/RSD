@@ -7,6 +7,7 @@ export interface ResourceItemFi {
   date: string;
   readTime: string;
   sections: { heading: string; paragraphs: string[] }[];
+  highlights?: string[];
 }
 
 export const reportsFi: ResourceItemFi[] = [
@@ -55,6 +56,11 @@ export const reportsFi: ResourceItemFi[] = [
     excerpt: "Datavetoinen katsaus IAM-, tallennus- ja verkkovirhekonfiguraatioihin, joita hyödynnetään yleisimmin todellisissa tunkeutumisissa.",
     date: "2025-09-02",
     readTime: "9 min lukuaika",
+    highlights: [
+      "Yli 400 pilviturvallisuustoimeksiantoa analysoitu",
+      "Haitallisia IAM-oikeusyhdistelmiä suurimmassa osassa ympäristöjä",
+      "Jokerimerkkiin perustuva rajaus: suurin yksittäinen syy",
+    ],
     sections: [
       {
         heading: "Yleiskatsaus",
@@ -84,6 +90,11 @@ export const reportsFi: ResourceItemFi[] = [
     excerpt: "Havaitsemis- ja rajaamisaikadataa häiriötilanteiden hallinnan toimeksiannoista vuodelta 2025.",
     date: "2025-05-20",
     readTime: "8 min lukuaika",
+    highlights: [
+      "Havaitsemisaika: laskenut merkittävästi vuodesta toiseen",
+      "Rajaamisaika: pysynyt ennallaan — uusi pullonkaula",
+      "Ennalta hyväksytyt toimintamallit lyhensivät rajaamisajan murto-osaan",
+    ],
     sections: [
       {
         heading: "Havaitseminen paranee, rajaaminen ei",

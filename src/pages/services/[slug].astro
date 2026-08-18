@@ -42,6 +42,13 @@ const trustCards = [
     desc: "Every engagement is delivered by OSCP-, OSCE-, and CISSP-certified engineers following a consistent, repeatable testing methodology. Findings are manually validated with proof-of-concept exploits, not flagged by automated scanners alone.",
   },
 ];
+
+const coverage = [
+  { icon: "code", label: "Web Applications" },
+  { icon: "layers", label: "APIs & Microservices" },
+  { icon: "cloud", label: "Cloud Infrastructure" },
+  { icon: "radar", label: "Network Perimeter" },
+];
 ---
 
 <Layout
@@ -58,7 +65,7 @@ const trustCards = [
         <section class="relative overflow-hidden border-b border-rsd-border bg-rsd-bg pt-40 pb-20">
           <div class="grid-overlay absolute inset-0 opacity-60"></div>
           <div class="absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-rsd-cyan/10 blur-[130px]"></div>
-          <div class="relative mx-auto max-w-4xl px-6">
+          <div class="relative mx-auto max-w-7xl px-6">
             <nav class="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs text-rsd-body">
               <a href="/" class="hover:text-rsd-cyan">Home</a>
               <span class="text-rsd-border-bright">/</span>
@@ -66,28 +73,48 @@ const trustCards = [
               <span class="text-rsd-border-bright">/</span>
               <a href={`/services/${service.slug}`} class="hover:text-rsd-cyan">{service.name}</a>
             </nav>
-            <p class="eyebrow mb-4">{service.tag}</p>
-            <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">VAPT Services for EU NIS2 & CRA Compliance</h1>
-            <h2 class="mt-4 font-display text-xl font-semibold text-rsd-body-bright sm:text-2xl">
-              Certified Penetration Testing That Proves — Not Just Claims — Regulatory Readiness
-            </h2>
-            <p class="mt-6 max-w-2xl text-lg leading-relaxed text-rsd-body">
-              The NIS2 Directive and the Cyber Resilience Act (CRA) have raised the bar for cybersecurity accountability
-              across the European Union, requiring essential and important entities — and the manufacturers of products
-              with digital elements — to demonstrate continuous, evidence-based risk management. RedShieldDefense's
-              Vulnerability Assessment and Penetration Testing (VAPT) services are built specifically to satisfy these
-              obligations. Our certified engineers combine automated vulnerability scanning with manual, adversary-driven
-              penetration testing across your web applications, APIs, cloud infrastructure, and network perimeter,
-              producing audit-ready documentation that maps directly to NIS2 risk-management measures and CRA
-              vulnerability-handling requirements. Every engagement includes a prioritized remediation roadmap, free
-              retesting of critical findings, and a technical debrief your compliance officers and engineering teams
-              can act on immediately. Rather than treating VAPT as a one-time checkbox, we help EU organizations build
-              a continuous testing cadence that satisfies regulators, reassures customers, and genuinely reduces breach
-              risk — turning compliance into a demonstrable security advantage.
-            </p>
-            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a href="/request-assessment" class="btn-primary">Request a Compliance Assessment</a>
-              <a href="#methodology" class="btn-ghost">View Our Methodology</a>
+            <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
+              <div>
+                <p class="eyebrow mb-4">{service.tag}</p>
+                <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">VAPT Services for EU NIS2 & CRA Compliance</h1>
+                <h2 class="mt-4 font-display text-xl font-semibold text-rsd-body-bright sm:text-2xl">
+                  Certified Penetration Testing That Proves — Not Just Claims — Regulatory Readiness
+                </h2>
+                <p class="mt-6 max-w-xl text-lg leading-relaxed text-rsd-body">
+                  NIS2 and the Cyber Resilience Act now require EU organizations to prove continuous, evidence-based risk management — not just claim it. Our VAPT combines automated scanning with manual, adversary-driven testing, producing audit-ready documentation mapped to both.
+                </p>
+                <p class="mt-4 max-w-xl text-lg leading-relaxed text-rsd-body">
+                  Every engagement includes a prioritized remediation roadmap and free retesting, so compliance becomes a genuine security advantage — not a checkbox.
+                </p>
+                <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+                  <a href="/request-assessment" class="btn-primary">Request a Compliance Assessment</a>
+                  <a href="#methodology" class="btn-ghost">View Our Methodology</a>
+                </div>
+              </div>
+
+              <div class="rounded-xl border border-rsd-border bg-rsd-bg-deep p-6 shadow-2xl shadow-black/50 sm:p-8">
+                <div class="flex items-center justify-between border-b border-rsd-border pb-4">
+                  <span class="font-mono text-xs uppercase tracking-widest text-rsd-body">vapt / coverage-map</span>
+                  <span class="flex items-center gap-1.5 font-mono text-xs text-rsd-cyan">
+                    <span class="h-1.5 w-1.5 animate-pulse-slow rounded-full bg-rsd-cyan"></span>
+                    NIS2 + CRA
+                  </span>
+                </div>
+                <div class="mt-6 space-y-3">
+                  {coverage.map((item) => (
+                    <div class="flex items-center justify-between rounded-lg border border-rsd-border bg-rsd-surface p-4">
+                      <div class="flex items-center gap-3">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-md border border-rsd-border bg-rsd-bg text-rsd-cyan">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" set:html={icons[item.icon]} />
+                        </div>
+                        <span class="text-sm font-semibold text-rsd-heading">{item.label}</span>
+                      </div>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="currentColor" class="text-rsd-cyan" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  ))}
+                </div>
+                <p class="mt-6 text-center font-mono text-xs text-rsd-body">Every finding mapped to your NIS2 &amp; CRA obligations.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -116,13 +143,35 @@ const trustCards = [
     )}
 
     <section id="methodology" class="border-b border-rsd-border bg-rsd-bg py-20">
-      <div class="mx-auto max-w-4xl px-6">
-        <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+          <div>
+            <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
+            </div>
+            {service.overview.map((paragraph: string) => (
+              <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
+            ))}
+          </div>
+
+          <div class="rounded-xl border border-rsd-border bg-rsd-bg-deep p-6 shadow-2xl shadow-black/50 sm:p-8">
+            <div class="flex items-center justify-between border-b border-rsd-border pb-4">
+              <span class="font-mono text-xs uppercase tracking-widest text-rsd-body">{service.tag} / at-a-glance</span>
+              <span class="flex items-center gap-1.5 font-mono text-xs text-rsd-cyan">
+                <span class="h-1.5 w-1.5 animate-pulse-slow rounded-full bg-rsd-cyan"></span>
+                live
+              </span>
+            </div>
+            <div class="mt-6 space-y-4">
+              {service.outcomes.map((stat: { value: string; label: string }) => (
+                <div class="rounded-lg border border-rsd-border bg-rsd-surface p-4">
+                  <p class="font-display text-2xl font-bold text-rsd-heading">{stat.value}</p>
+                  <p class="mt-1 text-xs text-rsd-body">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        {service.overview.map((paragraph: string) => (
-          <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
-        ))}
       </div>
     </section>
 

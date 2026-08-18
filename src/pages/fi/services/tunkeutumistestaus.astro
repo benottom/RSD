@@ -46,6 +46,13 @@ const outcomes = [
   { value: "0 €", label: "Kriittisten löydösten uudelleentestauksen hinta" },
   { value: "48 h", label: "Keskimääräinen aika ensimmäiseen kriittiseen löydökseen" },
 ];
+
+const coverage = [
+  { icon: "code", label: "Verkkosovellukset" },
+  { icon: "layers", label: "Rajapinnat ja mikropalvelut" },
+  { icon: "cloud", label: "Pilvi-infrastruktuuri" },
+  { icon: "radar", label: "Verkon reuna-alue" },
+];
 ---
 
 <Layout
@@ -60,37 +67,54 @@ const outcomes = [
     <section class="relative overflow-hidden border-b border-rsd-border bg-rsd-bg pt-40 pb-20">
       <div class="grid-overlay absolute inset-0 opacity-60"></div>
       <div class="absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-rsd-cyan/10 blur-[130px]"></div>
-      <div class="relative mx-auto max-w-4xl px-6">
+      <div class="relative mx-auto max-w-7xl px-6">
         <nav class="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs text-rsd-body">
           <a href="/fi/" class="hover:text-rsd-cyan">Etusivu</a>
           <span class="text-rsd-border-bright">/</span>
           <a href="/fi/services/tunkeutumistestaus" class="hover:text-rsd-cyan">VAPT ja tunkeutumistestaus</a>
         </nav>
-        <p class="eyebrow mb-4">Offensiivinen tietoturva</p>
-        <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">VAPT-palvelut NIS2- ja CRA-vaatimusten mukaisuuteen EU:ssa</h1>
-        <h2 class="mt-4 font-display text-xl font-semibold text-rsd-body-bright sm:text-2xl">
-          Sertifioitu tunkeutumistestaus, joka todistaa — ei vain väitä — säädöstenmukaisuuden
-        </h2>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-rsd-body">
-          NIS2-direktiivi ja EU:n kyberresilienssisäädös (Cyber Resilience Act, CRA) ovat nostaneet
-          kyberturvallisuuden vaatimustasoa koko Euroopan unionissa: keskeisten ja tärkeiden toimijoiden
-          sekä digitaalisia elementtejä sisältävien tuotteiden valmistajien on kyettävä osoittamaan jatkuva,
-          näyttöön perustuva riskienhallinta. RedShieldDefensen VAPT-palvelut (Vulnerability Assessment and
-          Penetration Testing eli haavoittuvuusarviointi ja tunkeutumistestaus) on rakennettu juuri näiden
-          velvoitteiden täyttämiseen. Sertifioidut asiantuntijamme yhdistävät automaattisen
-          haavoittuvuusskannauksen manuaaliseen, hyökkääjän näkökulmasta tehtävään tunkeutumistestaukseen
-          verkkosovelluksissasi, rajapinnoissasi, pilvi-infrastruktuurissasi ja verkon reunalla — ja tuottavat
-          auditointikelpoisen raportoinnin, joka vastaa suoraan NIS2:n riskienhallintatoimenpiteitä ja CRA:n
-          haavoittuvuuksien käsittelyvaatimuksia. Jokaiseen toimeksiantoon sisältyy priorisoitu
-          korjaussuunnitelma, kriittisten löydösten maksuton uudelleentestaus sekä tekninen läpikäynti, jonka
-          pohjalta compliance-tiiminne ja kehittäjänne voivat toimia välittömästi. Sen sijaan, että VAPT olisi
-          kertaluonteinen tarkistuslista, autamme EU-alueen organisaatioita rakentamaan jatkuvan
-          testaussyklin, joka tyydyttää valvovat viranomaiset, lisää asiakkaiden luottamusta ja aidosti
-          vähentää tietomurron riskiä — muuttaen vaatimustenmukaisuuden todelliseksi kilpailueduksi.
-        </p>
-        <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-          <a href="/fi/request-assessment" class="btn-primary">Pyydä vaatimustenmukaisuusarviointi</a>
-          <a href="#menetelma" class="btn-ghost">Katso menetelmämme</a>
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p class="eyebrow mb-4">Offensiivinen tietoturva</p>
+            <h1 class="font-display text-4xl font-bold text-rsd-heading sm:text-5xl">VAPT-palvelut NIS2- ja CRA-vaatimusten mukaisuuteen EU:ssa</h1>
+            <h2 class="mt-4 font-display text-xl font-semibold text-rsd-body-bright sm:text-2xl">
+              Sertifioitu tunkeutumistestaus, joka todistaa — ei vain väitä — säädöstenmukaisuuden
+            </h2>
+            <p class="mt-6 max-w-xl text-lg leading-relaxed text-rsd-body">
+              NIS2 ja kyberresilienssisäädös edellyttävät nyt EU-organisaatioilta jatkuvan, näyttöön perustuvan riskienhallinnan todistamista — ei vain väittämistä. VAPT-palvelumme yhdistää automaattisen skannauksen manuaaliseen, hyökkääjälähtöiseen testaukseen ja tuottaa auditointikelpoisen dokumentaation, joka kytkeytyy molempiin.
+            </p>
+            <p class="mt-4 max-w-xl text-lg leading-relaxed text-rsd-body">
+              Jokaiseen toimeksiantoon sisältyy priorisoitu korjaussuunnitelma ja maksuton uudelleentestaus, jolloin vaatimustenmukaisuudesta tulee aito kilpailuetu — ei tarkistuslistan kohta.
+            </p>
+            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="/fi/request-assessment" class="btn-primary">Pyydä vaatimustenmukaisuusarviointi</a>
+              <a href="#menetelma" class="btn-ghost">Katso menetelmämme</a>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-rsd-border bg-rsd-bg-deep p-6 shadow-2xl shadow-black/50 sm:p-8">
+            <div class="flex items-center justify-between border-b border-rsd-border pb-4">
+              <span class="font-mono text-xs uppercase tracking-widest text-rsd-body">vapt / kattavuuskartta</span>
+              <span class="flex items-center gap-1.5 font-mono text-xs text-rsd-cyan">
+                <span class="h-1.5 w-1.5 animate-pulse-slow rounded-full bg-rsd-cyan"></span>
+                NIS2 + CRA
+              </span>
+            </div>
+            <div class="mt-6 space-y-3">
+              {coverage.map((item) => (
+                <div class="flex items-center justify-between rounded-lg border border-rsd-border bg-rsd-surface p-4">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-8 w-8 items-center justify-center rounded-md border border-rsd-border bg-rsd-bg text-rsd-cyan">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" set:html={icons[item.icon]} />
+                    </div>
+                    <span class="text-sm font-semibold text-rsd-heading">{item.label}</span>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="currentColor" class="text-rsd-cyan" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              ))}
+            </div>
+            <p class="mt-6 text-center font-mono text-xs text-rsd-body">Jokainen löydös kytketään NIS2- ja CRA-velvoitteisiinne.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -110,13 +134,35 @@ const outcomes = [
     </section>
 
     <section id="menetelma" class="border-b border-rsd-border bg-rsd-bg py-20">
-      <div class="mx-auto max-w-4xl px-6">
-        <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons.target} />
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+          <div>
+            <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons.target} />
+            </div>
+            {overview.map((paragraph) => (
+              <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
+            ))}
+          </div>
+
+          <div class="rounded-xl border border-rsd-border bg-rsd-bg-deep p-6 shadow-2xl shadow-black/50 sm:p-8">
+            <div class="flex items-center justify-between border-b border-rsd-border pb-4">
+              <span class="font-mono text-xs uppercase tracking-widest text-rsd-body">VAPT / silmäyksellä</span>
+              <span class="flex items-center gap-1.5 font-mono text-xs text-rsd-cyan">
+                <span class="h-1.5 w-1.5 animate-pulse-slow rounded-full bg-rsd-cyan"></span>
+                live
+              </span>
+            </div>
+            <div class="mt-6 space-y-4">
+              {outcomes.map((stat) => (
+                <div class="rounded-lg border border-rsd-border bg-rsd-surface p-4">
+                  <p class="font-display text-2xl font-bold text-rsd-heading">{stat.value}</p>
+                  <p class="mt-1 text-xs text-rsd-body">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        {overview.map((paragraph) => (
-          <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
-        ))}
       </div>
     </section>
 

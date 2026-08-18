@@ -36,13 +36,35 @@ const { service } = Astro.props;
     />
 
     <section class="border-b border-rsd-border bg-rsd-bg py-20">
-      <div class="mx-auto max-w-4xl px-6">
-        <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+          <div>
+            <div class="flex h-14 w-14 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" set:html={icons[service.icon]} />
+            </div>
+            {service.overview.map((paragraph: string) => (
+              <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
+            ))}
+          </div>
+
+          <div class="rounded-xl border border-rsd-border bg-rsd-bg-deep p-6 shadow-2xl shadow-black/50 sm:p-8">
+            <div class="flex items-center justify-between border-b border-rsd-border pb-4">
+              <span class="font-mono text-xs uppercase tracking-widest text-rsd-body">{service.tag} / silmäyksellä</span>
+              <span class="flex items-center gap-1.5 font-mono text-xs text-rsd-cyan">
+                <span class="h-1.5 w-1.5 animate-pulse-slow rounded-full bg-rsd-cyan"></span>
+                live
+              </span>
+            </div>
+            <div class="mt-6 space-y-4">
+              {service.outcomes.map((stat: { value: string; label: string }) => (
+                <div class="rounded-lg border border-rsd-border bg-rsd-surface p-4">
+                  <p class="font-display text-2xl font-bold text-rsd-heading">{stat.value}</p>
+                  <p class="mt-1 text-xs text-rsd-body">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        {service.overview.map((paragraph: string) => (
-          <p class="mt-6 text-lg leading-relaxed text-rsd-body-bright">{paragraph}</p>
-        ))}
       </div>
     </section>
 

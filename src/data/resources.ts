@@ -6,6 +6,7 @@ export interface ResourceItem {
   date: string;
   readTime: string;
   sections: { heading: string; paragraphs: string[] }[];
+  highlights?: string[];
 }
 
 export const reports: ResourceItem[] = [
@@ -52,6 +53,11 @@ export const reports: ResourceItem[] = [
     excerpt: "A data-driven look at the IAM, storage, and network misconfigurations most commonly exploited in real intrusions.",
     date: "2025-09-02",
     readTime: "9 min read",
+    highlights: [
+      "400+ cloud security engagements analyzed",
+      "Toxic IAM permission combinations found in the majority of environments",
+      "Wildcard resource scoping: the single largest contributor",
+    ],
     sections: [
       {
         heading: "Overview",
@@ -80,6 +86,11 @@ export const reports: ResourceItem[] = [
     excerpt: "Detection and containment timing data from incident response engagements across 2025.",
     date: "2025-05-20",
     readTime: "8 min read",
+    highlights: [
+      "Detection time: down significantly year over year",
+      "Containment time: flat — now the real bottleneck",
+      "Pre-authorized playbooks cut containment to a fraction of the time",
+    ],
     sections: [
       {
         heading: "Detection is improving, containment is not",

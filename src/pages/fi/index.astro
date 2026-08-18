@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import FiHeader from "../../components/FiHeader.astro";
 import FiCtaBand from "../../components/FiCtaBand.astro";
@@ -6,6 +7,7 @@ import FiFooter from "../../components/FiFooter.astro";
 import { icons } from "../../data/icons";
 import { servicesFi } from "../../data/services.fi";
 import { industriesFi } from "../../data/industries.fi";
+import heroStrategy from "../../assets/images/hero-strategy.jpg";
 
 const trustCards = [
   {
@@ -57,48 +59,70 @@ const industries = industriesFi.map((i) => ({ name: i.name, shortDesc: i.shortDe
       <div class="absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-rsd-cyan/10 blur-[140px]"></div>
 
       <div class="relative mx-auto max-w-7xl px-6 py-24">
-        <div class="max-w-3xl">
-          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-rsd-border bg-rsd-surface/60 px-4 py-1.5">
-            <span class="relative flex h-2 w-2">
-              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-rsd-cyan opacity-75"></span>
-              <span class="relative inline-flex h-2 w-2 rounded-full bg-rsd-cyan"></span>
-            </span>
-            <span class="eyebrow">Reaaliaikainen uhkaseuranta käytössä</span>
+        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+          <div>
+            <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-rsd-border bg-rsd-surface/60 px-4 py-1.5">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-rsd-cyan opacity-75"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-rsd-cyan"></span>
+              </span>
+              <span class="eyebrow">Reaaliaikainen uhkaseuranta käytössä</span>
+            </div>
+
+            <h1 class="font-display text-5xl font-bold tracking-tight text-rsd-heading sm:text-6xl lg:text-7xl">
+              Suojaamme infrastruktuuria, jonka menettämiseen maailmalla <span class="text-rsd-cyan text-glow">ei ole varaa</span>.
+            </h1>
+
+            <p class="mt-8 max-w-2xl text-lg leading-relaxed text-rsd-body-bright sm:text-xl">
+              Murtaudumme järjestelmiin, joihin ette haluaisi kenenkään murtautuvan — ja kerromme tarkalleen miten, kielellä, jonka pohjalta kehitystiiminne voi toimia jo samana iltapäivänä. Ei geneeristä skannausta. Ei 40-sivuista PDF:ää, jota kukaan ei lue.
+            </p>
+
+            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="/fi/request-assessment" class="btn-primary justify-center">
+                Pyydä arviointi
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="/fi/services/tunkeutumistestaus" class="btn-ghost justify-center">Tutustu VAPT-palveluumme</a>
+            </div>
+
+            <div class="mt-16 grid grid-cols-2 gap-8 border-t border-rsd-border pt-10 sm:grid-cols-4">
+              <div>
+                <p class="font-display text-3xl font-bold text-rsd-heading">400+</p>
+                <p class="mt-1 text-sm text-rsd-body">Suojattua kriittistä kohdetta</p>
+              </div>
+              <div>
+                <p class="font-display text-3xl font-bold text-rsd-heading">12K+</p>
+                <p class="mt-1 text-sm text-rsd-body">Korjattua haavoittuvuutta</p>
+              </div>
+              <div>
+                <p class="font-display text-3xl font-bold text-rsd-heading">24/7</p>
+                <p class="mt-1 text-sm text-rsd-body">Uhkavalvonnan kattavuus</p>
+              </div>
+              <div>
+                <p class="font-display text-3xl font-bold text-rsd-heading">99,98 %</p>
+                <p class="mt-1 text-sm text-rsd-body">Asiakkaidemme käytettävyysaste</p>
+              </div>
+            </div>
+            <p class="mt-4 font-mono text-xs text-rsd-body/70">Kattaa toimeksiannot ensimmäisestä vuodestamme 2016 lähtien.</p>
           </div>
 
-          <h1 class="font-display text-5xl font-bold tracking-tight text-rsd-heading sm:text-6xl lg:text-7xl">
-            Suojaamme infrastruktuuria, jonka menettämiseen maailmalla <span class="text-rsd-cyan text-glow">ei ole varaa</span>.
-          </h1>
-
-          <p class="mt-8 max-w-2xl text-lg leading-relaxed text-rsd-body-bright sm:text-xl">
-            RedShield Defense suojaa liiketoimintakriittisiä sovelluksia, pilviympäristöjä ja digitaalisia toimintoja organisaatioille, jotka eivät voi hyväksyä käyttökatkoja, tietomurtoja tai vaarantumista. Teollisen tason tietoturvaa, suunniteltu samalla tarkkuudella kuin suojaamamme järjestelmät.
-          </p>
-
-          <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a href="/fi/request-assessment" class="btn-primary justify-center">
-              Pyydä arviointi
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a href="/fi/services/tunkeutumistestaus" class="btn-ghost justify-center">Tutustu VAPT-palveluumme</a>
-          </div>
-
-          <div class="mt-16 grid grid-cols-2 gap-8 border-t border-rsd-border pt-10 sm:grid-cols-4">
-            <div>
-              <p class="font-display text-3xl font-bold text-rsd-heading">400+</p>
-              <p class="mt-1 text-sm text-rsd-body">Suojattua kriittistä kohdetta</p>
+          <div class="hidden lg:block">
+            <div class="overflow-hidden rounded-xl border border-rsd-border shadow-2xl shadow-black/30">
+              <Image
+                src={heroStrategy}
+                alt="Musta shakkiratsu terävänä etualalla, valkoinen torni epätarkkana taustalla himmeästi valaistulla shakkilaudalla"
+                class="aspect-[4/5] w-full object-cover object-[30%_45%]"
+                width={960}
+                height={1200}
+                widths={[480, 720, 960]}
+                sizes="(min-width: 1024px) 38vw, 90vw"
+                loading="eager"
+                fetchpriority="high"
+              />
             </div>
-            <div>
-              <p class="font-display text-3xl font-bold text-rsd-heading">12K+</p>
-              <p class="mt-1 text-sm text-rsd-body">Korjattua haavoittuvuutta</p>
-            </div>
-            <div>
-              <p class="font-display text-3xl font-bold text-rsd-heading">24/7</p>
-              <p class="mt-1 text-sm text-rsd-body">Uhkavalvonnan kattavuus</p>
-            </div>
-            <div>
-              <p class="font-display text-3xl font-bold text-rsd-heading">99,98 %</p>
-              <p class="mt-1 text-sm text-rsd-body">Asiakkaidemme käytettävyysaste</p>
-            </div>
+            <p class="mt-4 font-mono text-xs leading-relaxed text-rsd-body">
+              Ajattelemme useita siirtoja eteenpäin — koska hyökkääjät jo tekevät niin.
+            </p>
           </div>
         </div>
       </div>
@@ -112,7 +136,7 @@ const industries = industriesFi.map((i) => ({ name: i.name, shortDesc: i.shortDe
             Kokonaisvaltaista tietoturvaa infrastruktuurille, joka ei saa kaatua.
           </h2>
           <p class="mt-6 text-lg leading-relaxed text-rsd-body">
-            Offensiivisesta testauksesta jatkuvaan puolustukseen — RedShield Defense toimii tietoturvatoimintonne jatkeena organisaatioille, joille epäonnistuminen ei ole vaihtoehto.
+            Emme ole toimittaja, jolle soitetaan kerran vuodessa ennen auditointia. Useimmat asiakkaamme pitävät meidät mukana pitkäjänteisesti — tunkeutumistestaus tänä vuosineljänneksenä, koodikatselmointi seuraavaksi, häiriötilannepuhelu kello kaksi yöllä jossain välissä.
           </p>
         </div>
 
