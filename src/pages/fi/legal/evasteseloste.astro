@@ -1,0 +1,64 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import FiHeader from "../../../components/FiHeader.astro";
+import FiFooter from "../../../components/FiFooter.astro";
+import LegalDoc from "../../../components/LegalDoc.astro";
+
+const sections = [
+  {
+    heading: "1. Mitä evästeet ovat",
+    paragraphs: [
+      "Evästeet ovat pieniä tekstitiedostoja, jotka tallentuvat laitteellenne vieraillessanne verkkosivustolla. Ne auttavat sivustoa toimimaan, muistavat asetuksenne ja — suostumuksellanne — auttavat ymmärtämään sivuston käyttöä.",
+    ],
+  },
+  {
+    heading: "2. Käyttämämme evästeluokat",
+    paragraphs: [
+      "Jaamme evästeet kolmeen luokkaan, joita voitte hallita sivuston evästeasetuspalkin kautta.",
+    ],
+    list: [
+      "Välttämättömät — vaaditaan sivuston perustoimintoihin, mukaan lukien sivujen toimittaminen ja evästevalintanne muistaminen. Näitä ei voi poistaa käytöstä.",
+      "Analytiikka — auttavat meitä ymmärtämään, miten kävijät käyttävät sivustoa, jotta voimme kehittää sitä. Ei tällä hetkellä aktiivisena tällä sivustolla; hyväksyminen vain tallentaa asetuksenne siltä varalta, että analytiikkatyökaluja otetaan käyttöön.",
+      "Markkinointi — käytetään markkinointitoimien mittaamiseen ja kohdentamiseen. Ei tällä hetkellä aktiivisena tällä sivustolla samasta syystä.",
+    ],
+  },
+  {
+    heading: "3. Kolmannen osapuolen evästeet",
+    paragraphs: [
+      "Yhteydenotto- ja arviointipyyntölomakkeemme käsitellään Formspree-nimisen kolmannen osapuolen lomakepalvelun kautta. Formspree saattaa asettaa omia evästeitään käsitellessään lähetystänne — katso lisätietoja Formspreen omasta tietosuojaselosteesta.",
+    ],
+  },
+  {
+    heading: "4. Asetustenne hallinta",
+    paragraphs: [
+      "Voitte muuttaa evästevalintojanne milloin tahansa tyhjentämällä selaimenne paikallisen tallennustilan tätä sivustoa varten, jolloin asetuspalkki näytetään uudelleen seuraavalla käynnillänne. Useimmat selaimet mahdollistavat myös evästeiden estämisen tai poistamisen suoraan selainasetuksista.",
+    ],
+  },
+  {
+    heading: "5. Yhteystiedot",
+    paragraphs: [
+      "Tätä käytäntöä koskevat kysymykset voi osoittaa sähköpostiosoitteeseen privacy@redshielddefense.com.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Evästeseloste | RedShield Defense"
+  description="Miten RedShield Defense käyttää evästeitä ja vastaavia teknologioita tällä verkkosivustolla, ja miten voitte hallita niitä."
+  path="/fi/legal/evasteseloste"
+  locale="fi"
+  translations={{ en: "/legal/cookies", fi: "/fi/legal/evasteseloste" }}
+>
+  <FiHeader enHref="/legal/cookies" />
+  <main>
+    <LegalDoc
+      title="Evästeseloste"
+      eyebrow="Oikeudelliset tiedot"
+      updated="1. tammikuuta 2026"
+      intro="Tämä käytäntö selittää, miten RedShield Defense käyttää evästeitä ja vastaavia teknologioita tällä verkkosivustolla, ja miten voitte hallita niitä."
+      sections={sections}
+    />
+  </main>
+  <FiFooter />
+</Layout>

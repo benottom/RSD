@@ -1,0 +1,63 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LegalDoc from "../../components/LegalDoc.astro";
+
+const sections = [
+  {
+    heading: "1. What Cookies Are",
+    paragraphs: [
+      "Cookies are small text files stored on your device when you visit a website. They help the site function, remember your preferences, and — where you allow it — understand how the site is used.",
+    ],
+  },
+  {
+    heading: "2. Cookie Categories We Use",
+    paragraphs: [
+      "We group cookies into three categories, which you can control through the cookie preferences banner on this site.",
+    ],
+    list: [
+      "Necessary — required for core site functionality, including page delivery and remembering your cookie choice. These cannot be disabled.",
+      "Analytics — help us understand how visitors use the site so we can improve it. Not currently active on this site; opting in simply sets a preference for if and when analytics tooling is added.",
+      "Marketing — used to measure and tailor marketing outreach. Not currently active on this site for the same reason.",
+    ],
+  },
+  {
+    heading: "3. Third-Party Cookies",
+    paragraphs: [
+      "Our contact and assessment request forms are processed by Formspree, a third-party form service. Formspree may set its own cookies as part of handling your submission — see Formspree's own privacy policy for details.",
+    ],
+  },
+  {
+    heading: "4. Managing Your Preferences",
+    paragraphs: [
+      "You can change your cookie choices at any time by clearing your browser's local storage for this site, which will show the preference banner again on your next visit. Most browsers also let you block or delete cookies directly in your browser settings.",
+    ],
+  },
+  {
+    heading: "5. Contact",
+    paragraphs: [
+      "Questions about this policy can be directed to privacy@redshielddefense.com.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Cookie Policy | RedShield Defense"
+  description="How RedShield Defense uses cookies and similar technologies on this website, and how to control them."
+  path="/legal/cookies"
+  locale="en"
+  translations={{ en: "/legal/cookies", fi: "/fi/legal/evasteseloste" }}
+>
+  <Header fiHref="/fi/legal/evasteseloste" />
+  <main>
+    <LegalDoc
+      title="Cookie Policy"
+      updated="January 1, 2026"
+      intro="This policy explains how RedShield Defense uses cookies and similar technologies on this website, and how you can control them."
+      sections={sections}
+    />
+  </main>
+  <Footer />
+</Layout>

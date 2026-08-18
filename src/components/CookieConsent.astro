@@ -1,0 +1,215 @@
+---
+import { icons } from "../data/icons";
+
+interface Props {
+  locale?: "en" | "fi";
+}
+
+const { locale = "en" } = Astro.props;
+
+const copy = {
+  en: {
+    title: "We value your privacy",
+    desc: "We use cookies to make this site work reliably and, with your permission, to understand how it's used. You can accept, reject, or customize your choices at any time.",
+    policyLink: "Cookie Policy",
+    policyHref: "/legal/cookies",
+    privacyLink: "Privacy Policy",
+    privacyHref: "/legal/privacy",
+    customize: "Customize",
+    rejectAll: "Reject All",
+    acceptAll: "Accept All",
+    modalTitle: "Cookie preferences",
+    save: "Save Preferences",
+    categories: [
+      { key: "necessary", name: "Necessary", badge: "Always on", desc: "Required for core site functionality like page delivery, form security, and remembering your cookie choice. These cannot be disabled.", locked: true },
+      { key: "analytics", name: "Analytics", badge: null, desc: "Helps us understand how visitors use the site so we can improve it.", locked: false },
+      { key: "marketing", name: "Marketing", badge: null, desc: "Used to measure and tailor marketing outreach.", locked: false },
+    ],
+  },
+  fi: {
+    title: "Arvostamme yksityisyyttänne",
+    desc: "Käytämme evästeitä sivuston luotettavaan toimintaan ja, suostumuksellanne, sen käytön ymmärtämiseen. Voitte hyväksyä, hylätä tai mukauttaa valintanne milloin tahansa.",
+    policyLink: "Evästeseloste",
+    policyHref: "/fi/legal/evasteseloste",
+    privacyLink: "Tietosuojaseloste",
+    privacyHref: "/fi/legal/tietosuojaseloste",
+    customize: "Mukauta",
+    rejectAll: "Hylkää kaikki",
+    acceptAll: "Hyväksy kaikki",
+    modalTitle: "Evästeasetukset",
+    save: "Tallenna asetukset",
+    categories: [
+      { key: "necessary", name: "Välttämättömät", badge: "Aina käytössä", desc: "Vaaditaan sivuston perustoimintoihin, kuten sivujen toimittamiseen, lomakkeiden tietoturvaan ja evästevalintanne muistamiseen. Näitä ei voi poistaa käytöstä.", locked: true },
+      { key: "analytics", name: "Analytiikka", badge: null, desc: "Auttaa meitä ymmärtämään, miten kävijät käyttävät sivustoa, jotta voimme kehittää sitä.", locked: false },
+      { key: "marketing", name: "Markkinointi", badge: null, desc: "Käytetään markkinointitoimien mittaamiseen ja kohdentamiseen.", locked: false },
+    ],
+  },
+};
+
+const t = copy[locale];
+---
+
+<div id="cookie-consent-banner" class="fixed inset-x-0 bottom-0 z-[999] translate-y-full border-t border-rsd-border bg-rsd-bg shadow-2xl shadow-black/10 transition-transform duration-500 ease-out">
+  <div class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex gap-3 sm:max-w-2xl">
+      <div class="hidden h-9 w-9 shrink-0 items-center justify-center rounded-md border border-rsd-border bg-rsd-surface text-rsd-cyan sm:flex">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" set:html={icons["shield-check"]} />
+      </div>
+      <div>
+        <h2 class="font-display text-base font-semibold text-rsd-heading">{t.title}</h2>
+        <p class="mt-1 text-sm leading-relaxed text-rsd-body">
+          {t.desc}{" "}
+          <a href={t.policyHref} class="font-medium text-rsd-cyan hover:underline">{t.policyLink}</a>
+        </p>
+      </div>
+    </div>
+    <div class="flex shrink-0 flex-wrap items-center gap-3">
+      <button type="button" id="cookie-customize-btn" class="btn-ghost text-sm">{t.customize}</button>
+      <button type="button" id="cookie-reject-btn" class="btn-ghost text-sm">{t.rejectAll}</button>
+      <button type="button" id="cookie-accept-btn" class="btn-primary text-sm">{t.acceptAll}</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-preferences-modal" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-black/50 px-4">
+  <div class="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-lg border border-rsd-border bg-white shadow-2xl">
+    <div class="flex items-center justify-between border-b border-rsd-border px-6 py-5">
+      <h2 class="font-display text-lg font-semibold text-rsd-heading">{t.modalTitle}</h2>
+      <button type="button" id="cookie-modal-close" aria-label="Close" class="flex h-8 w-8 items-center justify-center rounded-md text-rsd-body transition-colors hover:text-rsd-cyan">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="space-y-4 px-6 py-6">
+      <p class="text-sm leading-relaxed text-rsd-body">{t.desc}</p>
+
+      {t.categories.map((cat) => (
+        <div class="rounded-lg border border-rsd-border bg-rsd-surface p-5">
+          <div class="flex items-center justify-between gap-4">
+            <p class="font-display font-semibold text-rsd-heading">{cat.name}</p>
+            {cat.locked ? (
+              <span class="shrink-0 rounded-full bg-rsd-surface-alt px-2.5 py-1 text-xs font-semibold text-rsd-body border border-rsd-border">{cat.badge}</span>
+            ) : (
+              <button
+                type="button"
+                class="cookie-toggle relative h-6 w-11 shrink-0 rounded-full bg-rsd-border transition-colors data-[on=true]:bg-rsd-cyan"
+                data-key={cat.key}
+                data-on="false"
+                role="switch"
+                aria-checked="false"
+                aria-label={cat.name}
+              >
+                <span class="cookie-toggle-knob absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform"></span>
+              </button>
+            )}
+          </div>
+          <p class="mt-2 text-sm leading-relaxed text-rsd-body">{cat.desc}</p>
+        </div>
+      ))}
+
+      <div class="flex items-center gap-4 border-t border-rsd-border pt-4 text-xs">
+        <a href={t.policyHref} class="text-rsd-body transition-colors hover:text-rsd-cyan">{t.policyLink}</a>
+        <a href={t.privacyHref} class="text-rsd-body transition-colors hover:text-rsd-cyan">{t.privacyLink}</a>
+      </div>
+    </div>
+
+    <div class="border-t border-rsd-border px-6 py-5">
+      <button type="button" id="cookie-save-btn" class="btn-primary w-full justify-center">{t.save}</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = "rsd_cookie_consent";
+
+  type Consent = { necessary: true; analytics: boolean; marketing: boolean; timestamp: string };
+
+  const banner = document.getElementById("cookie-consent-banner");
+  const modal = document.getElementById("cookie-preferences-modal");
+  const toggles = document.querySelectorAll<HTMLButtonElement>(".cookie-toggle");
+
+  const readConsent = (): Consent | null => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const applyConsent = (consent: Consent) => {
+    (window as any).rsdConsent = consent;
+    window.dispatchEvent(new CustomEvent("rsd-cookie-consent-updated", { detail: consent }));
+  };
+
+  const saveConsent = (analytics: boolean, marketing: boolean) => {
+    const consent: Consent = { necessary: true, analytics, marketing, timestamp: new Date().toISOString() };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+    applyConsent(consent);
+  };
+
+  const setToggle = (toggle: HTMLButtonElement, on: boolean) => {
+    toggle.dataset.on = String(on);
+    toggle.setAttribute("aria-checked", String(on));
+    const knob = toggle.querySelector<HTMLElement>(".cookie-toggle-knob");
+    if (knob) knob.style.transform = on ? "translateX(20px)" : "translateX(0)";
+  };
+
+  const showBanner = () => banner?.classList.remove("translate-y-full");
+  const hideBanner = () => banner?.classList.add("translate-y-full");
+  const showModal = () => {
+    modal?.classList.remove("hidden");
+    modal?.classList.add("flex");
+  };
+  const hideModal = () => {
+    modal?.classList.add("hidden");
+    modal?.classList.remove("flex");
+  };
+
+  const existing = readConsent();
+  if (existing) {
+    applyConsent(existing);
+    toggles.forEach((toggle) => {
+      const key = toggle.dataset.key as "analytics" | "marketing";
+      setToggle(toggle, Boolean(existing[key]));
+    });
+  } else {
+    showBanner();
+  }
+
+  document.getElementById("cookie-accept-btn")?.addEventListener("click", () => {
+    saveConsent(true, true);
+    hideBanner();
+    hideModal();
+  });
+
+  document.getElementById("cookie-reject-btn")?.addEventListener("click", () => {
+    saveConsent(false, false);
+    hideBanner();
+    hideModal();
+  });
+
+  document.getElementById("cookie-customize-btn")?.addEventListener("click", () => {
+    showModal();
+  });
+
+  document.getElementById("cookie-modal-close")?.addEventListener("click", hideModal);
+
+  modal?.addEventListener("click", (event) => {
+    if (event.target === modal) hideModal();
+  });
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      setToggle(toggle, toggle.dataset.on !== "true");
+    });
+  });
+
+  document.getElementById("cookie-save-btn")?.addEventListener("click", () => {
+    const analyticsToggle = document.querySelector<HTMLButtonElement>('.cookie-toggle[data-key="analytics"]');
+    const marketingToggle = document.querySelector<HTMLButtonElement>('.cookie-toggle[data-key="marketing"]');
+    saveConsent(analyticsToggle?.dataset.on === "true", marketingToggle?.dataset.on === "true");
+    hideBanner();
+    hideModal();
+  });
+</script>

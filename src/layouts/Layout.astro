@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import CookieConsent from "../components/CookieConsent.astro";
 
 interface Props {
   title: string;
@@ -89,5 +90,6 @@ const ogLocaleAlternate = locale === "fi" ? "en_IE" : "fi_FI";
   </head>
   <body class="bg-rsd-bg text-rsd-body antialiased">
     <slot />
+    <CookieConsent locale={locale} />
   </body>
 </html>
