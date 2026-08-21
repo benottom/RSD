@@ -20,7 +20,7 @@ export const industriesFi: IndustryFi[] = [
     heroDesc: "Rahoituslaitokset kohtaavat jatkuvaa, resursseiltaan vahvaa kohdistamista. Suojaamme maksujärjestelmät, ydinpankkialustat ja asiakasrajapinnan sovellukset, jotka eivät voi altistua vaarantumiselle.",
     challenges: [
       { title: "Korkean arvon kohdeprofiili", desc: "Rahoituslaitokset kohtaavat jatkuvaa kohdistamista sekä järjestäytyneeltä rikollisuudelta että valtiollisilta toimijoilta." },
-      { title: "Sääntelyn monimutkaisuus", desc: "PCI-DSS, SOX, GLBA ja alueelliset pankkisäädökset edellyttävät päällekkäisiä, tiukkoja kontrollikokonaisuuksia." },
+      { title: "Sääntelyn monimutkaisuus", desc: "PCI-DSS, DORA, PSD2 ja kansalliset pankkisäädökset edellyttävät päällekkäisiä, tiukkoja kontrollikokonaisuuksia." },
       { title: "Vanhat ydinjärjestelmät", desc: "Ydinpankkialustat ovat usein peräisin ennen nykyaikaista tietoturva-arkkitehtuuria ja vaativat huolellista, häiriötöntä kovennusta." },
     ],
     approach: [
@@ -91,13 +91,13 @@ export const industriesFi: IndustryFi[] = [
     shortDesc: "Täytämme viranomais- ja säädösvaatimukset hidastamatta ydintoimintojen toimitusta.",
     heroDesc: "Julkisen sektorin organisaatiot toimivat joidenkin tiukimpien tietoturvavaatimusten alaisina samalla, kun ne tuottavat elintärkeitä kansalaispalveluita. Autamme virastoja täyttämään vaatimustenmukaisuusvelvoitteet pysäyttämättä toimitusta.",
     challenges: [
-      { title: "Tiukat sääntelyvelvoitteet", desc: "FedRAMP, FISMA ja virastokohtaiset vaatimukset edellyttävät tiukkoja, hyvin dokumentoituja kontrolleja." },
+      { title: "Tiukat sääntelyvelvoitteet", desc: "NIS2-direktiivin keskeisten toimijoiden velvoitteet ja kansallisen kyberturvallisuusviranomaisen vaatimukset edellyttävät tiukkoja, hyvin dokumentoituja kontrolleja." },
       { title: "Korkean arvon kohdestatus", desc: "Julkishallinnon järjestelmät kohtaavat jatkuvaa kohdistamista valtiollisilta ja hacktivisti-toimijoilta." },
       { title: "Vanhojen järjestelmien modernisointipaine", desc: "Tietoturva on rakennettava sisään modernisointihankkeisiin ilman uusien riskien syntymistä." },
     ],
     approach: [
       "Sovitamme arviointimenetelmän ja raportoinnin kehyksiin, joita virastoanne vasten mitataan, testaten samalla reittejä, joita todelliset hyökkääjät tavoittelevat.",
-      "Neuvonantajamme ovat tukeneet julkisen sektorin asiakkaita FedRAMP- ja FISMA-prosesseissa alusta loppuun.",
+      "Neuvonantajamme ovat tukeneet julkisen sektorin asiakkaita NIS2-luokittelu- ja kansallisen kyberturvallisuusviranomaisen akkreditointiprosesseissa alusta loppuun.",
     ],
     relatedServices: ["compliance", "penetration-testing", "secops"],
   },

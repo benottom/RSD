@@ -11,6 +11,33 @@ const reassurances = [
   { title: "NDA-first", desc: "A mutual NDA is signed before any scoping details are shared." },
   { title: "No obligation", desc: "Scoping calls are consultative — you decide if and when to move forward." },
 ];
+
+const faqs = [
+  {
+    q: "Will testing disrupt our production systems?",
+    a: "Testing windows and rules of engagement are agreed with you before any active testing begins — that's step one of the process below. Engagements are scheduled around your traffic patterns and change windows, not ours.",
+  },
+  {
+    q: "What happens to our data during the engagement?",
+    a: "A mutual NDA is signed before any scoping details are shared. Engagement data is scoped to the specific engineering team assigned, on a need-to-know basis, and all findings are encrypted in transit and at rest and delivered through an access-controlled portal.",
+  },
+  {
+    q: "Who owns the report afterward, and is it ever shared?",
+    a: "The report and every finding in it are yours. It's delivered through the access-controlled portal above and is never referenced or reused for another client.",
+  },
+  {
+    q: "Can we see a sample report before we commit?",
+    a: "Ask during your scoping call — we're glad to walk through a redacted example so you know exactly what to expect before you decide anything.",
+  },
+  {
+    q: "Is retesting included if you find something critical?",
+    a: "Yes. Every critical and high finding is retested at no additional cost until remediation is confirmed.",
+  },
+  {
+    q: "How long does an engagement actually take?",
+    a: "It depends on scope — a focused web application test can run days, a full red team engagement runs weeks. Your proposal will include an exact timeline before you're asked to commit to anything.",
+  },
+];
 ---
 
 <Layout
@@ -61,6 +88,15 @@ const reassurances = [
                 </div>
               </div>
             ))}
+          </div>
+
+          <div class="mt-10 rounded-lg border border-rsd-border bg-rsd-surface p-6">
+            <p class="font-display font-semibold text-rsd-heading">Not ready to talk yet?</p>
+            <p class="mt-2 text-sm leading-relaxed text-rsd-body">Check your NIS2 &amp; CRA exposure first — a free, 12-question self-assessment with an instant result.</p>
+            <a href="/nis2-readiness-check" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-rsd-cyan">
+              Take the Readiness Check
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
         </div>
 
@@ -120,11 +156,31 @@ const reassurances = [
         </div>
       </div>
     </section>
+
+    <section class="border-t border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-3xl px-6">
+        <p class="eyebrow mb-4">Before You Submit</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Questions we get on every scoping call.</h2>
+        <div class="mt-10 divide-y divide-rsd-border border-y border-rsd-border">
+          {faqs.map((item) => (
+            <details class="group py-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-semibold text-rsd-heading">
+                {item.q}
+                <svg class="h-4 w-4 shrink-0 text-rsd-cyan transition-transform group-open:rotate-45" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </summary>
+              <p class="mt-3 max-w-2xl text-sm leading-relaxed text-rsd-body">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>
 
 <script>
+  import { track } from "@vercel/analytics";
+
   const form = document.getElementById("assessment-form") as HTMLFormElement | null;
   const status = document.getElementById("assessment-status");
   const submitButton = form?.querySelector("button[type=submit]") as HTMLButtonElement | null;
@@ -147,6 +203,7 @@ const reassurances = [
       if (response.ok) {
         status.textContent = "Thanks — your request has been sent. A senior engineer will review it within one business day.";
         status.classList.add("text-rsd-cyan");
+        track("assessment_form_submit");
         form.reset();
       } else {
         status.textContent = "Something went wrong sending your request. Please email assessments@redshielddefense.com directly.";

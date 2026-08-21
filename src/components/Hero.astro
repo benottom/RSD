@@ -21,20 +21,21 @@ import heroStrategy from "../assets/images/hero-strategy.jpg";
         </div>
 
         <h1 class="font-display text-5xl font-bold tracking-tight text-rsd-heading sm:text-6xl lg:text-7xl">
-          We defend the infrastructure the world <span class="text-rsd-cyan text-glow">cannot afford to lose</span>.
+          Prove NIS2 and CRA compliance — <span class="text-rsd-cyan text-glow">don't just claim it</span>.
         </h1>
 
         <p class="mt-8 max-w-2xl text-lg leading-relaxed text-rsd-body-bright sm:text-xl">
-          We break into the systems you'd rather nobody broke into — then tell you exactly how, in language your engineers can act on the same afternoon. No generic scan. No 40-page PDF nobody reads.
+          Certified penetration testing and VAPT for EU organizations under regulatory pressure. Manual, adversary-driven testing with audit-ready reports your compliance team can hand straight to a regulator.
         </p>
 
         <div class="mt-10 flex flex-col gap-4 sm:flex-row">
           <a href="/request-assessment" class="btn-primary justify-center">
-            Request an Assessment
+            Scope My NIS2 Assessment
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="/services" class="btn-ghost justify-center">Explore Services</a>
         </div>
+        <p class="mt-4 text-sm text-rsd-body">No obligation. Response within 1 business day.</p>
 
         <div class="mt-16 grid grid-cols-2 gap-8 border-t border-rsd-border pt-10 sm:grid-cols-4">
           <div>
@@ -87,12 +88,15 @@ import heroStrategy from "../assets/images/hero-strategy.jpg";
     let height = 0;
     let nodes: { x: number; y: number; vx: number; vy: number }[] = [];
     let animationFrame: number;
+    let isVisible = true;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isSmallViewport = window.matchMedia("(max-width: 640px)").matches;
+    const maxNodes = isSmallViewport ? 24 : 70;
 
     const resize = () => {
       width = canvas.width = canvas.offsetWidth * devicePixelRatio;
       height = canvas.height = canvas.offsetHeight * devicePixelRatio;
-      const count = Math.min(70, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 18000));
+      const count = Math.min(maxNodes, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 18000));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -135,7 +139,7 @@ import heroStrategy from "../assets/images/hero-strategy.jpg";
         ctx.fill();
       }
 
-      if (!prefersReducedMotion) {
+      if (!prefersReducedMotion && isVisible) {
         animationFrame = requestAnimationFrame(draw);
       }
     };
@@ -147,5 +151,21 @@ import heroStrategy from "../assets/images/hero-strategy.jpg";
       resize();
       draw();
     });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            cancelAnimationFrame(animationFrame);
+            draw();
+          } else {
+            cancelAnimationFrame(animationFrame);
+          }
+        },
+        { threshold: 0 }
+      );
+      observer.observe(canvas);
+    }
   }
 </script>

@@ -27,7 +27,7 @@ const trustCards = [
 const services = servicesFi.map((s) => ({ tag: s.tag, name: s.name, shortDesc: s.shortDesc, icon: s.icon, href: `/fi/services/${s.slug}` }));
 
 const stats = [
-  { value: "17 vuotta", label: "Yhdistettyä offensiivisen tietoturvan kokemusta" },
+  { value: "17 vuotta", label: "Perustajatiimin yhdistetty offensiivisen tietoturvan kokemus" },
   { value: "60+", label: "Sertifioitua tietoturva-asiantuntijaa (OSCP, OSCE, CISSP)" },
   { value: "3 200+", label: "Toimitettua arviointia ilman ohitettua SLA:ta" },
   { value: "< 4 min", label: "Keskimääräinen havaitsemisaika hallinnoidussa SecOpsissa" },
@@ -70,20 +70,21 @@ const industries = industriesFi.map((i) => ({ name: i.name, shortDesc: i.shortDe
             </div>
 
             <h1 class="font-display text-5xl font-bold tracking-tight text-rsd-heading sm:text-6xl lg:text-7xl">
-              Suojaamme infrastruktuuria, jonka menettämiseen maailmalla <span class="text-rsd-cyan text-glow">ei ole varaa</span>.
+              Todistakaa NIS2- ja CRA-vaatimustenmukaisuus — <span class="text-rsd-cyan text-glow">älkää vain väittäkö sitä</span>.
             </h1>
 
             <p class="mt-8 max-w-2xl text-lg leading-relaxed text-rsd-body-bright sm:text-xl">
-              Murtaudumme järjestelmiin, joihin ette haluaisi kenenkään murtautuvan — ja kerromme tarkalleen miten, kielellä, jonka pohjalta kehitystiiminne voi toimia jo samana iltapäivänä. Ei geneeristä skannausta. Ei 40-sivuista PDF:ää, jota kukaan ei lue.
+              Sertifioitua tunkeutumistestausta ja VAPT-palvelua sääntelypaineen alla toimiville EU-organisaatioille. Manuaalista, hyökkääjälähtöistä testausta ja auditointivalmiita raportteja, jotka compliance-tiiminne voi antaa suoraan valvojalle.
             </p>
 
             <div class="mt-10 flex flex-col gap-4 sm:flex-row">
               <a href="/fi/request-assessment" class="btn-primary justify-center">
-                Pyydä arviointi
+                Rajaa NIS2-arviointini
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
               <a href="/fi/services/tunkeutumistestaus" class="btn-ghost justify-center">Tutustu VAPT-palveluumme</a>
             </div>
+            <p class="mt-4 text-sm text-rsd-body">Ei sitoumusta. Vastaamme yhden arkipäivän kuluessa.</p>
 
             <div class="mt-16 grid grid-cols-2 gap-8 border-t border-rsd-border pt-10 sm:grid-cols-4">
               <div>
@@ -293,12 +294,15 @@ const industries = industriesFi.map((i) => ({ name: i.name, shortDesc: i.shortDe
     let height = 0;
     let nodes: { x: number; y: number; vx: number; vy: number }[] = [];
     let animationFrame: number;
+    let isVisible = true;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isSmallViewport = window.matchMedia("(max-width: 640px)").matches;
+    const maxNodes = isSmallViewport ? 24 : 70;
 
     const resize = () => {
       width = canvas.width = canvas.offsetWidth * devicePixelRatio;
       height = canvas.height = canvas.offsetHeight * devicePixelRatio;
-      const count = Math.min(70, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 18000));
+      const count = Math.min(maxNodes, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 18000));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -341,7 +345,7 @@ const industries = industriesFi.map((i) => ({ name: i.name, shortDesc: i.shortDe
         ctx.fill();
       }
 
-      if (!prefersReducedMotion) {
+      if (!prefersReducedMotion && isVisible) {
         animationFrame = requestAnimationFrame(draw);
       }
     };
@@ -353,5 +357,21 @@ const industries = industriesFi.map((i) => ({ name: i.name, shortDesc: i.shortDe
       resize();
       draw();
     });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            cancelAnimationFrame(animationFrame);
+            draw();
+          } else {
+            cancelAnimationFrame(animationFrame);
+          }
+        },
+        { threshold: 0 }
+      );
+      observer.observe(canvas);
+    }
   }
 </script>

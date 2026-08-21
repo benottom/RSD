@@ -214,7 +214,7 @@ export const servicesFi: ServiceFi[] = [
       { step: "04", title: "Läpikäynti ja havainnointikatselmus", desc: "Täydellinen aikajanan läpikäynti SOC-tiiminne kanssa, verrattuna siihen, mitä havaittiin ja mitä ei." },
     ],
     outcomes: [
-      { value: "17 vuotta", label: "Yhdistettyä offensiivisen tietoturvan kokemusta" },
+      { value: "17 vuotta", label: "Perustajatiimin yhdistetty offensiivisen tietoturvan kokemus" },
       { value: "MITRE ATT&CK", label: "Jokainen toimeksianto kytketty standardikehykseen" },
       { value: "100 %", label: "Toimeksiantoa toteutettu allekirjoitettujen pelisääntöjen mukaisesti" },
     ],

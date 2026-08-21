@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import CookieConsent from "../components/CookieConsent.astro";
+import Analytics from "@vercel/analytics/astro";
 
 interface Props {
   title: string;
@@ -91,5 +92,6 @@ const ogLocaleAlternate = locale === "fi" ? "en_IE" : "fi_FI";
   <body class="bg-rsd-bg text-rsd-body antialiased">
     <slot />
     <CookieConsent locale={locale} />
+    <Analytics />
   </body>
 </html>

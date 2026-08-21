@@ -219,7 +219,7 @@ export const services: Service[] = [
       { step: "04", title: "Debrief & Detection Review", desc: "Full timeline walkthrough with your SOC, mapped against what was and wasn't detected." },
     ],
     outcomes: [
-      { value: "17 yrs", label: "Combined offensive security expertise" },
+      { value: "17 yrs", label: "Founding engineers' combined offensive security tenure" },
       { value: "MITRE ATT&CK", label: "Every engagement mapped to a standard framework" },
       { value: "100%", label: "Engagements conducted under signed rules of engagement" },
     ],

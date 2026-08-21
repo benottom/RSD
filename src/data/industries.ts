@@ -19,7 +19,7 @@ export const industries: Industry[] = [
       "Financial institutions face constant, well-resourced targeting. We secure the transaction systems, core banking platforms, and customer-facing applications that cannot tolerate compromise.",
     challenges: [
       { title: "High-value target profile", desc: "Financial institutions face persistent targeting from organized crime and nation-state actors alike." },
-      { title: "Regulatory complexity", desc: "PCI-DSS, SOX, GLBA, and regional banking regulations demand overlapping, rigorous control sets." },
+      { title: "Regulatory complexity", desc: "PCI-DSS, DORA, PSD2, and national banking regulations demand overlapping, rigorous control sets." },
       { title: "Legacy core systems", desc: "Core banking platforms often predate modern security architecture and require careful, non-disruptive hardening." },
     ],
     approach: [
@@ -90,13 +90,13 @@ export const industries: Industry[] = [
     heroDesc:
       "Public sector organizations operate under some of the strictest security mandates while serving mission-critical constituent services. We help agencies meet compliance requirements without stalling delivery.",
     challenges: [
-      { title: "Stringent regulatory mandates", desc: "FedRAMP, FISMA, and agency-specific requirements demand rigorous, well-documented controls." },
+      { title: "Stringent regulatory mandates", desc: "NIS2 essential-entity obligations and national cybersecurity agency requirements demand rigorous, well-documented controls." },
       { title: "High-value target status", desc: "Government systems face persistent targeting from nation-state and hacktivist actors." },
       { title: "Legacy modernization pressure", desc: "Security must be engineered into modernization efforts without introducing new exposure." },
     ],
     approach: [
       "We align assessment methodology and reporting to the frameworks your agency is measured against, while testing for the exploitation paths real adversaries pursue.",
-      "Our advisors have supported public sector clients through FedRAMP and FISMA processes end-to-end.",
+      "Our advisors have supported public sector clients through NIS2 essential-entity classification and national cybersecurity agency accreditation processes end-to-end.",
     ],
     relatedServices: ["compliance", "penetration-testing", "secops"],
   },

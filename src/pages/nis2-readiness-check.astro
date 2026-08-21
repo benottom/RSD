@@ -1,0 +1,274 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+
+const questions = [
+  {
+    id: "q1",
+    category: "Risk management",
+    text: "Do you have a documented risk-analysis and information-security policy that's reviewed at least annually?",
+  },
+  {
+    id: "q2",
+    category: "Incident handling",
+    text: "Do you have a formal incident-response plan with a defined escalation path and a process for meeting regulator notification timelines?",
+  },
+  {
+    id: "q3",
+    category: "Incident handling",
+    text: "Has that plan been tested with a tabletop exercise or simulated incident in the last 12 months?",
+  },
+  {
+    id: "q4",
+    category: "Business continuity",
+    text: "Do you have a documented business-continuity and disaster-recovery plan for your critical systems?",
+  },
+  {
+    id: "q5",
+    category: "Supply-chain security",
+    text: "Do you assess the security posture of key suppliers and third-party vendors before onboarding them?",
+  },
+  {
+    id: "q6",
+    category: "Access control",
+    text: "Is multi-factor authentication enforced for all privileged and remote-access accounts?",
+  },
+  {
+    id: "q7",
+    category: "Vulnerability handling",
+    text: "Do you have a defined process for handling and disclosing vulnerabilities found in your own products or systems?",
+  },
+  {
+    id: "q8",
+    category: "Secure-by-design",
+    text: "Do you maintain a software bill of materials (SBOM), or an equivalent inventory of third-party components in your products?",
+  },
+  {
+    id: "q9",
+    category: "Security testing",
+    text: "Has an external party — not your own team — performed a penetration test or security assessment on your critical systems in the last 12 months?",
+  },
+  {
+    id: "q10",
+    category: "Audit readiness",
+    text: "Could you hand an auditor documented evidence today — not just policy — that these controls are actually in place?",
+  },
+  {
+    id: "q11",
+    category: "Scope awareness",
+    text: "Do you know whether your organization qualifies as an \"essential\" or \"important\" entity under NIS2, and which specific obligations apply to you?",
+  },
+  {
+    id: "q12",
+    category: "Response capability",
+    text: "If a critical vulnerability were found in a customer-facing system tomorrow, could your team ship a fix and notify affected parties within 72 hours?",
+  },
+];
+
+const options = [
+  { value: "0", label: "Yes" },
+  { value: "1", label: "Partially / in progress" },
+  { value: "2", label: "No / not sure" },
+];
+
+---
+
+<Layout
+  title="NIS2 & CRA Readiness Check — Free Self-Assessment | RedShield Defense"
+  description="A free 12-question self-assessment mapped to NIS2 Article 21 risk-management measures and CRA vulnerability-handling requirements. Get an instant risk tier, no form required to see your result."
+  path="/nis2-readiness-check"
+  locale="en"
+>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Free Self-Assessment"
+      title="NIS2 & CRA Readiness Check"
+      desc="12 questions mapped to NIS2 Article 21 risk-management measures and CRA vulnerability-handling requirements. Answer honestly — you'll see your result immediately, no form required."
+      breadcrumb={[{ name: "NIS2 & CRA Readiness Check", href: "/nis2-readiness-check" }]}
+    />
+
+    <section id="quiz-section" class="border-b border-rsd-border bg-rsd-bg py-20">
+      <div class="mx-auto max-w-3xl px-6">
+        <form id="readiness-form">
+          <div class="space-y-8">
+            {questions.map((q, i) => (
+              <fieldset class="rounded-lg border border-rsd-border bg-rsd-surface p-6">
+                <legend class="px-1 font-mono text-xs uppercase tracking-widest text-rsd-cyan">{String(i + 1).padStart(2, "0")} / {q.category}</legend>
+                <p class="mt-2 font-display text-lg font-semibold text-rsd-heading">{q.text}</p>
+                <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  {options.map((opt) => (
+                    <label class="flex items-center gap-2.5 rounded-md border border-rsd-border bg-rsd-bg px-4 py-3 text-sm text-rsd-body-bright has-[:checked]:border-rsd-cyan has-[:checked]:text-rsd-heading">
+                      <input required type="radio" name={q.id} value={opt.value} class="accent-rsd-cyan" />
+                      {opt.label}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+          </div>
+
+          <button type="submit" class="btn-primary mt-10 w-full justify-center">
+            See My Result
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p id="quiz-error" class="mt-4 hidden text-sm text-red-600" role="status">Please answer every question to see your result.</p>
+        </form>
+      </div>
+    </section>
+
+    <section id="results-section" class="hidden border-b border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-3xl px-6">
+        <p class="eyebrow mb-4">Your Result</p>
+        <div class="rounded-xl border border-rsd-border bg-rsd-bg-deep p-8 shadow-2xl shadow-black/50 sm:p-10">
+          <div class="flex items-center justify-between border-b border-rsd-border pb-5">
+            <span class="font-mono text-xs uppercase tracking-widest text-rsd-body">nis2-readiness / result</span>
+            <span id="result-score" class="font-mono text-xs text-rsd-cyan"></span>
+          </div>
+          <h2 id="result-title" class="mt-6 font-display text-3xl font-bold text-white sm:text-4xl"></h2>
+          <p id="result-summary" class="mt-4 max-w-xl text-rsd-body"></p>
+          <p class="mt-6 max-w-xl text-sm leading-relaxed text-rsd-body">
+            This mirrors the pattern we see across our own engagements — untested incident-response plans and unenforced MFA on privileged access are consistently among the most common gaps, regardless of company size.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a href="/request-assessment" class="btn-primary justify-center">
+              Scope My NIS2 Assessment
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+
+          <div class="mt-10 border-t border-rsd-border pt-8">
+            <p class="font-display text-sm font-semibold text-white">Email me a copy of this result</p>
+            <form id="result-email-form" action="https://formspree.io/f/xzepvdda" method="POST" class="mt-4 flex flex-col gap-3 sm:flex-row">
+              <input type="hidden" name="_subject" value="NIS2 Readiness Check result — RedShield Defense" />
+              <input type="hidden" id="result-tier-field" name="result_tier" value="" />
+              <input type="hidden" id="result-score-field" name="result_score" value="" />
+              <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+              <input
+                required
+                type="email"
+                name="email"
+                placeholder="jordan@company.com"
+                class="flex-1 rounded-md border border-rsd-border bg-rsd-surface px-4 py-3 text-rsd-heading placeholder:text-rsd-body/60 focus:border-rsd-cyan focus:outline-none"
+              />
+              <button type="submit" class="btn-ghost-invert shrink-0">Email My Result</button>
+            </form>
+            <p id="email-status" class="mt-3 hidden text-sm" role="status"></p>
+          </div>
+        </div>
+
+        <button type="button" id="restart-quiz" class="btn-ghost mt-8">Retake the Assessment</button>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { track } from "@vercel/analytics";
+
+  const tiers = [
+    {
+      key: "low",
+      range: "0–6",
+      title: "Low exposure",
+      summary:
+        "The fundamentals are in place. Most of what's left is turning policy into evidence you can hand an auditor without a scramble.",
+    },
+    {
+      key: "moderate",
+      range: "7–14",
+      title: "Moderate exposure",
+      summary:
+        "The building blocks exist, but gaps like these are consistently what surface first in an audit or a real incident — before they're found on purpose.",
+    },
+    {
+      key: "high",
+      range: "15–24",
+      title: "High exposure",
+      summary:
+        "Several core NIS2 and CRA expectations aren't evidenced yet. Worth scoping an assessment before a regulator — or an attacker — finds these first.",
+    },
+  ];
+
+  const form = document.getElementById("readiness-form");
+  const quizSection = document.getElementById("quiz-section");
+  const resultsSection = document.getElementById("results-section");
+  const quizError = document.getElementById("quiz-error");
+  const resultScore = document.getElementById("result-score");
+  const resultTitle = document.getElementById("result-title");
+  const resultSummary = document.getElementById("result-summary");
+  const tierField = document.getElementById("result-tier-field");
+  const scoreField = document.getElementById("result-score-field");
+  const restartButton = document.getElementById("restart-quiz");
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const values = [...data.values()].map((v) => Number(v));
+
+    if (values.length < 12 || values.some((v) => Number.isNaN(v))) {
+      quizError?.classList.remove("hidden");
+      return;
+    }
+    quizError?.classList.add("hidden");
+
+    const score = values.reduce((sum, v) => sum + v, 0);
+    const tier = score <= 6 ? tiers[0] : score <= 14 ? tiers[1] : tiers[2];
+
+    if (resultScore) resultScore.textContent = `${score} / 24`;
+    if (resultTitle) resultTitle.textContent = tier.title;
+    if (resultSummary) resultSummary.textContent = tier.summary;
+    if (tierField instanceof HTMLInputElement) tierField.value = `${tier.title} (${tier.range})`;
+    if (scoreField instanceof HTMLInputElement) scoreField.value = String(score);
+
+    quizSection?.classList.add("hidden");
+    resultsSection?.classList.remove("hidden");
+    resultsSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+    track("nis2_readiness_check_completed", { tier: tier.key, score });
+  });
+
+  restartButton?.addEventListener("click", () => {
+    form?.reset();
+    resultsSection?.classList.add("hidden");
+    quizSection?.classList.remove("hidden");
+    quizSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  const emailForm = document.getElementById("result-email-form");
+  const emailStatus = document.getElementById("email-status");
+
+  emailForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!(emailForm instanceof HTMLFormElement) || !emailStatus) return;
+
+    const submitButton = emailForm.querySelector("button[type=submit]");
+    if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+    emailStatus.classList.remove("hidden", "text-rsd-cyan", "text-red-600");
+
+    try {
+      const response = await fetch(emailForm.action, {
+        method: "POST",
+        body: new FormData(emailForm),
+        headers: { Accept: "application/json" },
+      });
+      if (response.ok) {
+        emailStatus.textContent = "Sent — check your inbox.";
+        emailStatus.classList.add("text-rsd-cyan");
+        track("nis2_readiness_check_email_captured");
+        emailForm.reset();
+      } else {
+        emailStatus.textContent = "Something went wrong. Please try again.";
+        emailStatus.classList.add("text-red-600");
+      }
+    } catch {
+      emailStatus.textContent = "Something went wrong. Please try again.";
+      emailStatus.classList.add("text-red-600");
+    } finally {
+      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
+    }
+  });
+</script>

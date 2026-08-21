@@ -11,6 +11,33 @@ const reassurances = [
   { title: "NDA ensin", desc: "Molemminpuolinen salassapitosopimus allekirjoitetaan ennen rajaustietojen jakamista." },
   { title: "Ei sitoumusta", desc: "Rajauspuhelut ovat konsultoivia — päätätte itse, jos ja milloin edetä." },
 ];
+
+const faqs = [
+  {
+    q: "Häiritseekö testaus tuotantojärjestelmiämme?",
+    a: "Testausikkunat ja toimeksiannon säännöt sovitaan kanssanne ennen aktiivisen testauksen alkamista — se on prosessin ensimmäinen vaihe. Toimeksiannot aikataulutetaan teidän liikennemallienne ja muutosikkunoidenne mukaan.",
+  },
+  {
+    q: "Mitä tiedoillemme tapahtuu toimeksiannon aikana?",
+    a: "Molemminpuolinen salassapitosopimus allekirjoitetaan ennen rajaustietojen jakamista. Toimeksiannon tiedot rajataan vain nimetylle asiantuntijatiimille tarpeen mukaan, ja kaikki löydökset salataan siirrossa ja levossa sekä toimitetaan pääsynhallitun portaalin kautta.",
+  },
+  {
+    q: "Kenelle raportti kuuluu jälkikäteen, ja jaetaanko sitä koskaan?",
+    a: "Raportti ja jokainen löydös siinä ovat teidän. Se toimitetaan yllä mainitun pääsynhallitun portaalin kautta, eikä sitä koskaan käytetä tai viitata toisen asiakkaan yhteydessä.",
+  },
+  {
+    q: "Voimmeko nähdä esimerkkiraportin ennen sitoutumista?",
+    a: "Kysykää asiasta rajauspuhelussa — käymme mielellämme läpi anonymisoidun esimerkin, jotta tiedätte tarkalleen mitä odottaa ennen päätöksentekoa.",
+  },
+  {
+    q: "Sisältyykö uudelleentestaus, jos löydätte jotain kriittistä?",
+    a: "Kyllä. Jokainen kriittinen ja korkean tason löydös testataan uudelleen veloituksetta, kunnes korjaus on vahvistettu.",
+  },
+  {
+    q: "Kuinka kauan toimeksianto todellisuudessa kestää?",
+    a: "Se riippuu laajuudesta — kohdennettu verkkosovellustestaus voi kestää päiviä, täysimittainen red team -toimeksianto viikkoja. Tarjouksenne sisältää tarkan aikataulun ennen kuin teiltä pyydetään sitoumusta mihinkään.",
+  },
+];
 ---
 
 <Layout
@@ -120,11 +147,31 @@ const reassurances = [
         </div>
       </div>
     </section>
+
+    <section class="border-t border-rsd-border bg-rsd-surface-alt py-20">
+      <div class="mx-auto max-w-3xl px-6">
+        <p class="eyebrow mb-4">Ennen lähetystä</p>
+        <h2 class="font-display text-3xl font-bold text-rsd-heading sm:text-4xl">Kysymyksiä, joita kuulemme joka rajauspuhelussa.</h2>
+        <div class="mt-10 divide-y divide-rsd-border border-y border-rsd-border">
+          {faqs.map((item) => (
+            <details class="group py-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-semibold text-rsd-heading">
+                {item.q}
+                <svg class="h-4 w-4 shrink-0 text-rsd-cyan transition-transform group-open:rotate-45" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </summary>
+              <p class="mt-3 max-w-2xl text-sm leading-relaxed text-rsd-body">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
   </main>
   <FiFooter />
 </Layout>
 
 <script>
+  import { track } from "@vercel/analytics";
+
   const form = document.getElementById("assessment-form") as HTMLFormElement | null;
   const status = document.getElementById("assessment-status");
   const submitButton = form?.querySelector("button[type=submit]") as HTMLButtonElement | null;
@@ -147,6 +194,7 @@ const reassurances = [
       if (response.ok) {
         status.textContent = "Kiitos — pyyntönne on lähetetty. Senior-asiantuntija käy sen läpi yhden arkipäivän kuluessa.";
         status.classList.add("text-rsd-cyan");
+        track("assessment_form_submit");
         form.reset();
       } else {
         status.textContent = "Pyynnön lähetys epäonnistui. Lähettäkää sähköpostia osoitteeseen info@redshielddefense.com.";

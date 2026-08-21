@@ -70,6 +70,8 @@ import PageHero from "../../components/PageHero.astro";
 </Layout>
 
 <script>
+  import { track } from "@vercel/analytics";
+
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const status = document.getElementById("contact-status");
   const submitButton = form?.querySelector("button[type=submit]") as HTMLButtonElement | null;
@@ -92,6 +94,7 @@ import PageHero from "../../components/PageHero.astro";
       if (response.ok) {
         status.textContent = "Thanks — your message has been sent. We'll be in touch within one business day.";
         status.classList.add("text-rsd-cyan");
+        track("contact_form_submit");
         form.reset();
       } else {
         status.textContent = "Something went wrong sending your message. Please email info@redshielddefense.com directly.";

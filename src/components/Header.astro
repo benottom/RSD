@@ -17,6 +17,7 @@ const serviceLinks = serviceMenuGroups.map((heading) => ({
 }));
 
 const resourceLinks = [
+  { name: "NIS2 & CRA Readiness Check", href: "/nis2-readiness-check", desc: "Free 12-question self-assessment — see your risk tier instantly." },
   { name: "Threat Intelligence Reports", href: "/resources/reports", desc: "Quarterly analysis of the vulnerabilities shaping the threat landscape." },
   { name: "Technical Blog", href: "/resources/blog", desc: "Research notes and field findings from our security engineers." },
   { name: "Case Studies", href: "/resources/case-studies", desc: "How mission-critical organizations harden their infrastructure with us." },
@@ -86,7 +87,7 @@ const resourceLinks = [
     <div class="hidden items-center gap-4 lg:flex">
       <LanguageSwitcher current="en" enHref="/" fiHref={fiHref} />
       <a href="/company/careers" class="text-sm font-medium text-rsd-body-bright transition-colors hover:text-rsd-cyan">Careers</a>
-      <a href="/request-assessment" class="btn-primary text-sm">Request an Assessment</a>
+      <a href="/request-assessment" class="btn-primary text-sm">Scope My NIS2 Assessment</a>
     </div>
 
     <button id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" class="flex h-10 w-10 items-center justify-center lg:hidden">
@@ -108,7 +109,7 @@ const resourceLinks = [
       <FlagIcon country="fi" />Suomeksi
     </a>
   </nav>
-  <a href="/request-assessment" class="mobile-menu-item btn-primary relative w-full justify-center" style="transition-delay:360ms">Request an Assessment</a>
+  <a href="/request-assessment" class="mobile-menu-item btn-primary relative w-full justify-center" style="transition-delay:360ms">Scope My NIS2 Assessment</a>
 </div>
 
 <script>
